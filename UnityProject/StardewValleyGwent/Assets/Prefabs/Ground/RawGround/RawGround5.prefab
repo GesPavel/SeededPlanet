@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4442570101998383550}
   - component: {fileID: 7229562732331280749}
-  - component: {fileID: -1355470644325903421}
+  - component: {fileID: 4309370001969065408}
   m_Layer: 0
-  m_Name: RawEarth1
-  m_TagString: Earth
+  m_Name: RawGround5
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,7 +69,7 @@ SpriteRenderer:
   m_SortingLayerID: -1921164175
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 220cf1cbd55f26849a170ddbe2b1282c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 43ff973b4e75ec041958628171e202c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &-1355470644325903421
+--- !u!61 &4309370001969065408
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
