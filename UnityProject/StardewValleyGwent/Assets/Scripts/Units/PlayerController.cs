@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public KeyCode left, right, up, down, use, takeAndPut;
     public float speed;
     public float moveDelay;
+    public GameObject leftHand, rightHand;
     private Rigidbody2D rb2d;
     private Vector3 lookDirection;
     private Vector3 moveDirection;

@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class TransferItemScript : MonoBehaviour
 {
-    public GameObject item;
-    public GameObject player;
+    private GameObject item;
+    private GameObject player;
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (item != null)
