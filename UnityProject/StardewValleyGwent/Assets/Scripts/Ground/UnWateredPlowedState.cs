@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnWateredState : PlowedState
+public class UnWateredPlowedState : MonoBehaviour, GroundState
 {
-    public override void ExecuteCommand(Ground ground)
+    public void ExecuteCommand(Ground ground)
     {
         Debug.Log("Земля не полита, но вспахана");
     }
