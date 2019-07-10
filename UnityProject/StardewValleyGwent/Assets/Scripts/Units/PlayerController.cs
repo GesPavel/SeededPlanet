@@ -65,6 +65,8 @@ public class PlayerController : MonoBehaviour
     //Если есть препятствие, функция возвращает false.
     private bool CanMove(Vector3 direction)
     {
+        RaycastHit2D hit = Physics2D.Raycast(rb2d.transform.position, direction, 1, LayerMask.GetMask("BlockingLayer"));
+        if (hit.collider != null) return false;
         return true;
     }
 
