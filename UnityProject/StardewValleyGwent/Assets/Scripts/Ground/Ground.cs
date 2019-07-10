@@ -8,15 +8,15 @@ public class Ground : MonoBehaviour
     bool IsOccupied { get; set; }
     GroundState currentState;
 
-    public Ground()
-    {
-        this.currentState = new UnPlowedState();
-    }
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         
+        currentState = gameObject.AddComponent<WateredPlowedState>();
+        currentState.ExecuteCommand(this);
     }
 
     // Update is called once per frame
