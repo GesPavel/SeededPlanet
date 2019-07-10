@@ -12,11 +12,11 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection;
     private bool moving;
    
-
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         moving = false;
+        
     }
 
 
