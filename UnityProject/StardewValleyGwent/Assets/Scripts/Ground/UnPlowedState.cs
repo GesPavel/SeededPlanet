@@ -2,10 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnPlowedState : MonoBehaviour, GroundState
+internal class UnPlowedState : GroundState
 {
-    public void ExecuteCommand(Ground ground)
+
+
+    internal UnPlowedState()
     {
         Debug.Log("Земля не вспахана");
     }
+
+    protected override void ChangeState(Ground gameManager)
+    {
+        base.ChangeState(gameManager);
+        gameManager.State = gameManager.gameObject.AddComponent<UnWateredPlowedState>();
+    }
+
 }
