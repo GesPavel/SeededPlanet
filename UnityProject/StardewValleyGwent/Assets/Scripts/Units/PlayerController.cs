@@ -57,9 +57,11 @@ public class PlayerController : MonoBehaviour
                 moveDirection = Vector3.zero;
             }
         }
-            
-        
-
+        if (Input.GetKeyDown(takeAndPut))
+        {
+            rightHand.GetComponent<TransferItemScript>().InteractWithCrate();
+            leftHand.GetComponent<TransferItemScript>().InteractWithCrate();
+        }
     }
 
     //Функция будет проверят потенциальное столкновение игрока, если он пойдет по данному направлению.

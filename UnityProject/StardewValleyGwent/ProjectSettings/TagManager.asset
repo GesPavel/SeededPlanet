@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - Environment
   - ToolBar
+  - SeedCrate
+  - RightHand
+  - LeftHand
   layers:
   - Default
   - TransparentFX
@@ -44,6 +47,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Floor
+    uniqueID: 3208493853
+    locked: 0
   - name: Ground
     uniqueID: 2373803121
     locked: 0
@@ -53,6 +59,9 @@ TagManager:
   - name: Units
     uniqueID: 2572595483
     locked: 0
-  - name: Items
-    uniqueID: 1946650691
+  - name: Item
+    uniqueID: 1841055919
+    locked: 0
+  - name: UI
+    uniqueID: 3620865803
     locked: 0
