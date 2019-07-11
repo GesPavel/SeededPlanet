@@ -5,5 +5,5 @@ using UnityEngine;
 public interface ICrate 
 {
     void TakeFrom();
-    void Put(GameObject gameObject);
+    void Put();
 }

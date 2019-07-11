@@ -19,7 +19,7 @@ public class SeedCrate : MonoBehaviour, ICrate
     {
 
     }
-    public void Put(GameObject seed)
+    public void Put()
     {
 
     }
