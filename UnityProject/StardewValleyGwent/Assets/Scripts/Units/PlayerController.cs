@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         moving = false;
+        DontDestroyOnLoad(this.gameObject);
         
     }
 

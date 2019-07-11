@@ -8,7 +8,7 @@ public class TransferItemScript : MonoBehaviour
     private GameObject player;
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = (GetComponentInParent<PlayerController>() as PlayerController).gameObject;
     }
 
     void Update()
@@ -16,7 +16,7 @@ public class TransferItemScript : MonoBehaviour
         if (item != null)
         {
             item.transform.position = transform.position;
-            item.transform.up = player.transform.up;
+            if(player!=null) item.transform.up = player.transform.up;
         }
     }
 
