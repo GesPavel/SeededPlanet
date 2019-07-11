@@ -5,7 +5,7 @@ using UnityEngine;
 public class ToolBar : MonoBehaviour, ICrate
 {
     public GameObject instrument;
-    GameObject playersHand;
+    
     void Start()
     {
 
@@ -16,26 +16,23 @@ public class ToolBar : MonoBehaviour, ICrate
     {
         if (instrument != null) instrument.transform.position = transform.position;
     }
-    public void TakeFrom()
+    public void TakeFromCrate(TransferItemScript rightHand)
     {
-        playersHand.GetComponent<TransferItemScript>().setItem(instrument);
+        rightHand.setItem(instrument);
         instrument = null;
     }
-    public void Put()
+    public void Put(TransferItemScript rightHand)
     {
-       instrument = playersHand.GetComponent<TransferItemScript>().SendItem();
-       playersHand.GetComponent<TransferItemScript>().RemoveItem();
+       instrument = rightHand.SendItem();
+       rightHand.RemoveItem();
     }
-    public void TakeOrPutItem(GameObject rightHand)
+    public void TakeOrPutItem(TransferItemScript rightHand)
     {
-       
-        playersHand = rightHand;
-        if (playersHand.GetComponent<TransferItemScript>().IsWithItem())
+        if (rightHand.IsWithItem())
         {
-            Put();
-            playersHand = null;
+            Put(rightHand);
         }
-        else TakeFrom();
+        else TakeFromCrate(rightHand);
 
     }
 }

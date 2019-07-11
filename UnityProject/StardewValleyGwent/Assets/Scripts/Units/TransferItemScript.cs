@@ -24,12 +24,15 @@ public class TransferItemScript : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 1,LayerMask.GetMask("BlockingLayer"));
         
-        if (hit.collider?.tag == "ToolBar")
+        if (hit.collider?.tag == "ToolBar" && this.CompareTag("RightHand"))
         {
-            hit.collider.GetComponent<ToolBar>().TakeOrPutItem(this.gameObject);
-            
+            hit.collider.GetComponent<ToolBar>().TakeOrPutItem(this);
         }
-        
+        else if (hit.collider?.tag == "SeedCrate" && this.CompareTag("LeftHand"))
+        {
+            hit.collider.GetComponent<SeedCrate>().TakeOrPutItem(this);
+        }
+
     }
     public void setItem(GameObject item)
     {

@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - Environment
   - ToolBar
+  - SeedCrate
+  - RightHand
+  - LeftHand
   layers:
   - Default
   - TransparentFX
