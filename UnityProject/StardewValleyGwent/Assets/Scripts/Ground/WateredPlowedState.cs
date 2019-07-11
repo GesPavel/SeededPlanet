@@ -2,10 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WateredPlowedState : MonoBehaviour, GroundState
+internal class WateredPlowedState : GroundState
 {
-    public void ExecuteCommand(Ground ground)
+    public Ground groundScript;
+
+    void Awake()
+    {
+        groundScript = GetComponent<Ground>();
+    }
+    internal WateredPlowedState()
     {
         Debug.Log("Земля полита и вспахана");
+        
     }
+    protected override void ChangeState(Ground gameManager)
+    {
+
+        base.ChangeState(gameManager);
+        gameManager.gameObject.GetComponent<SpriteRenderer>().sprite = groundScript.sprites[0];
+        gameManager.State = gameObject.AddComponent<UnWateredPlowedState>();
+
+    }
+
 }

@@ -119,3 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d08342a907f4c4cb8e50ee212a1a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 2b11201fe27d6604bbc7a779ac4e180d, type: 3}
+  - {fileID: 21300000, guid: bf0ff463eca75aa48a9a44475adbd1f0, type: 3}
