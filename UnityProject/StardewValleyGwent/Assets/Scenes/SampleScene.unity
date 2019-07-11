@@ -21038,6 +21038,16 @@ PrefabInstance:
       propertyPath: item
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3342890049334773046, guid: be518a48edf550744beda8b0207ed60d,
+        type: 3}
+      propertyPath: m_TagString
+      value: RightHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017005567085935254, guid: be518a48edf550744beda8b0207ed60d,
+        type: 3}
+      propertyPath: m_TagString
+      value: LeftHand
+      objectReference: {fileID: 0}
     - target: {fileID: 6471237351870007524, guid: be518a48edf550744beda8b0207ed60d,
         type: 3}
       propertyPath: item
@@ -35946,6 +35956,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1644466797}
     m_Modifications:
+    - target: {fileID: -4964602783607573595, guid: 5fd10058e7a692347994b9df3aa54525,
+        type: 3}
+      propertyPath: instrument
+      value: 
+      objectReference: {fileID: 1659300517}
     - target: {fileID: 4633807041020978876, guid: 5fd10058e7a692347994b9df3aa54525,
         type: 3}
       propertyPath: m_Name
@@ -36006,11 +36021,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4964602783607573595, guid: 5fd10058e7a692347994b9df3aa54525,
-        type: 3}
-      propertyPath: instrument
-      value: 
-      objectReference: {fileID: 1659300517}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fd10058e7a692347994b9df3aa54525, type: 3}
 --- !u!4 &1344615005 stripped
@@ -38722,6 +38732,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615906496749393939, guid: 14c8b8e2ba6f7ed428f4ebb901cab171,
+        type: 3}
+      propertyPath: seedCounter
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14c8b8e2ba6f7ed428f4ebb901cab171, type: 3}
