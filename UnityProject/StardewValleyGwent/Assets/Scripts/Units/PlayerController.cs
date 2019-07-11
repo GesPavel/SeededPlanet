@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(takeAndPut))
         {
             rightHand.GetComponent<TransferItemScript>().InteractWithCrate();
+            leftHand.GetComponent<TransferItemScript>().InteractWithCrate();
         }
     }
 

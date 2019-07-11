@@ -6,24 +6,43 @@ using UnityEngine.UI;
 public class SeedCrate : MonoBehaviour, ICrate
 {
     public Text label;
-    int seedCounter = 0;
+    public GameObject seed;
+    public int seedCounter = 0;
     void Start()
     {
-        
+        label.text = seedCounter.ToString();
     }
 
     
     void Update()
     {
+
     }
-    public void TakeFrom()
+    public void TakeOrPutItem(TransferItemScript leftHand)
     {
-        seedCounter--;
-        label.text = seedCounter.ToString();
+        if (leftHand.IsWithItem())
+            Put(leftHand);
+        else
+            TakeFromCrate(leftHand);
     }
-    public void Put()
+    public void TakeFromCrate(TransferItemScript leftHand)
     {
-        seedCounter++;
-        label.text = seedCounter.ToString();
+        if (seedCounter > 0)
+        {
+            seedCounter--;
+            label.text = seedCounter.ToString();
+            leftHand.setItem(Instantiate(seed));
+        }
+    }
+    public void Put(TransferItemScript leftHand)
+    {
+        GameObject seed = leftHand.SendItem();
+        if (seed.GetComponent<Seed>() != null)
+        {
+            Destroy(seed);
+            leftHand.RemoveItem();
+            seedCounter++;
+            label.text = seedCounter.ToString();
+        }
     }
 }

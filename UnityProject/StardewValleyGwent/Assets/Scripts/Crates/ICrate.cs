@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface ICrate 
 {
-    void TakeFrom();
-    void Put();
+    void TakeOrPutItem(TransferItemScript hand);
+    void TakeFromCrate(TransferItemScript hand);
+    void Put(TransferItemScript hand);
 }
