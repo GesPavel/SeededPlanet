@@ -10,6 +10,7 @@ TagManager:
   - SeedCrate
   - RightHand
   - LeftHand
+  - VeggieCrate
   layers:
   - Default
   - TransparentFX
