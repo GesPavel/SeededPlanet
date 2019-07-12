@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TransferItemScript : MonoBehaviour
+public class HandScript : MonoBehaviour
 {
     private GameObject item;
     private GameObject player;
@@ -32,17 +32,18 @@ public class TransferItemScript : MonoBehaviour
         }
     }
 
-    public void InteractWithCrate()
+    public void InteractWithEnviroment()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 1,LayerMask.GetMask("BlockingLayer"));
         
-        if (hit.collider?.tag == "ToolBar" && this.CompareTag("RightHand"))
+        if (hit.collider?.tag == "Crate")
         {
-            hit.collider.GetComponent<ToolBar>().TakeOrPutItem(this);
+            ICrate crate = (ICrate)hit.collider.GetComponent(typeof(ICrate)) as ICrate;
+            crate.TakeOrPutItem(this);
         }
-        else if (hit.collider?.tag == "SeedCrate" && this.CompareTag("LeftHand"))
+        if (hit.collider?.tag == "Well")
         {
-            hit.collider.GetComponent<SeedCrate>().TakeOrPutItem(this);
+            hit.collider.GetComponent<Well>().Interact(this);
         }
 
     }

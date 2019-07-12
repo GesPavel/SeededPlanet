@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public KeyCode left, right, up, down, takeAndPut;
+    public KeyCode left, right, up, down, use, interact;
     public float speed;
     public float moveDelay;
     public GameObject leftHand, rightHand;
@@ -12,13 +12,13 @@ public class PlayerController : MonoBehaviour
     private Vector3 lookDirection;
     private Vector3 moveDirection;
     private bool moving;
-    public BaseGround currentGroundPosition;
    
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         moving = false;
-        DontDestroyOnLoad(this.gameObject);      
+        DontDestroyOnLoad(this.gameObject);
+        
     }
 
 
@@ -58,10 +58,10 @@ public class PlayerController : MonoBehaviour
                 moveDirection = Vector3.zero;
             }
         }
-        if (Input.GetKeyDown(takeAndPut))
+        if (Input.GetKeyDown(interact))
         {
-            rightHand.GetComponent<TransferItemScript>().InteractWithCrate();
-            leftHand.GetComponent<TransferItemScript>().InteractWithCrate();
+            rightHand.GetComponent<HandScript>().InteractWithEnviroment();
+            
         }
     }
 

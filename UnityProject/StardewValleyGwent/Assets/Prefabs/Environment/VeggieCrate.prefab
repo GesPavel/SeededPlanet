@@ -89,10 +89,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4615906496749393941}
   - component: {fileID: 4615906496749393938}
-  - component: {fileID: 4615906496749393939}
   - component: {fileID: 4615906496749393936}
+  - component: {fileID: -7830796860214024856}
   m_Layer: 9
-  m_Name: SeedBox
+  m_Name: VeggieCrate
   m_TagString: Crate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,8 +150,8 @@ SpriteRenderer:
   m_SortingLayerID: -1148929015
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 75604a9f77506fa4295b5c76c1bfa54a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 9e4f9eb649c37f54687df1804c6e049d, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -161,21 +161,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4615906496749393939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4615906496749393937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16738da20cb297844b52c5b23da7348b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  label: {fileID: 375551699395950795}
-  seed: {fileID: 360744774490303011, guid: e42a4573f7e3a954e87dc092da9a0289, type: 3}
-  seedCounter: 0
 --- !u!61 &4615906496749393936
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -193,7 +178,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.04, y: 1.04}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1.04, y: 1.04}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -202,3 +187,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.04, y: 1.04}
   m_EdgeRadius: 0
+--- !u!114 &-7830796860214024856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4615906496749393937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab5ea4d5a6a78941a8a023c5c41c6a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: {fileID: 375551699395950795}
+  vegetable: {fileID: 5142369330590630118, guid: 30c6d26813462604bb0fc5ddd087c7ef,
+    type: 3}
+  veggieCounter: 0

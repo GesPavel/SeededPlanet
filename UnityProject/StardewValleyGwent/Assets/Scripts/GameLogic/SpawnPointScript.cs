@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightHousScript : MonoBehaviour
+public class SpawnPointScript : MonoBehaviour
 {
     private GameObject player;
     bool playersPositionchanged;
