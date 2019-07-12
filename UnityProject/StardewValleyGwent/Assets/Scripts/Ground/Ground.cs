@@ -7,40 +7,37 @@ public class Ground : MonoBehaviour
 
     bool IsOccupied { get; set; }
 
-    public Sprite[] sprites = new Sprite[2];
-    bool active = false;
-    internal GroundState State { get; set; }
-    float WaterDelay=2;
+    //public Sprite[] sprites = new Sprite[2];
+    public Sprite unWatered;
+    public Sprite watered;
 
-    // Start is called before the first frame update
+    public GroundState State { get; set; }
+    //float WaterDelay=2;
+
     void Start()
     {
         State = gameObject.AddComponent<UnPlowedState>();
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
+       
 
-            State.HandleButton(this);
-        }
 
-        if (State is WateredPlowedState)
-        {
-            if (WaterDelay < 0)
-            {
-
-                State.HandleButton(this);
-                WaterDelay = 2;
-            }
-            else if (WaterDelay > 0)
-            {
-                WaterDelay -= Time.deltaTime;
-                Debug.Log(WaterDelay);
-            }
-        }
     }
+    public void ChangeOnPlowed()
+    {
+        //if (State is UnPlowedState)
+        //{
+            Debug.Log("Changed");
+            State.HandleButton(this);
+        //}
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+       // FindObjectOfType<PlayerController>().currentGroundPosition = this;
+    }
+
 }

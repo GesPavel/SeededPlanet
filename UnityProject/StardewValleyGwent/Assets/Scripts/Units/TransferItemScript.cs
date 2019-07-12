@@ -6,6 +6,7 @@ public class TransferItemScript : MonoBehaviour
 {
     private GameObject item;
     private GameObject player;
+    public KeyCode use;
     void Start()
     {
         player = (GetComponentInParent<PlayerController>() as PlayerController).gameObject;
@@ -17,6 +18,17 @@ public class TransferItemScript : MonoBehaviour
         {
             item.transform.position = transform.position;
             if(player!=null) item.transform.up = player.transform.up;
+        }
+        if (Input.GetKeyDown(use) && item?.gameObject.tag == "Hoe" && player.GetComponent<PlayerController>().currentGroundPosition as UnPlowed!=null) {
+
+            if (player.GetComponent<PlayerController>().currentGroundPosition == null) return;
+            player.GetComponent<PlayerController>().currentGroundPosition.UseItem(); Debug.Log("use");
+        }
+        if (Input.GetKeyDown(use) && item?.gameObject.tag == "WateringCan" && player.GetComponent<PlayerController>().currentGroundPosition as UnWateredPlowed != null)
+        {
+
+            if (player.GetComponent<PlayerController>().currentGroundPosition == null) return;
+            player.GetComponent<PlayerController>().currentGroundPosition.UseItem(); Debug.Log("use");
         }
     }
 
