@@ -5,15 +5,15 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject player;
-    public GameObject lightHous;
+    public GameObject spawnPoint;
     void Awake()
     {
         if (FindObjectOfType<PlayerController>() == null)
-            Instantiate(player, lightHous.transform.position, Quaternion.identity);
+            Instantiate(player, spawnPoint.transform.position, Quaternion.identity);
         else
         {
             Destroy(FindObjectOfType<PlayerController>().gameObject);
-            player = Instantiate(player, lightHous.transform.position, Quaternion.identity);
+            player = Instantiate(player, spawnPoint.transform.position, Quaternion.identity);
 
         }
     }

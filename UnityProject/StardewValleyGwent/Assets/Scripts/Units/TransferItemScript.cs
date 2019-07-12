@@ -32,6 +32,10 @@ public class TransferItemScript : MonoBehaviour
         {
             hit.collider.GetComponent<SeedCrate>().TakeOrPutItem(this);
         }
+        else if (hit.collider?.tag == "VeggieCrate" && this.CompareTag("LeftHand"))
+        {
+            hit.collider.GetComponent<VeggieCrate>().TakeOrPutItem(this);
+        }
 
     }
     public void setItem(GameObject item)
