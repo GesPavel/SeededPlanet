@@ -6,6 +6,7 @@ public class ToolBar : MonoBehaviour, ICrate
 {
     public GameObject instrument;
 
+
     void Start()
     {
 
@@ -16,9 +17,9 @@ public class ToolBar : MonoBehaviour, ICrate
     {
         if (instrument != null) instrument.transform.position = transform.position;
     }
-    public void TakeFromCrate(HandScript rightHand)
+    public void TakeFromCrate(HandScript hand)
     {
-        rightHand.setItem(instrument);
+        hand.setItem(instrument);
         instrument = null;
     }
     public void Put(HandScript hand)
@@ -26,7 +27,12 @@ public class ToolBar : MonoBehaviour, ICrate
         GameObject handItem = hand.SendItem();
         if (handItem.GetComponent<Instrument>() != null)
         {
-            hand.RemoveItem();
+            if (instrument != null)
+            {
+                hand.setItem(instrument);
+            }
+            else
+                hand.RemoveItem();
             instrument = handItem;
         }
     }

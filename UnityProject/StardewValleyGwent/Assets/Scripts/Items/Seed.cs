@@ -19,7 +19,7 @@ public class Seed : MonoBehaviour, IUsable
     public void Use()
     {
         Player = FindObjectOfType<PlayerController>();
-        Ground ground = standingGround.GetComponent<Ground>();
+        BaseGround ground = standingGround.GetComponent<BaseGround>();
         if (ground != null)
         {
             PlantSeed(ground);
@@ -28,7 +28,7 @@ public class Seed : MonoBehaviour, IUsable
             Destroy(gameObject);
     }
 
-    private void PlantSeed(Ground ground)
+    private void PlantSeed(BaseGround ground)
     {
         Debug.Log("Planted");
         Destroy(gameObject);

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public KeyCode left, right, up, down, use, interact;
+    public KeyCode left, right, up, down, interact;
     public float speed;
     public float moveDelay;
     public GameObject leftHand, rightHand;
+    public BaseGround currentGroundPosition;
     private Rigidbody2D rb2d;
     private Vector3 lookDirection;
     private Vector3 moveDirection;
