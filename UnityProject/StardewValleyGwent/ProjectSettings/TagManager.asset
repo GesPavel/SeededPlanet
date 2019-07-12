@@ -10,6 +10,8 @@ TagManager:
   - LeftHand
   - Crate
   - Well
+  - Hoe
+  - WateringCan
   layers:
   - Default
   - TransparentFX

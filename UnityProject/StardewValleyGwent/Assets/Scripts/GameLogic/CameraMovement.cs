@@ -9,14 +9,16 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+
         pos = player.transform.position;
         pos.z = -10;
         transform.position = pos;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (player == null) 
+            player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             pos = player.transform.position;
@@ -24,4 +26,5 @@ public class CameraMovement : MonoBehaviour
             transform.position = pos;
         }
     }
+    
 }
