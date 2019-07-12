@@ -18,29 +18,29 @@ public class SeedCrate : MonoBehaviour, ICrate
     {
 
     }
-    public void TakeOrPutItem(TransferItemScript leftHand)
+    public void TakeOrPutItem(HandScript hand)
     {
-        if (leftHand.IsWithItem())
-            Put(leftHand);
+        if (hand.IsWithItem())
+            Put(hand);
         else
-            TakeFromCrate(leftHand);
+            TakeFromCrate(hand);
     }
-    public void TakeFromCrate(TransferItemScript leftHand)
+    public void TakeFromCrate(HandScript hand)
     {
         if (seedCounter > 0)
         {
             seedCounter--;
             label.text = seedCounter.ToString();
-            leftHand.setItem(Instantiate(seed));
+            hand.setItem(Instantiate(seed));
         }
     }
-    public void Put(TransferItemScript leftHand)
+    public void Put(HandScript hand)
     {
-        GameObject seed = leftHand.SendItem();
+        GameObject seed = hand.SendItem();
         if (seed.GetComponent<Seed>() != null)
         {
             Destroy(seed);
-            leftHand.RemoveItem();
+            hand.RemoveItem();
             seedCounter++;
             label.text = seedCounter.ToString();
         }

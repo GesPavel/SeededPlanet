@@ -18,29 +18,29 @@ public class VeggieCrate : MonoBehaviour, ICrate
     {
 
     }
-    public void TakeOrPutItem(TransferItemScript leftHand)
+    public void TakeOrPutItem(HandScript hand)
     {
-        if (leftHand.IsWithItem())
-            Put(leftHand);
+        if (hand.IsWithItem())
+            Put(hand);
         else
-            TakeFromCrate(leftHand);
+            TakeFromCrate(hand);
     }
-    public void TakeFromCrate(TransferItemScript leftHand)
+    public void TakeFromCrate(HandScript hand)
     {
         if (veggieCounter > 0)
         {
             veggieCounter--;
             label.text = veggieCounter.ToString();
-            leftHand.setItem(Instantiate(vegetable));
+            hand.setItem(Instantiate(vegetable));
         }
     }
-    public void Put(TransferItemScript leftHand)
+    public void Put(HandScript hand)
     {
-        GameObject veggie = leftHand.SendItem();
-        if (vegetable.GetComponent<Vegetable>() != null)
+        GameObject veggie = hand.SendItem();
+        if (veggie.GetComponent<Vegetable>() != null)
         {
             Destroy(veggie);
-            leftHand.RemoveItem();
+            hand.RemoveItem();
             veggieCounter++;
             label.text = veggieCounter.ToString();
         }
