@@ -20,7 +20,9 @@ internal class UnWateredPlowedState : GroundState
     protected override void ChangeState(Ground gameManager)
     {
         base.ChangeState(gameManager);
-        gameManager.gameObject.GetComponent<SpriteRenderer>().sprite = groundScript.sprites[1];
+        gameManager.gameObject.GetComponent<SpriteRenderer>().sprite = groundScript.watered;
         gameManager.State = gameObject.AddComponent<WateredPlowedState>();
+        Debug.Log("Земля полита и вспахана");
+
     }
 }

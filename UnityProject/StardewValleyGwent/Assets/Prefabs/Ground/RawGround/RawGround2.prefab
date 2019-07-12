@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4442570101998383550}
   - component: {fileID: 7229562732331280749}
   - component: {fileID: 4637821914148853089}
-  - component: {fileID: -3668167857177196809}
+  - component: {fileID: 8803894669303309068}
+  - component: {fileID: -3857017087289984035}
   m_Layer: 0
   m_Name: RawGround2
   m_TagString: Ground
@@ -68,7 +69,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1921164175
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2aad5b03e74d24d4785d53b0ba050a19, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -107,7 +108,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-3668167857177196809
+--- !u!114 &8803894669303309068
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,9 +117,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 5952812824185643199}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44d08342a907f4c4cb8e50ee212a1a45, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c3fff0703b7e814daeaa69dd9cf6817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 2b11201fe27d6604bbc7a779ac4e180d, type: 3}
-  - {fileID: 21300000, guid: bf0ff463eca75aa48a9a44475adbd1f0, type: 3}
+--- !u!114 &-3857017087289984035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5952812824185643199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb168c2d65ce184b9a2a059f1f27e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wateredPlowedSprite: {fileID: 21300000, guid: bf0ff463eca75aa48a9a44475adbd1f0,
+    type: 3}
+  unWateredPlowedSprite: {fileID: 21300000, guid: 2b11201fe27d6604bbc7a779ac4e180d,
+    type: 3}
+  waterValue: 0

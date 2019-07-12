@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7425375497955372586}
   - component: {fileID: 7527673007874537957}
-  - component: {fileID: 8735043009798430985}
+  - component: {fileID: 8901475774805210553}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: LeftHand
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8735043009798430985
+--- !u!114 &8901475774805210553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9824c61ba7fe744583367b2ae787da5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  use: 0
 --- !u!1 &3342890049334773046
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9824c61ba7fe744583367b2ae787da5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  use: 32
 --- !u!1 &8471427184795161971
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,9 +323,9 @@ MonoBehaviour:
   right: 100
   up: 119
   down: 115
-  use: 32
-  interact: 9
+  takeAndPut: 9
   speed: 15
   moveDelay: 0.05
   leftHand: {fileID: 1017005567085935254}
   rightHand: {fileID: 3342890049334773046}
+  currentGroundPosition: {fileID: 0}
