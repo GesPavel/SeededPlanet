@@ -14,7 +14,7 @@ public class BaseGround : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<PlayerController>().currentGroundPosition==this)
         {
             collision.gameObject.GetComponent<PlayerController>().currentGroundPosition = null;
         }

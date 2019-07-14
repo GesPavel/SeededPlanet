@@ -89,8 +89,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4615906496749393941}
   - component: {fileID: 4615906496749393938}
-  - component: {fileID: 4615906496749393936}
   - component: {fileID: -7830796860214024856}
+  - component: {fileID: 1337442341749959924}
   m_Layer: 9
   m_Name: VeggieCrate
   m_TagString: Crate
@@ -107,7 +107,7 @@ Transform:
   m_GameObject: {fileID: 4615906496749393937}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_Children:
   - {fileID: 1852995852548517412}
   m_Father: {fileID: 0}
@@ -150,8 +150,8 @@ SpriteRenderer:
   m_SortingLayerID: -1148929015
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9e4f9eb649c37f54687df1804c6e049d, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: f4e7595026815b549a6fc41d9218699b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -161,32 +161,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4615906496749393936
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4615906496749393937}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1.04, y: 1.04}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.04, y: 1.04}
-  m_EdgeRadius: 0
 --- !u!114 &-7830796860214024856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,3 +177,19 @@ MonoBehaviour:
   vegetable: {fileID: 5142369330590630118, guid: 30c6d26813462604bb0fc5ddd087c7ef,
     type: 3}
   veggieCounter: 0
+--- !u!58 &1337442341749959924
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4615906496749393937}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.48
