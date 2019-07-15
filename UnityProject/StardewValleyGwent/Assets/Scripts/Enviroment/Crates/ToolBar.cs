@@ -25,7 +25,7 @@ public class ToolBar : MonoBehaviour, ICrate
     public void Put(HandScript hand)
     {
         GameObject handItem = hand.SendItem();
-        if (handItem.GetComponent<Instrument>() != null)
+        if (handItem.GetComponent(typeof(Instrument)) != null)
         {
             if (instrument != null)
             {

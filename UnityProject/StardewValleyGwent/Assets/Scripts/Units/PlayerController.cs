@@ -90,4 +90,8 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(moveDelay);
         moving = false;
     }
+    public GameObject GetCurrentGroundPosition()
+    {
+        return currentGroundPosition.gameObject;
+    }
 }
