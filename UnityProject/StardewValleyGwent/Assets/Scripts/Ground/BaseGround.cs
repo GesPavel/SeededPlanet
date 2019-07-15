@@ -19,7 +19,7 @@ public class BaseGround : MonoBehaviour
             collision.gameObject.GetComponent<PlayerController>().currentGroundPosition = null;
         }
     }
-    public virtual void UseItem(GameObject item)
+    public virtual void ChangeState()
     {
 
     }

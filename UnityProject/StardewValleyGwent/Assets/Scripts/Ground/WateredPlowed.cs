@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WateredPlowed : BaseGround
 {
-    public float waterCount=0;
+    public float waterCount;
     void Start()
     {
         GetComponent<SpriteRenderer>().sprite = GetComponent<PieceData>().wateredPlowedSprite;
@@ -14,7 +14,6 @@ public class WateredPlowed : BaseGround
     {
         if (waterCount <= 0)
         {
-
             gameObject.AddComponent<UnWateredPlowed>();
             Destroy(this);
         }
