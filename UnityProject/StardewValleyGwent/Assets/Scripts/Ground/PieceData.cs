@@ -6,6 +6,7 @@ public class PieceData : MonoBehaviour
 {
     public Sprite wateredPlowedSprite;
     public Sprite unWateredPlowedSprite;
-    public float waterValue;
+    public float maxWaterValue;
+    [HideInInspector] public float currentWaterCount; 
     
 }
