@@ -9,25 +9,29 @@ public class Hoe : MonoBehaviour, Instrument
 
     void Start()
     {
-        
+
     }
 
-   
+
     void Update()
     {
-        
+
     }
 
     public void Use()
     {
         player = FindObjectOfType<PlayerController>();
         standingGround = player.GetCurrentGroundPosition();
-        UnPlowed ground = standingGround.GetComponent<UnPlowed>();
-        if (ground != null)
+        if (standingGround != null)
         {
-            ground.ChangeState();
+            UnPlowed ground;
+            if (standingGround.GetComponent<UnPlowed>() as UnPlowed)
+            {
+                ground = standingGround.GetComponent<UnPlowed>();
+                ground.ChangeState();
+            }
         }
     }
 
-   
+
 }

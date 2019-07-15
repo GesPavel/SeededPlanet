@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WateringCan : Instrument
+public class WateringCan : MonoBehaviour, Instrument
 {
-    public static float water;
+    public static float water = 0;
+    public static float maxWaterVolume = 100;
+    public static float waterPerUse = 25;
+    PlayerController player;
+    GameObject standingGround;
     void Start()
     {
         
@@ -15,22 +19,28 @@ public class WateringCan : Instrument
         
     }
 
-    public static void Use()
+    public void Use()
     {
         PlayerController player;
         GameObject standingGround;
         player = FindObjectOfType<PlayerController>();
         standingGround = player.GetCurrentGroundPosition();
-        UnWateredPlowed ground = standingGround.GetComponent<UnWateredPlowed>();
-        if (ground == null) return;
-        ground.ChangeState();
-        water -= 25;
-        Debug.Log("количество воды в лейке: " + WateringCan.water);
+        if (standingGround != null)
+        {
+            GroundPieceData ground = standingGround.GetComponent<GroundPieceData>();
+
+            if (ground == null) return;
+            if (water >= waterPerUse)
+            {
+                ground.AddWater(waterPerUse);
+                water -= waterPerUse;
+            }
+        }
     }
 
     public void FillUp()
     {
-        water = 100;
-        Debug.Log("Я заполнена на все "+water);
+        water = maxWaterVolume;
+        
     }
 }

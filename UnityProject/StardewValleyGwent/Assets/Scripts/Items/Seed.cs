@@ -21,13 +21,16 @@ public class Seed : MonoBehaviour, IUsable
     {
         player = FindObjectOfType<PlayerController>();
         standingGround = player.GetCurrentGroundPosition();
-        var ground = standingGround.GetComponent(typeof (BaseGround));
-        if (ground != null && (ground is WateredPlowed || ground is UnWateredPlowed))
+        if (standingGround != null)
         {
-            PlantSeed(ground as BaseGround);
+            var ground = standingGround.GetComponent(typeof(BaseGround));
+            if (ground != null && (ground is WateredPlowed || ground is UnWateredPlowed))
+            {
+                PlantSeed(ground as BaseGround);
+            }
+            else
+                Destroy(gameObject);
         }
-        else
-            Destroy(gameObject);
     }
 
     private void PlantSeed(BaseGround ground)

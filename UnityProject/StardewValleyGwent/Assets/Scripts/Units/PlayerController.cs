@@ -13,13 +13,13 @@ public class PlayerController : MonoBehaviour
     private Vector3 lookDirection;
     private Vector3 moveDirection;
     private bool moving;
-   
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         moving = false;
         DontDestroyOnLoad(this.gameObject);
-        
+
     }
 
 
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(interact))
         {
             rightHand.GetComponent<HandScript>().InteractWithEnviroment();
-            
+
         }
     }
 
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
         float step = speed * Time.deltaTime;
         float Remainingdistance = (transform.position - destination).sqrMagnitude;
         while (Remainingdistance > float.Epsilon)
-        {       
+        {
             rb2d.MovePosition(Vector3.MoveTowards(rb2d.position, destination, step));
             Remainingdistance = (rb2d.transform.position - destination).sqrMagnitude;
             yield return new WaitForSeconds(Time.deltaTime);
@@ -92,6 +92,9 @@ public class PlayerController : MonoBehaviour
     }
     public GameObject GetCurrentGroundPosition()
     {
-        return currentGroundPosition.gameObject;
+        if (currentGroundPosition != null)
+            return currentGroundPosition.gameObject;
+        return null;
+
     }
 }
