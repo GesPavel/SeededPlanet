@@ -17,19 +17,21 @@ public class HandScript : MonoBehaviour
         if (item != null)
         {
             item.transform.position = transform.position;
-            if(player!=null) item.transform.up = player.transform.up;
+            if (player != null) item.transform.up = player.transform.up;
         }
-        if (Input.GetKeyDown(use)) {
-               IUsable usableItem = item.GetComponent(typeof(IUsable)) as IUsable;
+        if (Input.GetKeyDown(use))
+        {
+
+            IUsable usableItem = item?.GetComponent(typeof(IUsable)) as IUsable;
             if (usableItem != null)
-               usableItem.Use();
+                usableItem.Use();
         }
     }
 
     public void InteractWithEnviroment()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 1,LayerMask.GetMask("BlockingLayer"));
-        
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 1, LayerMask.GetMask("BlockingLayer"));
+
         if (hit.collider?.tag == "Crate")
         {
             ICrate crate = (ICrate)hit.collider.GetComponent(typeof(ICrate)) as ICrate;

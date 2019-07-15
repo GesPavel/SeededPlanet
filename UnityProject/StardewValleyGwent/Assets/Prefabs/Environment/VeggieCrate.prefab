@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.015, y: -0.25}
+  m_AnchoredPosition: {x: -0.015, y: -0.078}
   m_SizeDelta: {x: 22.257, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5317288410655663970
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 0.995283, b: 0.995283, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -176,7 +176,7 @@ MonoBehaviour:
   label: {fileID: 375551699395950795}
   vegetable: {fileID: 5142369330590630118, guid: 30c6d26813462604bb0fc5ddd087c7ef,
     type: 3}
-  veggieCounter: 0
+  veggieCounter: 1
 --- !u!58 &1337442341749959924
 CircleCollider2D:
   m_ObjectHideFlags: 0

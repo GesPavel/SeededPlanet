@@ -26,7 +26,7 @@ public class Plant1 : MonoBehaviour
     IEnumerator InstantiateVegetable(float time)
     {
         yield return new WaitForSeconds(time);
-        Instantiate(vegetable, transform.position, Quaternion.identity);
+        Instantiate(vegetable, transform.position, Quaternion.identity).GetComponent<Vegetable>().SetPieceGround(baseGround);
         Destroy(this.gameObject);
     }
     

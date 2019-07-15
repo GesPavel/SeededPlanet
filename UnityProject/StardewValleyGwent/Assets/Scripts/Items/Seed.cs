@@ -24,12 +24,17 @@ public class Seed : MonoBehaviour, IUsable
         if (standingGround != null)
         {
             var ground = standingGround.GetComponent(typeof(BaseGround));
+            if (ground.gameObject.GetComponent<GroundPieceData>().isOccupied) return;
             if (ground != null && (ground is WateredPlowed || ground is UnWateredPlowed))
             {
                 PlantSeed(ground as BaseGround);
             }
             else
+            {
+                player.gameObject.transform.GetChild(1).GetComponent<HandScript>().setItem(null);
                 Destroy(gameObject);
+            }
+
         }
     }
 
@@ -37,12 +42,13 @@ public class Seed : MonoBehaviour, IUsable
     {
 
         GameObject sapling = Instantiate(plant, ground.transform.position, Quaternion.identity);
-        //sapling.SetBaseGround(ground);
+        sapling.GetComponent<Plant1>().SetBaseGround(ground);
+        ground.gameObject.GetComponent<GroundPieceData>().isOccupied = true;
+        player.gameObject.transform.GetChild(1).GetComponent<HandScript>().setItem(null);
         Destroy(gameObject);
+        
+
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-    }
+   
 }

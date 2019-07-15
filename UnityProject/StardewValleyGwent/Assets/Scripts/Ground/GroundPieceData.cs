@@ -8,6 +8,7 @@ public class GroundPieceData : MonoBehaviour
     public Sprite unWateredPlowedSprite;
     public static float maxWaterValue = 25;
     public static float waterDryPerSecond;
+    public bool isOccupied = false;
 
     [HideInInspector] public float currentWaterCount;
 
