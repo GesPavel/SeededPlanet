@@ -14,7 +14,7 @@ public class UnWateredPlowed : BaseGround
     public override void UseItem()
     {
         gameObject.AddComponent<WateredPlowed>();
-        gameObject.GetComponent<WateredPlowed>().waterCount = 3;
+        gameObject.GetComponent<WateredPlowed>().maxWaterVolume = GetComponent<PieceData>().maxWaterValue;
         Destroy(this);
     }
 }
