@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class UnWateredPlowed : BaseGround
 {
-    
+    public float waterCount=25;
     void Start()
     {
         GetComponent<SpriteRenderer>().sprite = GetComponent<PieceData>().unWateredPlowedSprite;
     }
     
 
-    public override void UseItem()
+    public override void ChangeState()
     {
-        gameObject.AddComponent<WateredPlowed>();
-        gameObject.GetComponent<WateredPlowed>().maxWaterVolume = GetComponent<PieceData>().maxWaterValue;
-        Destroy(this);
+        if (WateringCan.water <= 0) { }
+        else
+        {
+            gameObject.AddComponent<WateredPlowed>();           
+            gameObject.GetComponent<WateredPlowed>().waterCount = waterCount;
+            Destroy(this);
+        }
     }
 }

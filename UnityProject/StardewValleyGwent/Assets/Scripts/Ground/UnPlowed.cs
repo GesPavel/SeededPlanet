@@ -9,7 +9,7 @@ public class UnPlowed : BaseGround
     {
     }
 
-    public override void UseItem()
+    public override void ChangeState()
     {
         if(gameObject!=null)gameObject.AddComponent<UnWateredPlowed>();
         Destroy(this);

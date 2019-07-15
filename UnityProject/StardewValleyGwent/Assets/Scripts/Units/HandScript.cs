@@ -22,13 +22,12 @@ public class HandScript : MonoBehaviour
         if (Input.GetKeyDown(use) && item?.gameObject.tag == "Hoe" && player.GetComponent<PlayerController>().currentGroundPosition as UnPlowed!=null) {
 
             if (player.GetComponent<PlayerController>().currentGroundPosition == null) return;
-            player.GetComponent<PlayerController>().currentGroundPosition.UseItem(); Debug.Log("use");
+            player.GetComponent<PlayerController>().currentGroundPosition.ChangeState(); 
         }
         if (Input.GetKeyDown(use) && item?.gameObject.tag == "WateringCan" && player.GetComponent<PlayerController>().currentGroundPosition as UnWateredPlowed != null)
         {
-
             if (player.GetComponent<PlayerController>().currentGroundPosition == null) return;
-            player.GetComponent<PlayerController>().currentGroundPosition.UseItem(); Debug.Log("use");
+            player.GetComponent<PlayerController>().currentGroundPosition.ChangeState(); 
         }
     }
 
