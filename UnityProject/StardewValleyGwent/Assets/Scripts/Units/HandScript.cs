@@ -19,16 +19,9 @@ public class HandScript : MonoBehaviour
             item.transform.position = transform.position;
             if(player!=null) item.transform.up = player.transform.up;
         }
-        if (Input.GetKeyDown(use) && item?.gameObject.tag == "Hoe" && player.GetComponent<PlayerController>().currentGroundPosition as UnPlowed!=null) {
-
-            if (player.GetComponent<PlayerController>().currentGroundPosition == null) return;
-            player.GetComponent<PlayerController>().currentGroundPosition.UseItem(); Debug.Log("use");
-        }
-        if (Input.GetKeyDown(use) && item?.gameObject.tag == "WateringCan" && player.GetComponent<PlayerController>().currentGroundPosition as UnWateredPlowed != null)
-        {
-
-            if (player.GetComponent<PlayerController>().currentGroundPosition == null) return;
-            player.GetComponent<PlayerController>().currentGroundPosition.UseItem(); Debug.Log("use");
+        if (Input.GetKeyDown(use)) {
+               IUsable usableItem = (IUsable)item.GetComponent(typeof(IUsable)) as IUsable;
+               usableItem.Use();
         }
     }
 

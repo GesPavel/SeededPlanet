@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Seed : MonoBehaviour, IUsable
 {
-    PlayerController Player;
+    PlayerController player;
     GameObject standingGround;
+    public GameObject plant;
     
     void Start()
     {
@@ -18,11 +19,12 @@ public class Seed : MonoBehaviour, IUsable
     }
     public void Use()
     {
-        Player = FindObjectOfType<PlayerController>();
-        BaseGround ground = standingGround.GetComponent<BaseGround>();
-        if (ground != null)
+        player = FindObjectOfType<PlayerController>();
+        standingGround = player.GetCurrentGroundPosition();
+        var ground = standingGround.GetComponent(typeof (BaseGround));
+        if (ground != null && (ground is WateredPlowed || ground is UnWateredPlowed))
         {
-            PlantSeed(ground);
+            PlantSeed(ground as BaseGround);
         }
         else
             Destroy(gameObject);
@@ -30,7 +32,9 @@ public class Seed : MonoBehaviour, IUsable
 
     private void PlantSeed(BaseGround ground)
     {
-        Debug.Log("Planted");
+
+        GameObject sapling = Instantiate(plant, ground.transform.position, Quaternion.identity);
+        //sapling.SetBaseGround(ground);
         Destroy(gameObject);
     }
 
