@@ -9,17 +9,25 @@ public class Plant1 : MonoBehaviour
     [SerializeField] private GameObject vegetable;
     [HideInInspector] public PieceData baseGround;
 
+
     void Start()
     {
         GetComponent<SpriteRenderer>().sprite = state1;
         StartCoroutine(changeState(state1Time, state2));
         StartCoroutine(changeState(state1Time+state2Time, state3));
         StartCoroutine(changeState(state1Time + state2Time + state3Time, state4));
+        StartCoroutine(InstantiateVegetable(state1Time + state2Time + state3Time + state4Time));
     }
     IEnumerator changeState(float time,Sprite sprite)
     {
         yield return new WaitForSeconds(time);
         GetComponent<SpriteRenderer>().sprite = sprite;
+    }
+    IEnumerator InstantiateVegetable(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Instantiate(vegetable, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
     }
     
     public void SetBaseGround(BaseGround ground)
