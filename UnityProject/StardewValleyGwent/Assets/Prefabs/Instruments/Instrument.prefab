@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 536076655382150966}
   - component: {fileID: 7547216377841061844}
   - component: {fileID: 1152586382311704307}
-  - component: {fileID: 4779260975520656312}
+  - component: {fileID: 450836740189146330}
   m_Layer: 0
   m_Name: Instrument
   m_TagString: Hoe
@@ -107,7 +107,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.0001, y: 0.0001}
   m_EdgeRadius: 0
---- !u!114 &4779260975520656312
+--- !u!114 &450836740189146330
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,6 +116,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8941196423842519156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab9395e3ce1457c4890559ca075c17ab, type: 3}
+  m_Script: {fileID: 11500000, guid: e4dc3f6ea4a8b774eb6b1af733fcd571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

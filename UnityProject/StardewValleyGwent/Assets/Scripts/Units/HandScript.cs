@@ -20,7 +20,8 @@ public class HandScript : MonoBehaviour
             if(player!=null) item.transform.up = player.transform.up;
         }
         if (Input.GetKeyDown(use)) {
-               IUsable usableItem = (IUsable)item.GetComponent(typeof(IUsable)) as IUsable;
+               IUsable usableItem = item.GetComponent(typeof(IUsable)) as IUsable;
+            if (usableItem != null)
                usableItem.Use();
         }
     }

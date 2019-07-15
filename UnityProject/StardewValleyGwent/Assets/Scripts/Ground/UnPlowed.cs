@@ -11,8 +11,14 @@ public class UnPlowed : BaseGround
 
     public override void ChangeState()
     {
-        if(gameObject!=null)gameObject.AddComponent<UnWateredPlowed>();
+        if (gameObject != null) {
+            gameObject.AddComponent<UnWateredPlowed>();
+            FindObjectOfType<PlayerController>().currentGroundPosition = GetComponent<UnWateredPlowed>();
+        }
+
         Destroy(this);
+         
+
     }
 
 
