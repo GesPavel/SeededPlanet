@@ -24,7 +24,7 @@ public class Seed : MonoBehaviour, IUsable
         if (standingGround != null)
         {
             var ground = standingGround.GetComponent(typeof(BaseGround));
-            if (ground.gameObject.GetComponent<GroundPieceData>().isOccupied) return;
+            if (ground.gameObject.GetComponent<PlowedGroundInfo>().isOccupied) return;
             if (ground != null && (ground is WateredPlowed || ground is UnWateredPlowed))
             {
                 PlantSeed(ground as BaseGround);
@@ -43,7 +43,7 @@ public class Seed : MonoBehaviour, IUsable
 
         GameObject sapling = Instantiate(plant, ground.transform.position, Quaternion.identity);
         sapling.GetComponent<Plant1>().SetBaseGround(ground);
-        ground.gameObject.GetComponent<GroundPieceData>().isOccupied = true;
+        ground.gameObject.GetComponent<PlowedGroundInfo>().isOccupied = true;
         player.gameObject.transform.GetChild(1).GetComponent<HandScript>().setItem(null);
         Destroy(gameObject);
         

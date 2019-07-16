@@ -27,7 +27,7 @@ public class WateringCan : MonoBehaviour, Instrument
         standingGround = player.GetCurrentGroundPosition();
         if (standingGround != null)
         {
-            GroundPieceData ground = standingGround.GetComponent<GroundPieceData>();
+            PlowedGroundInfo ground = standingGround.GetComponent<PlowedGroundInfo>();
 
             if (ground == null) return;
             if (water >= waterPerUse)
