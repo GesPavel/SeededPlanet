@@ -7,7 +7,7 @@ public class Plant1 : MonoBehaviour
     [SerializeField] private Sprite state1, state2, state3, state4;
     [SerializeField] private float state1Time,state2Time,state3Time,state4Time;
     [SerializeField] private GameObject vegetable;
-    [HideInInspector] public GroundPieceData baseGround;
+    [HideInInspector] public PlowedGroundInfo baseGround;
 
 
     void Start()
@@ -32,7 +32,7 @@ public class Plant1 : MonoBehaviour
     
     public void SetBaseGround(BaseGround ground)
     {
-        baseGround = ground.gameObject.GetComponent<GroundPieceData>();
+        baseGround = ground.gameObject.GetComponent<PlowedGroundInfo>();
     }
     void Update()
     {

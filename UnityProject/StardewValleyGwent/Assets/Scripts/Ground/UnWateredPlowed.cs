@@ -7,7 +7,7 @@ public class UnWateredPlowed : BaseGround
 
     void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = GetComponent<GroundPieceData>().unWateredPlowedSprite;
+        GetComponent<SpriteRenderer>().sprite = FindObjectOfType<SpriteVault>().unWateredPlowedSprite;
     }
 
 
@@ -16,7 +16,7 @@ public class UnWateredPlowed : BaseGround
         gameObject.AddComponent<WateredPlowed>();
         FindObjectOfType<PlayerController>().currentGroundPosition = GetComponent<WateredPlowed>();
         gameObject.GetComponent<WateredPlowed>().waterCount =
-                           gameObject.GetComponent<GroundPieceData>().currentWaterCount;
+                           gameObject.GetComponent<PlowedGroundInfo>().currentWaterCount;
         Destroy(this);
     }
 }

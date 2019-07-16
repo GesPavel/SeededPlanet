@@ -24,11 +24,9 @@ public class Hoe : MonoBehaviour, Instrument
         standingGround = player.GetCurrentGroundPosition();
         if (standingGround != null)
         {
-            UnPlowed ground;
-            if (standingGround.GetComponent<UnPlowed>() as UnPlowed)
+            if (standingGround.GetComponent<UnPlowed>())
             {
-                ground = standingGround.GetComponent<UnPlowed>();
-                ground.ChangeState();
+                standingGround.AddComponent<PlowedGroundInfo>();
             }
         }
     }

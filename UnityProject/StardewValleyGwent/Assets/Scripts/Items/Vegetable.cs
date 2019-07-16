@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Vegetable : MonoBehaviour
 {
-    GroundPieceData ground;
+    PlowedGroundInfo ground;
     void Start()
     {
 
@@ -36,7 +36,7 @@ public class Vegetable : MonoBehaviour
     {
      
     }
-    public void SetPieceGround(GroundPieceData ground)
+    public void SetPieceGround(PlowedGroundInfo ground)
     {
         this.ground = ground;
         return;
