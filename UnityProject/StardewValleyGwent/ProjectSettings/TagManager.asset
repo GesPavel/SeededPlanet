@@ -23,7 +23,7 @@ TagManager:
   - 
   - Units
   - BlockingLayer
-  - 
+  - AnimalLayer
   - 
   - 
   - 
@@ -55,14 +55,17 @@ TagManager:
   - name: Ground
     uniqueID: 2373803121
     locked: 0
+  - name: Animal
+    uniqueID: 2071199363
+    locked: 0
   - name: Environment
     uniqueID: 3146038281
     locked: 0
-  - name: Units
-    uniqueID: 2572595483
-    locked: 0
   - name: Item
     uniqueID: 1841055919
+    locked: 0
+  - name: Units
+    uniqueID: 2572595483
     locked: 0
   - name: UI
     uniqueID: 3620865803
