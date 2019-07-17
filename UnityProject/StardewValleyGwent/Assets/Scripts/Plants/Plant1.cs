@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Plant1 : MonoBehaviour
+public class Plant : MonoBehaviour
 {
     [SerializeField] private Sprite state1, state2, state3, state4;
     [SerializeField] private float state1Time,state2Time,state3Time,state4Time;
     [SerializeField] private GameObject vegetable;
-    [HideInInspector] public PlowedGroundInfo baseGround;
+    [HideInInspector] public Ground ground;
 
 
     void Start()
@@ -26,13 +26,14 @@ public class Plant1 : MonoBehaviour
     IEnumerator InstantiateVegetable(float time)
     {
         yield return new WaitForSeconds(time);
-        Instantiate(vegetable, transform.position, Quaternion.identity).GetComponent<Vegetable>().SetPieceGround(baseGround);
+        Instantiate(vegetable, transform.position, Quaternion.identity)
+            .GetComponent<Vegetable>().SetPieceGround(ground);
         Destroy(this.gameObject);
     }
     
-    public void SetBaseGround(BaseGround ground)
+    public void SetBaseGround(Ground ground)
     {
-        baseGround = ground.gameObject.GetComponent<PlowedGroundInfo>();
+        this.ground = ground;
     }
     void Update()
     {
