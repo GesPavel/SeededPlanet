@@ -35,7 +35,7 @@ public class HandScript : MonoBehaviour
         if (hit.collider?.tag == "Crate")
         {
             ICrate crate = (ICrate)hit.collider.GetComponent(typeof(ICrate)) as ICrate;
-            crate.TakeOrPutItem(this);
+            //crate.TakeOrPutItem(this);
         }
         if (hit.collider?.tag == "Well")
         {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SeedCrate : MonoBehaviour, ICrate
+public class SeedCrate : MonoBehaviour
 {
     public Text label;
     public GameObject seed;
