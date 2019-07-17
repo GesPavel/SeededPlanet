@@ -2,48 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ToolBar : MonoBehaviour, ICrate
+public class ToolBar : MonoBehaviour
 {
     public GameObject instrument;
-
-
-    void Start()
+    
+    public void SetItem(GameObject item)
     {
-
+        instrument = item;
     }
-
-
-    void Update()
+    public GameObject GetItem()
     {
-        if (instrument != null) instrument.transform.position = transform.position;
+        return instrument;
     }
-    public void TakeFromCrate(HandScript hand)
+    private void Update()
     {
-        hand.setItem(instrument);
-        instrument = null;
-    }
-    public void Put(HandScript hand)
-    {
-        GameObject handItem = hand.SendItem();
-        if (handItem.GetComponent(typeof(Instrument)) != null)
+        if (instrument != null)
         {
-            if (instrument != null)
-            {
-                hand.setItem(instrument);
-            }
-            else
-                hand.RemoveItem();
-            instrument = handItem;
+            instrument.transform.position = transform.position;
         }
-    }
-    public void TakeOrPutItem(HandScript hand)
-    {
-        if (hand.IsWithItem())
-        {
-            Put(hand);
-        }
-        else TakeFromCrate(hand);
-
     }
 }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VeggieCrate : MonoBehaviour, ICrate
+public class VeggieCrate : MonoBehaviour
 {
     public Text label;
     public GameObject vegetable;
