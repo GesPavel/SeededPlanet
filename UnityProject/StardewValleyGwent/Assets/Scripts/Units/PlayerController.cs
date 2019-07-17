@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public KeyCode left, right, up, down, interact;
+    public KeyCode left, right, up, down;
     public float speed;
     public float moveDelay;
     public GameObject leftHand, rightHand;
@@ -59,11 +59,6 @@ public class PlayerController : MonoBehaviour
                 moveDirection = Vector3.zero;
             }
         }
-        if (Input.GetKeyDown(interact))
-        {
-            rightHand.GetComponent<HandScript>().InteractWithEnviroment();
-
-        }
     }
 
     //Функция будет проверят потенциальное столкновение игрока, если он пойдет по данному направлению.
@@ -95,6 +90,5 @@ public class PlayerController : MonoBehaviour
         if (currentGroundPosition != null)
             return currentGroundPosition.gameObject;
         return null;
-
     }
 }

@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 423574350965662915}
   - component: {fileID: 5298663900088987276}
-  - component: {fileID: 4669638208549945200}
+  - component: {fileID: 7444546032800042562}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: RightHand
@@ -159,7 +159,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4669638208549945200
+--- !u!114 &7444546032800042562
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,10 +168,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3342890049334773046}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9824c61ba7fe744583367b2ae787da5, type: 3}
+  m_Script: {fileID: 11500000, guid: f4a6c476a77e2294fbb8bbaeed6ee355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  use: 32
+  useButton: 323
+  interactButton: 324
+  item: {fileID: 0}
 --- !u!1 &8471427184795161971
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,8 +311,6 @@ MonoBehaviour:
   right: 100
   up: 119
   down: 115
-  use: 0
-  interact: 9
   speed: 15
   moveDelay: 0.05
   leftHand: {fileID: 1017005567085935254}
