@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hoe : MonoBehaviour, Instrument
 {
     PlayerController player;
-    GameObject standingGround;
+    Ground standingGround;
 
     void Start()
     {
@@ -24,10 +24,7 @@ public class Hoe : MonoBehaviour, Instrument
         standingGround = player.GetCurrentGroundPosition();
         if (standingGround != null)
         {
-            if (standingGround.GetComponent<UnPlowed>())
-            {
-                standingGround.AddComponent<PlowedGroundInfo>();
-            }
+                standingGround.Plow();
         }
     }
 

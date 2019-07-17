@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float moveDelay;
     public GameObject leftHand, rightHand;
-    public BaseGround currentGroundPosition;
+    public Ground currentGroundPosition;
     private Rigidbody2D rb2d;
     private Vector3 lookDirection;
     private Vector3 moveDirection;
@@ -90,11 +90,9 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(moveDelay);
         moving = false;
     }
-    public GameObject GetCurrentGroundPosition()
+    public Ground GetCurrentGroundPosition()
     {
-        if (currentGroundPosition != null)
-            return currentGroundPosition.gameObject;
-        return null;
-
+        return currentGroundPosition;
+        
     }
 }
