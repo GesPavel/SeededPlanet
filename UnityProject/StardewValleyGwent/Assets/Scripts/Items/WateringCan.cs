@@ -8,7 +8,7 @@ public class WateringCan : MonoBehaviour, Instrument
     public static float maxWaterVolume = 100;
     public static float waterPerUse = 25;
     PlayerController player;
-    GameObject standingGround;
+    Ground standingGround;
     void Start()
     {
         
@@ -21,18 +21,15 @@ public class WateringCan : MonoBehaviour, Instrument
 
     public void Use()
     {
-        PlayerController player;
-        GameObject standingGround;
+       
         player = FindObjectOfType<PlayerController>();
         standingGround = player.GetCurrentGroundPosition();
         if (standingGround != null)
         {
-            PlowedGroundInfo ground = standingGround.GetComponent<PlowedGroundInfo>();
-
-            if (ground == null) return;
+            if (standingGround == null) return;
             if (water >= waterPerUse)
             {
-                ground.AddWater(waterPerUse);
+                standingGround.AddWater(waterPerUse);
                 water -= waterPerUse;
             }
         }

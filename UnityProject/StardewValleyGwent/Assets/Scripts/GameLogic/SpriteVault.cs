@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpriteVault : MonoBehaviour
 {
-    public Sprite wateredPlowedSprite;
-    public Sprite unWateredPlowedSprite;
+    public Sprite DryRawSprite;
+    public Sprite WetRawSprite;
+    public Sprite WetPlowedSprite;
+    public Sprite DryPlowedSprite;
 }

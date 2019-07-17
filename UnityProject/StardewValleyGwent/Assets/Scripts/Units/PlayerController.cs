@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public KeyCode left, right, up, down;
+    public KeyCode left, right, up, down, interact;
     public float speed;
     public float moveDelay;
     public GameObject leftHand, rightHand;
-    public BaseGround currentGroundPosition;
+    public Ground currentGroundPosition;
     private Rigidbody2D rb2d;
     private Vector3 lookDirection;
     private Vector3 moveDirection;
@@ -59,6 +59,11 @@ public class PlayerController : MonoBehaviour
                 moveDirection = Vector3.zero;
             }
         }
+        if (Input.GetKeyDown(interact))
+        {
+            rightHand.GetComponent<HandScript>().InteractWithEnviroment();
+
+        }
     }
 
     //Функция будет проверят потенциальное столкновение игрока, если он пойдет по данному направлению.
@@ -85,10 +90,9 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(moveDelay);
         moving = false;
     }
-    public GameObject GetCurrentGroundPosition()
+    public Ground GetCurrentGroundPosition()
     {
-        if (currentGroundPosition != null)
-            return currentGroundPosition.gameObject;
-        return null;
+        return currentGroundPosition;
+        
     }
 }
