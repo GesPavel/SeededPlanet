@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class HandController : MonoBehaviour
 {
-    public KeyCode useButton,interactButton;
+    public KeyCode useButton, interactButton;
     GameObject item;
-    
+
     private void Update()
     {
         if (item != null)
@@ -19,7 +19,7 @@ public class HandController : MonoBehaviour
     }
 
     private void UseItem()
-    {    
+    {
         Instrument instrument = item?.GetComponent<Instrument>();
         instrument?.Use();
         if (instrument != null) Debug.Log($"Instrument {item.gameObject.name} used.");
@@ -33,9 +33,29 @@ public class HandController : MonoBehaviour
             if (hit.collider.gameObject.GetComponent<ToolBar>() != null)
             {
                 ToolBar toolbar = hit.collider.GetComponent<ToolBar>();
-                GameObject instument = toolbar.GetItem();
+                GameObject instument = toolbar.SendItem();
                 toolbar.SetItem(item);
                 item = instument;
+            }
+            else if (hit.collider.gameObject.GetComponent<SeedCrate>() != null)
+            {
+                SeedCrate seedCrate = hit.collider.GetComponent<SeedCrate>();
+                if (item == null) item = seedCrate.SendItem();
+                else if (item != null && item.GetComponent<Seed>()!=null)
+                {
+                    seedCrate.SetItem(item);
+                    item = null;
+                }
+            }
+            else if (hit.collider.gameObject.GetComponent<VeggieCrate>() != null)
+            {
+                VeggieCrate veggieCrate = hit.collider.GetComponent<VeggieCrate>();
+                if (item == null) item = veggieCrate.SendItem();
+                else if (item != null && item.GetComponent<Vegetable>() != null)
+                {
+                    veggieCrate.SetItem(item);
+                    item = null;
+                }
             }
         }
     }

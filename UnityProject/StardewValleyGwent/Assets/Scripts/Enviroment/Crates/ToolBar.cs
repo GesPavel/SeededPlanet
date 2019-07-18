@@ -15,7 +15,7 @@ public class ToolBar : MonoBehaviour
     {
         inst = item;
     }
-    public GameObject GetItem()
+    public GameObject SendItem()
     {
         return inst;
     }
