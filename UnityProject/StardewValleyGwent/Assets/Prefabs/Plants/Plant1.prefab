@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6399104116248822373}
   - component: {fileID: 6399104116248822372}
-  - component: {fileID: 6399104116248822394}
+  - component: {fileID: 796920588848490155}
   m_Layer: 0
   m_Name: Plant1
   m_TagString: Untagged
@@ -67,7 +67,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1148929015
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 988abc5510b91084cbf51715e478350d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6399104116248822394
+--- !u!114 &796920588848490155
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,14 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4df3b820c1505534da4b95aace32c766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state1: {fileID: 21300000, guid: 988abc5510b91084cbf51715e478350d, type: 3}
-  state2: {fileID: 21300000, guid: 7149fe0f2584ac94a993727bcb07b8c8, type: 3}
-  state3: {fileID: 21300000, guid: 88e1c40b17f4eef4d9436cff217583b2, type: 3}
-  state4: {fileID: 21300000, guid: fadb492bd2ce2414a887165188747bfe, type: 3}
-  state1Time: 3
-  state2Time: 3
-  state3Time: 3
-  state4Time: 3
+  growthTime: 8
   vegetable: {fileID: 5142369330590630118, guid: 30c6d26813462604bb0fc5ddd087c7ef,
     type: 3}
-  baseGround: {fileID: 0}
+  ground: {fileID: 0}
