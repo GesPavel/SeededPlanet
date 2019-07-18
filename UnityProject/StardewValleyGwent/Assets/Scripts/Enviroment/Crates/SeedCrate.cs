@@ -1,29 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class SeedCrate : MonoBehaviour
 {
-    public Text label;
+    public TextMeshPro indicator;
     [SerializeField]private GameObject seed;
     public int seedCounter = 0;
     private void Start()
     {
         if (seed != null)
         {
-            label.text = seedCounter.ToString();
+            indicator.text = seedCounter.ToString();
             return;
         }
         seed = null;
         seedCounter = 0;
-        label.text = seedCounter.ToString();
+        indicator.text = seedCounter.ToString();
     }
     public void SetItem(GameObject item)
     {
         Destroy(item);
         seedCounter++;
-        label.text = seedCounter.ToString();
+        indicator.text = seedCounter.ToString();
     }
     public GameObject SendItem()
     {
@@ -32,7 +32,7 @@ public class SeedCrate : MonoBehaviour
             return null;
         }
         seedCounter--;
-        label.text = seedCounter.ToString();
+        indicator.text = seedCounter.ToString();
         return Instantiate(seed, transform.position, Quaternion.identity);
     }
 }
