@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class ToolBar : MonoBehaviour
 {
-    public GameObject instrument;
-    
+    [SerializeField]private GameObject inst;
+
+    private void Start()
+    {
+        if (inst != null) return;
+        inst = null;
+    }
     public void SetItem(GameObject item)
     {
-        instrument = item;
+        inst = item;
     }
     public GameObject GetItem()
     {
-        return instrument;
+        return inst;
     }
     private void Update()
     {
-        if (instrument != null)
+        if (inst != null)
         {
-            instrument.transform.position = transform.position;
+            inst.transform.position = transform.position;
         }
     }
 }

@@ -19,7 +19,7 @@ public class HandController : MonoBehaviour
     }
 
     private void UseItem()
-    {
+    {    
         Instrument instrument = item?.GetComponent<Instrument>();
         instrument?.Use();
         if (instrument != null) Debug.Log($"Instrument {item.gameObject.name} used.");
