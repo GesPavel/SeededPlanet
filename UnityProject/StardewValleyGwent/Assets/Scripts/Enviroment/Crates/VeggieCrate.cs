@@ -1,29 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class VeggieCrate : MonoBehaviour
 {
-    public Text label;
+    public TextMeshPro indicator;
     public GameObject vegetable;
     public int veggieCounter = 0;
     private void Start()
     {
         if (vegetable != null)
         {
-            label.text = veggieCounter.ToString();
+            indicator.text = veggieCounter.ToString();
             return;
         }
         vegetable = null;
         veggieCounter = 0;
-        label.text = veggieCounter.ToString();
+        indicator.text = veggieCounter.ToString();
     }
     public void SetItem(GameObject item)
     {
         Destroy(item);
         veggieCounter++;
-        label.text = veggieCounter.ToString();
+        indicator.text = veggieCounter.ToString();
     }
     public GameObject SendItem()
     {
@@ -32,7 +32,7 @@ public class VeggieCrate : MonoBehaviour
             return null;
         }
         veggieCounter--;
-        label.text = veggieCounter.ToString();
+        indicator.text = veggieCounter.ToString();
         return Instantiate(vegetable, transform.position, Quaternion.identity);
     }
 }
