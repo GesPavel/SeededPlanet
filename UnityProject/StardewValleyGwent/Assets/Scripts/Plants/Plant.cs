@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,21 +10,26 @@ public class Plant : MonoBehaviour
     [HideInInspector] public Ground ground;
     private PlantStates currentState;
     private Dictionary<PlantStates, Sprite> SpriteMap;
+//  private Dictionary<PlantStates, float> GrowthTimeMap;
     private float timer;
+    private int stateNumber;
     enum PlantStates
     {
         Sprout,
         Sapling,
         BiggerSapling,
-        GrownPlant
+        GrownPlant,
+        Vegetable
     }
     void Start()
     {
-        FillMap();
-        EnterState(0); // Самое первое состояние растение
+        FillSpriteMap();
+    //  FillGrowthTimeMap();
+        EnterState(PlantStates.Sprout);
+        stateNumber = Enum.GetValues(typeof(PlantStates)).Length;
     }
 
-    private void FillMap()
+    private void FillSpriteMap()
     {
         SpriteMap = new Dictionary<PlantStates, Sprite>();
         SpriteVault vault = FindObjectOfType<SpriteVault>();
@@ -33,7 +37,22 @@ public class Plant : MonoBehaviour
         SpriteMap.Add(PlantStates.Sapling, vault.saplingStateSprite);
         SpriteMap.Add(PlantStates.BiggerSapling, vault.biggerSaplingStateSprite);
         SpriteMap.Add(PlantStates.GrownPlant, vault.grownStateSplrite);
+        SpriteMap.Add(PlantStates.Vegetable, null);
+
     }
+
+   /** Для будущих поколений людей, которым не плевать, сколько времени растение находитя в каждой стадии
+    private void FillGrowthTimeMap()
+    {
+        GrowthTimeMap = new Dictionary<PlantStates, float>();
+        GrowthTimeMap.Add(PlantStates.Sprout, growthTime/stateNumber);
+        GrowthTimeMap.Add(PlantStates.Sapling, growthTime / stateNumber);
+        GrowthTimeMap.Add(PlantStates.BiggerSapling, growthTime / stateNumber);
+        GrowthTimeMap.Add(PlantStates.GrownPlant, growthTime / stateNumber);
+        GrowthTimeMap.Add(PlantStates.Vegetable, 0.0f);
+
+    }
+    */
 
     private void EnterState(PlantStates state)
     {
@@ -42,18 +61,17 @@ public class Plant : MonoBehaviour
     }
     private PlantStates NextState()
     {
-        int nextState = (int)currentState + 1;
-        if (nextState == Enum.GetValues(typeof(PlantStates)).Length)
-            nextState = 0;
-        return (PlantStates)nextState;
+        return currentState + 1;
     }
-
+    private void EnterNextState()
+    {
+        EnterState(NextState());
+    }
     
     void InstantiateVegetable()
     {
         Instantiate(vegetable, transform.position, Quaternion.identity)
             .GetComponent<Vegetable>().SetPieceGround(ground);
-        Destroy(this.gameObject);
     }
 
     public void SetBaseGround(Ground ground)
@@ -63,12 +81,15 @@ public class Plant : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > growthTime / Enum.GetValues(typeof(PlantStates)).Length + 1)
+        if (timer > growthTime / stateNumber)
         {
-            if (currentState == PlantStates.GrownPlant)
+            EnterNextState();
+            if (currentState == PlantStates.Vegetable)
+            {
                 InstantiateVegetable();
-            EnterState(NextState());
-            timer = 0;
+                Destroy(this.gameObject);
+            }
+            timer = 0.0f;
         }
-    }  
+    }
 }
