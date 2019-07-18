@@ -12,6 +12,8 @@ TagManager:
   - Well
   - Hoe
   - WateringCan
+  - Chicken
+  - ChickenGirl
   layers:
   - Default
   - TransparentFX
