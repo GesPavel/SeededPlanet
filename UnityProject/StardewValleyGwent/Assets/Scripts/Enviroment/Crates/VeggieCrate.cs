@@ -8,41 +8,31 @@ public class VeggieCrate : MonoBehaviour
     public Text label;
     public GameObject vegetable;
     public int veggieCounter = 0;
-    void Start()
+    private void Start()
     {
+        if (vegetable != null)
+        {
+            label.text = veggieCounter.ToString();
+            return;
+        }
+        vegetable = null;
+        veggieCounter = 0;
         label.text = veggieCounter.ToString();
     }
-
-
-    void Update()
+    public void SetItem(GameObject item)
     {
-
+        Destroy(item);
+        veggieCounter++;
+        label.text = veggieCounter.ToString();
     }
-    public void TakeOrPutItem(HandScript hand)
+    public GameObject SendItem()
     {
-        if (hand.IsWithItem())
-            Put(hand);
-        else
-            TakeFromCrate(hand);
-    }
-    public void TakeFromCrate(HandScript hand)
-    {
-        if (veggieCounter > 0)
+        if (veggieCounter == 0)
         {
-            veggieCounter--;
-            label.text = veggieCounter.ToString();
-            hand.setItem(Instantiate(vegetable));
+            return null;
         }
-    }
-    public void Put(HandScript hand)
-    {
-        GameObject veggie = hand.SendItem();
-        if (veggie.GetComponent<Vegetable>() != null)
-        {
-            Destroy(veggie);
-            hand.RemoveItem();
-            veggieCounter++;
-            label.text = veggieCounter.ToString();
-        }
+        veggieCounter--;
+        label.text = veggieCounter.ToString();
+        return Instantiate(vegetable, transform.position, Quaternion.identity);
     }
 }
