@@ -8,25 +8,28 @@ public class Seed : MonoBehaviour, IUsable
     Ground standingGround;
     public GameObject plant;
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
     public void Use()
     {
-        player = FindObjectOfType<PlayerController>();
-        standingGround = player.GetCurrentGroundPosition();
         if (standingGround != null)
         {
             standingGround.AddPlant(plant);
-            player.gameObject.transform.GetChild(1).GetComponent<HandScript>().setItem(null);
             Destroy(gameObject);
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            standingGround = collision.gameObject.GetComponent<Ground>();
+        }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ground" && standingGround == collision.gameObject.GetComponent<Ground>())
+        {
+            standingGround = null;
+            Debug.Log(555);
+        }
     }
 }
