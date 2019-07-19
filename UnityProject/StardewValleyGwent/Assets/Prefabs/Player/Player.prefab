@@ -173,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useButton: 323
   interactButton: 324
+  staminaLossPerInstrumentUse: 25
 --- !u!1 &8471427184795161971
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,6 +187,7 @@ GameObject:
   - component: {fileID: 2909266333819140382}
   - component: {fileID: 2106032193500280636}
   - component: {fileID: 4785096512091500954}
+  - component: {fileID: 7206390254378149341}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -316,3 +318,17 @@ MonoBehaviour:
   leftHand: {fileID: 1017005567085935254}
   rightHand: {fileID: 3342890049334773046}
   currentGroundPosition: {fileID: 0}
+--- !u!114 &7206390254378149341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8471427184795161971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d00742789f3e546849ce69fb35cf54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxStamina: 100
+  staminaLoss: 5
