@@ -7,7 +7,7 @@ public class HandController : MonoBehaviour
     public KeyCode useButton, interactButton;
     GameObject item;
     StaminaDirector stamina;
-    public float staminaLossPerInstrumentUse = 25;
+    public float staminaLossPerInstrumentUse = 5;
     private void Start()
     {
         stamina = FindObjectOfType<StaminaDirector>();
