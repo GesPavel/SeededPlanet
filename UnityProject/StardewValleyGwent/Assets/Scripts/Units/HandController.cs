@@ -41,6 +41,10 @@ public class HandController : MonoBehaviour
                 Destroy(item);
                 item = null;
             }
+            else if (item.GetComponent<Seed>() != null)
+            {
+                item.GetComponent<Seed>().Use();
+            }
         }
     }
     private void InteractWithTheEnvironment()
