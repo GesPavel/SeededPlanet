@@ -57,9 +57,9 @@ public class HandController : MonoBehaviour
                     item = null;
                 }
             }
-            else if (hit.collider.gameObject.GetComponent<Bed>() != null)
+            else if (hit.collider.gameObject.tag == "Well")
             {
-                FindObjectOfType<PlayerController>().GoToBed();
+                item?.GetComponent<WateringCan>()?.FillUp();
             }
         }
     }

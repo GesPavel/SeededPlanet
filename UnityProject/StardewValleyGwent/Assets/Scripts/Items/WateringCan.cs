@@ -21,23 +21,18 @@ public class WateringCan : MonoBehaviour, Instrument
 
     public void Use()
     {
-       
-        player = FindObjectOfType<PlayerController>();
-        standingGround = player.GetCurrentGroundPosition();
-        if (standingGround != null)
-        {
-            if (standingGround == null) return;
+
+        if (standingGround == null) return;
             if (water >= waterPerUse)
             {
                 standingGround.AddWater(waterPerUse);
                 water -= waterPerUse;
-            }
-        }
+            }   
     }
 
     public void FillUp()
     {
         water = maxWaterVolume;
-        
+        Debug.Log($"Current water = {water}");
     }
 }
