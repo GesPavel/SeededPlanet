@@ -63,11 +63,11 @@ TagManager:
   - name: Environment
     uniqueID: 3146038281
     locked: 0
-  - name: Item
-    uniqueID: 1841055919
-    locked: 0
   - name: Units
     uniqueID: 2572595483
+    locked: 0
+  - name: Item
+    uniqueID: 1841055919
     locked: 0
   - name: UI
     uniqueID: 3620865803
