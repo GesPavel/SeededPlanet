@@ -11,33 +11,45 @@ public class WateringCan : MonoBehaviour, Instrument
     Ground standingGround;
     void Start()
     {
-        
+
     }
 
     void Update()
     {
-        
+
     }
 
     public void Use()
     {
-       
-        player = FindObjectOfType<PlayerController>();
-        standingGround = player.GetCurrentGroundPosition();
-        if (standingGround != null)
+
+        if (standingGround == null) return;
+        if (water >= waterPerUse)
         {
-            if (standingGround == null) return;
-            if (water >= waterPerUse)
-            {
-                standingGround.AddWater(waterPerUse);
-                water -= waterPerUse;
-            }
+            standingGround.AddWater(waterPerUse);
+            water -= waterPerUse;
+            Debug.Log(water);
         }
     }
 
     public void FillUp()
     {
         water = maxWaterVolume;
-        
+        Debug.Log($"Current water = {water}");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            standingGround = collision.gameObject.GetComponent<Ground>();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ground" && standingGround == collision.gameObject.GetComponent<Ground>())
+        {
+            standingGround = null;
+        }
     }
 }

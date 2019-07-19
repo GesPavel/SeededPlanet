@@ -13,10 +13,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 lookDirection;
     private Vector3 moveDirection;
     private bool moving;
+    private StaminaDirector stamina;
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        stamina = GetComponent<StaminaDirector>();
         moving = false;
         DontDestroyOnLoad(this.gameObject);
 
@@ -93,6 +95,27 @@ public class PlayerController : MonoBehaviour
     public Ground GetCurrentGroundPosition()
     {
         return currentGroundPosition;
-        
+    }
+    public void FallAsleep()
+    {
+        stamina.RestoreStamina();
+
+    }
+    public void GoToBed()
+    {
+        transform.position = FindObjectOfType<Bed>().transform.position;
+        FallAsleep();
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<Vegetable>() != null)
+        {
+            HandController hand = GetComponentInChildren<HandController>();
+            if (hand.IsEmpty())
+            {
+                hand.PickUpItem(collision.gameObject);
+                collision.GetComponent<Vegetable>().GetGround().isOccupied = false;
+            }
+        }
     }
 }

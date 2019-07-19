@@ -2,31 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Seed : MonoBehaviour, IUsable
+public class Seed : MonoBehaviour
 {
     PlayerController player;
-    Ground standingGround;
+    public Ground StandingGround { get; private set; }
     public GameObject plant;
 
-    void Start()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-
-    }
-
-    void Update()
-    {
-
-    }
-    public void Use()
-    {
-        player = FindObjectOfType<PlayerController>();
-        standingGround = player.GetCurrentGroundPosition();
-        if (standingGround != null)
+        if (collision.gameObject.tag == "Ground")
         {
-            standingGround.AddPlant(plant);
-            player.gameObject.transform.GetChild(1).GetComponent<HandScript>().setItem(null);
-            Destroy(gameObject);
+            StandingGround = collision.gameObject.GetComponent<Ground>();
         }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ground" && StandingGround == collision.gameObject.GetComponent<Ground>())
+        {
+            StandingGround = null;
+        }
     }
 }

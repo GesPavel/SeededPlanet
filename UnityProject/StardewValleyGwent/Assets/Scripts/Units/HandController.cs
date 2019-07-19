@@ -6,7 +6,12 @@ public class HandController : MonoBehaviour
 {
     public KeyCode useButton, interactButton;
     GameObject item;
-
+    StaminaDirector stamina;
+    public float staminaLossPerInstrumentUse = 5;
+    private void Start()
+    {
+        stamina = FindObjectOfType<StaminaDirector>();
+    }
     private void Update()
     {
         if (item != null)
@@ -20,9 +25,39 @@ public class HandController : MonoBehaviour
 
     private void UseItem()
     {
-        Instrument instrument = item?.GetComponent<Instrument>();
-        instrument?.Use();
-        if (instrument != null) Debug.Log($"Instrument {item.gameObject.name} used.");
+        if (item != null)
+        {
+            if (item.GetComponent<Instrument>() != null)
+            {
+                Instrument instrument = item?.GetComponent<Instrument>();
+                instrument?.Use();
+                stamina.DecreaseStamina(staminaLossPerInstrumentUse);
+                if (instrument != null) Debug.Log($"Instrument {item.gameObject.name} used.");
+            }
+            else if (item.GetComponent<Vegetable>() != null)
+            {
+                Vegetable vegetable = item.GetComponent<Vegetable>();
+                stamina.IncreaseStamina(vegetable.staminaRestoration);
+                Destroy(item);
+                item = null;
+            }
+            else if (item.GetComponent<Seed>() != null)
+            {
+                Seed seed = item.GetComponent<Seed>();
+                Ground ground = seed.StandingGround?.GetComponent<Ground>();
+                if(ground!=null)
+                {
+                    if(!ground.IsPlowed)
+                    {
+                        Destroy(item.gameObject);
+                        return;
+                    }
+                    ground.AddPlant(seed.plant);
+                    Destroy(item.gameObject);
+                }
+
+            }
+        }
     }
     private void InteractWithTheEnvironment()
     {
@@ -57,8 +92,24 @@ public class HandController : MonoBehaviour
                     item = null;
                 }
             }
+            else if (hit.collider.gameObject.tag == "Well")
+            {
+                item?.GetComponent<WateringCan>()?.FillUp();
+            }
+
+            else if (hit.collider.gameObject.GetComponent<Bed>() != null)
+            {
+                FindObjectOfType<PlayerController>().GoToBed();
+            }
         }
     }
 
-
+    public void PickUpItem (GameObject item)
+    {
+        this.item = item;
+    }
+    public bool IsEmpty()
+    {
+        return item == null;
+    }
 }
