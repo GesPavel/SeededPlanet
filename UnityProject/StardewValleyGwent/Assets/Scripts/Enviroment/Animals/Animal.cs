@@ -33,9 +33,10 @@ public class Animal : MonoBehaviour
           timeForStop = Random.Range(-1, -5);
         }
     }
-    void Move()
+    public void Move()
     {
-            if (timeForWalking > 0)
+        transform.up = direction;
+        if (timeForWalking > 0)
         {
             Vector3 pos = rb.position;
             direction.Normalize();
@@ -63,7 +64,7 @@ public class Animal : MonoBehaviour
 
     void Update()
     {
-        transform.up = direction;
+
         Move();
     }
 
