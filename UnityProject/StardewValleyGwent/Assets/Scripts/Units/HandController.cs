@@ -47,6 +47,7 @@ public class HandController : MonoBehaviour
                 Ground ground = seed.StandingGround?.GetComponent<Ground>();
                 if(ground!=null)
                 {
+                    if (ground.isOccupied) return;
                     if(!ground.IsPlowed)
                     {
                         Destroy(item.gameObject);
