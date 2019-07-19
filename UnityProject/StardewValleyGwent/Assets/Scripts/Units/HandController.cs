@@ -57,6 +57,10 @@ public class HandController : MonoBehaviour
                     item = null;
                 }
             }
+            else if (hit.collider.gameObject.GetComponent<Bed>() != null)
+            {
+                FindObjectOfType<PlayerController>().GoToBed();
+            }
         }
     }
 
