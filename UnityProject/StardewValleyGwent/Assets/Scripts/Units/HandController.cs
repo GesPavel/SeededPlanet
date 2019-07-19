@@ -41,6 +41,22 @@ public class HandController : MonoBehaviour
                 Destroy(item);
                 item = null;
             }
+            else if (item.GetComponent<Seed>() != null)
+            {
+                Seed seed = item.GetComponent<Seed>();
+                Ground ground = seed.StandingGround?.GetComponent<Ground>();
+                if(ground!=null)
+                {
+                    if(!ground.IsPlowed)
+                    {
+                        Destroy(item.gameObject);
+                        return;
+                    }
+                    ground.AddPlant(seed.plant);
+                    Destroy(item.gameObject);
+                }
+
+            }
         }
     }
     private void InteractWithTheEnvironment()
