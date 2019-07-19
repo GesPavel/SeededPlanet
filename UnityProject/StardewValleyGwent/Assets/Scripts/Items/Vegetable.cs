@@ -10,6 +10,7 @@ public class Vegetable : MonoBehaviour
     public void SetGround(Ground ground)
     {
         this.ground = ground;
+        this.ground.isOccupied = true;
     }
     public Ground GetGround()
     {

@@ -6,7 +6,7 @@ public class StaminaDirector : MonoBehaviour
 {
     [SerializeField] private float maxStamina = 100; 
     private float currentStamina;
-    [SerializeField] private float staminaLoss = 5;
+    [SerializeField] private float staminaLoss = 1;
     PlayerController player;
 
 
@@ -17,7 +17,7 @@ public class StaminaDirector : MonoBehaviour
     }
     private void Update()
     {
-        currentStamina -= Time.deltaTime * 5;
+        currentStamina -= Time.deltaTime * staminaLoss;
         if (currentStamina <= 0)
         {
             Faint();
@@ -44,5 +44,13 @@ public class StaminaDirector : MonoBehaviour
     public void RestoreStamina()
     {
         currentStamina = maxStamina;
+    }
+    public void SetStaminaLoss(float newStaminaLoss)
+    {
+        staminaLoss = newStaminaLoss;
+    }
+    public float GetStaminaLoss()
+    {
+        return staminaLoss;
     }
 }

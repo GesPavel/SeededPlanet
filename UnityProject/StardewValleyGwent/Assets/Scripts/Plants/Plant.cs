@@ -7,7 +7,7 @@ public class Plant : MonoBehaviour
 
     [SerializeField] private float growthTime;
     [SerializeField] private GameObject vegetable;
-    [HideInInspector] public Ground ground;
+    public Ground ground;
     private PlantStates currentState;
     private Dictionary<PlantStates, Sprite> SpriteMap;
 //  private Dictionary<PlantStates, float> GrowthTimeMap;
@@ -70,8 +70,8 @@ public class Plant : MonoBehaviour
     
     void InstantiateVegetable()
     {
-        Instantiate(vegetable, transform.position, Quaternion.identity)
-            .GetComponent<Vegetable>().SetGround(ground);
+        GameObject newVegetable = Instantiate(vegetable, transform.position, Quaternion.identity);
+        newVegetable.GetComponent<Vegetable>().SetGround(ground);
     }
 
     public void SetBaseGround(Ground ground)
