@@ -71,7 +71,7 @@ public class Plant : MonoBehaviour
     void InstantiateVegetable()
     {
         Instantiate(vegetable, transform.position, Quaternion.identity)
-            .GetComponent<Vegetable>().SetPieceGround(ground);
+            .GetComponent<Vegetable>().SetGround(ground);
     }
 
     public void SetBaseGround(Ground ground)

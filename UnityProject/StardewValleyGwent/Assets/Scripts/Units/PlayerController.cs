@@ -106,4 +106,16 @@ public class PlayerController : MonoBehaviour
         transform.position = FindObjectOfType<Bed>().transform.position;
         FallAsleep();
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<Vegetable>() != null)
+        {
+            HandController hand = GetComponentInChildren<HandController>();
+            if (hand.IsEmpty())
+            {
+                hand.PickUpItem(collision.gameObject);
+                collision.GetComponent<Vegetable>().GetGround().isOccupied = false;
+            }
+        }
+    }
 }

@@ -34,9 +34,15 @@ public class StaminaDirector : MonoBehaviour
         currentStamina -= staminaLost;
     }
 
+    public void IncreaseStamina(float staminaGain)
+    {
+        currentStamina += staminaGain;
+        if (currentStamina > maxStamina)
+            currentStamina = maxStamina;
+    }
+
     public void RestoreStamina()
     {
         currentStamina = maxStamina;
-        Debug.Log("StaminaRestored");
     }
 }
