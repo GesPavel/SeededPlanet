@@ -8,7 +8,7 @@ public class Ground : MonoBehaviour
     [SerializeField] private static Dictionary<GroundStates, Sprite> SpriteMap;
     [SerializeField] private static float maxWaterValue = 25;
     private static float waterDryPerSecond;
-    private bool isPlowed = false;
+    public bool IsPlowed { get;private set; } = false;
 
     [HideInInspector] private float currentWaterCount;
     private GroundStates currentState;
@@ -73,6 +73,7 @@ public class Ground : MonoBehaviour
     }
     public void Plow()
     {
+        IsPlowed=true;
         if (currentState == GroundStates.DryRaw)
             EnterState(GroundStates.DryPlowed);
         else if (currentState == GroundStates.WetRaw)

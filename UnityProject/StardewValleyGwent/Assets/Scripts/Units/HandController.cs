@@ -43,7 +43,19 @@ public class HandController : MonoBehaviour
             }
             else if (item.GetComponent<Seed>() != null)
             {
-                item.GetComponent<Seed>().Use();
+                Seed seed = item.GetComponent<Seed>();
+                Ground ground = seed.StandingGround?.GetComponent<Ground>();
+                if(ground!=null)
+                {
+                    if(!ground.IsPlowed)
+                    {
+                        Destroy(item.gameObject);
+                        return;
+                    }
+                    ground.AddPlant(seed.plant);
+                    Destroy(item.gameObject);
+                }
+
             }
         }
     }
