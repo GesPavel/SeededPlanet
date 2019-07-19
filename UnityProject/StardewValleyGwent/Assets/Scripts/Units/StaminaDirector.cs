@@ -5,8 +5,8 @@ using UnityEngine;
 public class StaminaDirector : MonoBehaviour
 {
     [SerializeField] private float maxStamina = 100; 
-    private float currentStamina;
-    [SerializeField] private float staminaLoss = 1;
+    public float CurrentStamina { get; private set; }
+    public float StaminaLoss { get; private set; } = 1;
     PlayerController player;
 
 
@@ -17,8 +17,8 @@ public class StaminaDirector : MonoBehaviour
     }
     private void Update()
     {
-        currentStamina -= Time.deltaTime * staminaLoss;
-        if (currentStamina <= 0)
+        CurrentStamina -= Time.deltaTime * StaminaLoss;
+        if (CurrentStamina <= 0)
         {
             Faint();
         }
@@ -31,26 +31,26 @@ public class StaminaDirector : MonoBehaviour
 
     public void DecreaseStamina(float staminaLost)
     {
-        currentStamina -= staminaLost;
+        CurrentStamina -= staminaLost;
     }
 
     public void IncreaseStamina(float staminaGain)
     {
-        currentStamina += staminaGain;
-        if (currentStamina > maxStamina)
-            currentStamina = maxStamina;
+        CurrentStamina += staminaGain;
+        if (CurrentStamina > maxStamina)
+            CurrentStamina = maxStamina;
     }
 
     public void RestoreStamina()
     {
-        currentStamina = maxStamina;
+        CurrentStamina = maxStamina;
     }
     public void SetStaminaLoss(float newStaminaLoss)
     {
-        staminaLoss = newStaminaLoss;
+        StaminaLoss = newStaminaLoss;
     }
     public float GetStaminaLoss()
     {
-        return staminaLoss;
+        return StaminaLoss;
     }
 }
