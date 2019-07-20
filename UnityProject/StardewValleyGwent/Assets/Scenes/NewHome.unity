@@ -13198,6 +13198,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7206390254378149341, guid: be518a48edf550744beda8b0207ed60d,
+        type: 3}
+      propertyPath: maxStamina
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be518a48edf550744beda8b0207ed60d, type: 3}
 --- !u!4 &260855609 stripped
@@ -15365,7 +15370,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 159.6, y: -25.989962}
+  m_AnchoredPosition: {x: 181.20001, y: -25.98996}
   m_SizeDelta: {x: 70.9, y: 51.96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &731827296
@@ -17956,7 +17961,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playersStaminaText: {fileID: 418170299}
-  StaminaBonus: {fileID: 0}
 --- !u!114 &1294461192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19240,7 +19244,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -84, y: 138.03}
+  m_AnchoredPosition: {x: -62.4, y: 138.03}
   m_SizeDelta: {x: -564.46, y: -276.08}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1383244696
