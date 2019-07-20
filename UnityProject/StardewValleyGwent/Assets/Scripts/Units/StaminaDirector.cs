@@ -8,27 +8,27 @@ public class StaminaDirector : MonoBehaviour
     public float CurrentStamina { get; private set; }
     public float StaminaLoss { get; private set; } = 1;
     PlayerController player;
-    public enum CalmingAnimals
+    [System.Serializable]public enum CalmingAnimals
     {
         Cat
     }
-    public Dictionary<CalmingAnimals, bool> NearestCalmingAnimals { get; private set; }
-
+    public static Dictionary<CalmingAnimals, int> NearestCalmingAnimalsCount { get; private set; }
     private void Awake()
     {
         player = GetComponent<PlayerController>();
         RestoreStamina();
-        NearestCalmingAnimals = new Dictionary<CalmingAnimals, bool>();
-        NearestCalmingAnimals.Add(CalmingAnimals.Cat, false);
+        NearestCalmingAnimalsCount = new Dictionary<CalmingAnimals, int>();
+        NearestCalmingAnimalsCount.Add(CalmingAnimals.Cat, 0);
     }
     private void Update()
     {
         float staminaLosssReduceСoefficient = 0;
-        foreach(bool isAnimelNear in NearestCalmingAnimals.Values)
+        foreach(int typeOfAnimelNearCount in NearestCalmingAnimalsCount.Values)
         {
-            staminaLosssReduceСoefficient += isAnimelNear ? 1 : 0;
+            staminaLosssReduceСoefficient += typeOfAnimelNearCount;
         }
         CurrentStamina -= Time.deltaTime * (StaminaLoss-staminaLosssReduceСoefficient);
+        if (CurrentStamina > maxStamina) CurrentStamina = maxStamina;
         if (CurrentStamina <= 0)
         {
             Faint();
@@ -59,10 +59,10 @@ public class StaminaDirector : MonoBehaviour
     
     public void SetNearestCalmingAnimal(CalmingAnimals animal)
     {
-        NearestCalmingAnimals[animal] = true;
+        NearestCalmingAnimalsCount[animal]+=1;
     }
     public void DeleteNearestCalmingAnimal(CalmingAnimals animal)
     {
-        NearestCalmingAnimals[animal] = false;
+        NearestCalmingAnimalsCount[animal] -=1;
     }
 }

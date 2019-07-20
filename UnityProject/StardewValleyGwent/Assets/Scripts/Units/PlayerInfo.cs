@@ -13,18 +13,10 @@ public class PlayerInfo : MonoBehaviour
         staminaDirector = FindObjectOfType<StaminaDirector>();
     }
 
+
     
     void Update()
     {
         playersStaminaText.text = ((int)staminaDirector.CurrentStamina).ToString();
-        StaminaBonus.SetActive(false);
-        foreach (bool isNearCalmingAnimal in staminaDirector.NearestCalmingAnimals.Values)
-        {
-            if (isNearCalmingAnimal)
-            {
-                StaminaBonus.SetActive(true);
-                return;
-            }
-        }
     }
 }
