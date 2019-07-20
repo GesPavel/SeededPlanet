@@ -29,17 +29,7 @@ public class StaminaDirector : MonoBehaviour
         }
         CurrentStamina -= Time.deltaTime * (StaminaLoss-staminaLosssReduceСoefficient);
         if (CurrentStamina > maxStamina) CurrentStamina = maxStamina;
-        if (CurrentStamina <= 0)
-        {
-            Faint();
-        }
     }
-    private void Faint()
-    {
-        gameObject.transform.position = FindObjectOfType<Bed>().gameObject.transform.position;
-        RestoreStamina();
-    }
-
     public void DecreaseStamina(float staminaLost)
     {
         CurrentStamina -= staminaLost;

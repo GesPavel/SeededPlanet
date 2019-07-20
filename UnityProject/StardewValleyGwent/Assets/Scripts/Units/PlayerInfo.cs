@@ -7,7 +7,6 @@ public class PlayerInfo : MonoBehaviour
 {
     StaminaDirector staminaDirector;
     public Text playersStaminaText;
-    public GameObject StaminaBonus;
     void Start()
     {
         staminaDirector = FindObjectOfType<StaminaDirector>();

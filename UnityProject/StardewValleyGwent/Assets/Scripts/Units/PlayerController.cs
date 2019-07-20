@@ -27,39 +27,45 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        MoveControll();
+        if (!moving)
+        {
+            if (stamina.CurrentStamina <= 0)
+            {
+                gameObject.transform.position = FindObjectOfType<Bed>().gameObject.transform.position;
+                stamina.RestoreStamina();
+                return;
+            }
+            MoveControll();
+        }
     }
 
     private void MoveControll()
     {
-        if (!moving)
+        if (Input.GetKey(left))
         {
-            if (Input.GetKey(left))
-            {
-                lookDirection = Vector3.left;
-                moveDirection = lookDirection;
-            }
-            else if (Input.GetKey(right))
-            {
-                lookDirection = Vector3.right;
-                moveDirection = lookDirection;
-            }
-            else if (Input.GetKey(up))
-            {
-                lookDirection = Vector3.up;
-                moveDirection = lookDirection;
-            }
-            else if (Input.GetKey(down))
-            {
-                lookDirection = Vector3.down;
-                moveDirection = lookDirection;
-            }
-            rb2d.transform.up = lookDirection;
-            if (CanMove(moveDirection))
-            {
-                StartCoroutine(movePlayer(moveDirection + transform.position));
-                moveDirection = Vector3.zero;
-            }
+            lookDirection = Vector3.left;
+            moveDirection = lookDirection;
+        }
+        else if (Input.GetKey(right))
+        {
+            lookDirection = Vector3.right;
+            moveDirection = lookDirection;
+        }
+        else if (Input.GetKey(up))
+        {
+            lookDirection = Vector3.up;
+            moveDirection = lookDirection;
+        }
+        else if (Input.GetKey(down))
+        {
+            lookDirection = Vector3.down;
+            moveDirection = lookDirection;
+        }
+        rb2d.transform.up = lookDirection;
+        if (CanMove(moveDirection))
+        {
+            StartCoroutine(movePlayer(moveDirection + transform.position));
+            moveDirection = Vector3.zero;
         }
         if (Input.GetKeyDown(interact))
         {
