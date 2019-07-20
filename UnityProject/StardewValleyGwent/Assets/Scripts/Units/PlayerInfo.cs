@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class PlayerInfo : MonoBehaviour
 {
     StaminaDirector staminaDirector;
-    public Text playersStamina;
-    public GameObject catBonus;
+    public Text playersStaminaText;
+    public GameObject StaminaBonus;
     void Start()
     {
         staminaDirector = FindObjectOfType<StaminaDirector>();
@@ -16,8 +16,15 @@ public class PlayerInfo : MonoBehaviour
     
     void Update()
     {
-        playersStamina.text = ((int)staminaDirector.CurrentStamina).ToString();
-        if (staminaDirector.StaminaLoss == 0) catBonus.SetActive(true);
-        else catBonus.SetActive(false);
+        playersStaminaText.text = ((int)staminaDirector.CurrentStamina).ToString();
+        StaminaBonus.SetActive(false);
+        foreach (bool isNearCalmingAnimal in staminaDirector.NearestCalmingAnimals.Values)
+        {
+            if (isNearCalmingAnimal)
+            {
+                StaminaBonus.SetActive(true);
+                return;
+            }
+        }
     }
 }

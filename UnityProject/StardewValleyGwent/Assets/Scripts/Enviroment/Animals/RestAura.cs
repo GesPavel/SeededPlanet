@@ -10,8 +10,7 @@ public class RestAura : MonoBehaviour
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
             StaminaDirector playerStamina = FindObjectOfType<StaminaDirector>();
-            previousStaminaLoss = playerStamina.GetStaminaLoss();
-            playerStamina.SetStaminaLoss(0.0f);
+            playerStamina.SetNearestCalmingAnimal(StaminaDirector.CalmingAnimals.Cat);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -19,7 +18,7 @@ public class RestAura : MonoBehaviour
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
             StaminaDirector playerStamina = FindObjectOfType<StaminaDirector>();
-            playerStamina.SetStaminaLoss(previousStaminaLoss);
+            playerStamina.DeleteNearestCalmingAnimal(StaminaDirector.CalmingAnimals.Cat);
         }
     }
 }
