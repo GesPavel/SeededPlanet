@@ -5,20 +5,31 @@ using UnityEngine;
 public class StaminaDirector : MonoBehaviour
 {
     [SerializeField] private float maxStamina = 100; 
-    private float currentStamina;
-    [SerializeField] private float staminaLoss = 1;
+    public float CurrentStamina { get; private set; }
+    public float StaminaLoss { get; private set; } = 1;
     PlayerController player;
-
-
-    private void Start()
+    [System.Serializable]public enum CalmingAnimals
+    {
+        Cat
+    }
+    public static Dictionary<CalmingAnimals, int> NearestCalmingAnimalsCount { get; private set; }
+    private void Awake()
     {
         player = GetComponent<PlayerController>();
         RestoreStamina();
+        NearestCalmingAnimalsCount = new Dictionary<CalmingAnimals, int>();
+        NearestCalmingAnimalsCount.Add(CalmingAnimals.Cat, 0);
     }
     private void Update()
     {
-        currentStamina -= Time.deltaTime * staminaLoss;
-        if (currentStamina <= 0)
+        float staminaLosssReduceСoefficient = 0;
+        foreach(int typeOfAnimelNearCount in NearestCalmingAnimalsCount.Values)
+        {
+            staminaLosssReduceСoefficient += typeOfAnimelNearCount;
+        }
+        CurrentStamina -= Time.deltaTime * (StaminaLoss-staminaLosssReduceСoefficient);
+        if (CurrentStamina > maxStamina) CurrentStamina = maxStamina;
+        if (CurrentStamina <= 0)
         {
             Faint();
         }
@@ -31,26 +42,27 @@ public class StaminaDirector : MonoBehaviour
 
     public void DecreaseStamina(float staminaLost)
     {
-        currentStamina -= staminaLost;
+        CurrentStamina -= staminaLost;
     }
 
     public void IncreaseStamina(float staminaGain)
     {
-        currentStamina += staminaGain;
-        if (currentStamina > maxStamina)
-            currentStamina = maxStamina;
+        CurrentStamina += staminaGain;
+        if (CurrentStamina > maxStamina)
+            CurrentStamina = maxStamina;
     }
 
     public void RestoreStamina()
     {
-        currentStamina = maxStamina;
+        CurrentStamina = maxStamina;
     }
-    public void SetStaminaLoss(float newStaminaLoss)
+    
+    public void SetNearestCalmingAnimal(CalmingAnimals animal)
     {
-        staminaLoss = newStaminaLoss;
+        NearestCalmingAnimalsCount[animal]+=1;
     }
-    public float GetStaminaLoss()
+    public void DeleteNearestCalmingAnimal(CalmingAnimals animal)
     {
-        return staminaLoss;
+        NearestCalmingAnimalsCount[animal] -=1;
     }
 }
