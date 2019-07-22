@@ -29,6 +29,7 @@ public class HandController : MonoBehaviour
     private void UseItem()
     {
         if (item == null) return;
+        if (item.GetComponent<IUsable>() == null) return;
 
         if (item.GetComponent<Instrument>() != null)
         {
