@@ -109,6 +109,11 @@ public class HandController : MonoBehaviour
                 Merchant merchant = enviroment.GetComponent<Merchant>();
                 item = merchant.Trade(item);
             }
+            else if (enviroment.GetComponent<Kitchen>() != null)
+            {
+                Kitchen kitchen = enviroment.GetComponent<Kitchen>();
+                item = kitchen.Interact(item);
+            }
         }
     }
 

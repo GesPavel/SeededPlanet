@@ -5,30 +5,39 @@ using UnityEngine;
 public class Kitchen : MonoBehaviour,IManufacturer
 {
     [System.Serializable]
-    public class Menu
+    public class RawAndCookedFood
     {
         public GameObject rawFood;
         public GameObject cookedFood;
     }
 
-    public List<Menu> menu;
+    public List<RawAndCookedFood> rawAndCookedFood;
 
-    private Dictionary<GameObject, GameObject> foodPairs;
+    private Dictionary<string, GameObject> foodPairs;
 
     private void Start()
     {
-        foodPairs = new Dictionary<GameObject, GameObject>();
-        foreach(Menu menuItem in menu)
+        foodPairs = new Dictionary<string, GameObject>();
+        foreach(RawAndCookedFood pair in rawAndCookedFood)
         {
-            foodPairs.Add(menuItem.rawFood,menuItem.cookedFood);
+            IItem rawFood = pair.rawFood.GetComponent<IItem>();
+            if (rawFood == null) continue;
+            if (rawFood.ObjectsName == "") continue;
+            foodPairs.Add(rawFood.ObjectsName,pair.cookedFood);
         }
     }
-    public GameObject Interact(GameObject food)
+    public GameObject Interact(GameObject objectToCook)
     {
-        if(!foodPairs.ContainsKey(food))
+        if (objectToCook == null) return objectToCook;
+        IItem foodToCook = objectToCook.GetComponent<IItem>();
+        if (foodToCook == null) return objectToCook;
+        if(!foodPairs.ContainsKey(foodToCook.ObjectsName))
         {
-            return null;
+            return objectToCook;
         }
-        return Instantiate(foodPairs[food]);
+
+        var cookedFood = Instantiate(foodPairs[foodToCook.ObjectsName]);
+        Destroy(objectToCook.gameObject);
+        return cookedFood;
     }
 }

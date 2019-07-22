@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3100840862575522910}
   - component: {fileID: 3100840862575522911}
-  - component: {fileID: 1003677564426045608}
   - component: {fileID: 1832203231798011070}
+  - component: {fileID: 1003677564426045608}
   m_Layer: 0
-  m_Name: cookedVegetable
+  m_Name: CoockedCactus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,20 +81,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1003677564426045608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3100840862575522904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6f2c50013d5a084a8fcf2035eeac282, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectsName: Cooked cactus
-  staminaRestoration: 40
 --- !u!58 &1832203231798011070
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -111,3 +97,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.48
+--- !u!114 &1003677564426045608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3100840862575522904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f2c50013d5a084a8fcf2035eeac282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsName: Cooked cactus
+  staminaRestoration: 40
