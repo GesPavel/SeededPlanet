@@ -12,8 +12,10 @@ TagManager:
   - Well
   - Hoe
   - WateringCan
-  - Chicken
   - ChickenGirl
+  - ChickenMale
+  - Animal
+  - Chicken
   layers:
   - Default
   - TransparentFX
@@ -25,10 +27,10 @@ TagManager:
   - 
   - Units
   - BlockingLayer
-  - AnimalLayer
+  - ChickenLayer
   - CameraBorder
   - Ground
-  - 
+  - AnimalLayer
   - 
   - 
   - 
@@ -56,6 +58,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 2373803121
+    locked: 0
+  - name: Chicken
+    uniqueID: 802017941
     locked: 0
   - name: Animal
     uniqueID: 2071199363
