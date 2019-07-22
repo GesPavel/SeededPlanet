@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ITransferable
+public interface IItem
 {
-   
+   string ObjectsName { get;}
 }
