@@ -63,7 +63,7 @@ public class HandController : MonoBehaviour
     private void InteractWithTheEnvironment()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 1, LayerMask.GetMask("BlockingLayer"));
-        GameObject enviroment = hit.collider.gameObject;
+        GameObject enviroment = hit.collider?.gameObject;
         if (hit.collider != null)
         {
             Debug.Log($"Player interact with {hit.collider.gameObject.name}");

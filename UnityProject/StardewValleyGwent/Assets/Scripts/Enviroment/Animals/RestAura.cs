@@ -10,6 +10,7 @@ public class RestAura : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
+            Debug.Log("In zone");
             StaminaDirector playerStamina = FindObjectOfType<StaminaDirector>();
             playerStamina.SetNearestCalmingAnimal(animalType);
         }
@@ -18,6 +19,7 @@ public class RestAura : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
+            Debug.Log("Out of zone zone");
             StaminaDirector playerStamina = FindObjectOfType<StaminaDirector>();
             playerStamina.DeleteNearestCalmingAnimal(animalType);
         }
