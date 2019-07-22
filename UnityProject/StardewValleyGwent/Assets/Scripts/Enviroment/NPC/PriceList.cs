@@ -7,11 +7,12 @@ public class PriceList : MonoBehaviour
 {
     public int priceForVeggie = 25;
     public int priceForEgg = 50;
-    private static Dictionary<ValuebleItems, int> prices;
+    private Dictionary<ValuebleItems, int> prices;
 
     private void Start()
     {
-        FillPriceList();
+        float randomPriceMultiplier = UnityEngine.Random.Range(0.5f, 1.5f);
+        FillPriceList(randomPriceMultiplier);
       
     }
     enum ValuebleItems
@@ -19,14 +20,14 @@ public class PriceList : MonoBehaviour
         Vegetable, 
         Egg
     }
-    private void FillPriceList()
+    private void FillPriceList(float randomPriceMultiplier)
     {
         prices = new Dictionary<ValuebleItems, int>();
-        prices.Add(ValuebleItems.Vegetable, priceForVeggie);
-        prices.Add(ValuebleItems.Egg, priceForVeggie);
+        prices.Add(ValuebleItems.Vegetable,(int) (priceForVeggie * randomPriceMultiplier));
+        prices.Add(ValuebleItems.Egg,(int) (priceForVeggie * randomPriceMultiplier));
         
     }
-    public static int GetPriceOf(GameObject item)
+    public int GetPriceOf(GameObject item)
     {
         if (item.GetComponent<Vegetable>() != null)
         {
@@ -38,7 +39,7 @@ public class PriceList : MonoBehaviour
         }
         else
         {
-            throw new Exception("You cannot sell this item");
+            throw new Exception("Я такое не куплю!");
         } 
            
     }
