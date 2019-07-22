@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class Merchant : MonoBehaviour
 {
-    //    MoneyController playersMoney;
+    PriceList priceList;
+    MoneyController playersMoney;
     public GameObject itemToSell;
     [SerializeField] private float margin = 1.2f;
     private void Start()
     {
-//        playersMoney = FindObjectOfType<MoneyController>();
+       playersMoney = FindObjectOfType<MoneyController>();
+        priceList = GetComponent<PriceList>();
     }
 
     public GameObject Trade(GameObject item)
@@ -20,12 +22,23 @@ public class Merchant : MonoBehaviour
             if (item != null)
             {
                 int buyingPrice = DeterminePrice(item);
+                playersMoney.AddMoney(buyingPrice);
+                Destroy(item);
+                Debug.Log(MoneyController.CurrentSum);
                 return null;
             }
             else
             {
                 int sellingPrice = (int)(DeterminePrice(itemToSell) * margin);
-                return itemToSell;
+                if (playersMoney.IsAbleToPay(sellingPrice))
+                {
+                    playersMoney.Subtract(sellingPrice);
+                    return Instantiate(itemToSell);
+                }
+                else
+                {
+                    throw new Exception("Недостаточно денег чтобы купить " + itemToSell.name);
+                }
             }
         } catch(Exception e)
         {
@@ -38,6 +51,6 @@ public class Merchant : MonoBehaviour
 
     private int DeterminePrice(GameObject item)
     {
-        return PriceList.GetPriceOf(item);
+        return priceList.GetPriceOf(item);
     }
 }

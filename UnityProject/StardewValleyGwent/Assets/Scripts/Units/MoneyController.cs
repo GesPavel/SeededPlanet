@@ -21,7 +21,7 @@ public class MoneyController : MonoBehaviour
         CurrentSum -= sum;
     }
 
-    public bool CheckIsEnoughMoney(int sum)
+    public bool IsAbleToPay(int sum)
     {
         return CurrentSum >= sum;
     }

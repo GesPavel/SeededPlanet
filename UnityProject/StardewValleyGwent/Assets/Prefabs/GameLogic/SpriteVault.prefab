@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3207617915481411324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3207617915481411314}
+  - component: {fileID: 3207617915481411315}
+  m_Layer: 0
+  m_Name: SpriteVault
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3207617915481411314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3207617915481411324}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.5362072, y: 5.6750116, z: -21.642643}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3207617915481411315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3207617915481411324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ee440bdfbcc4546bed1dcad4c22392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DryRawSprite: {fileID: 21300000, guid: 51820a85c4f30cd4e87dfb078430ee8f, type: 3}
+  WetRawSprite: {fileID: 21300000, guid: c81a160b7f05bf44f84f0544eb51e36a, type: 3}
+  WetPlowedSprite: {fileID: 21300000, guid: bf0ff463eca75aa48a9a44475adbd1f0, type: 3}
+  DryPlowedSprite: {fileID: 21300000, guid: 2b11201fe27d6604bbc7a779ac4e180d, type: 3}
+  sproutStateSprite: {fileID: 21300000, guid: 988abc5510b91084cbf51715e478350d, type: 3}
+  saplingStateSprite: {fileID: 21300000, guid: 7149fe0f2584ac94a993727bcb07b8c8, type: 3}
+  biggerSaplingStateSprite: {fileID: 21300000, guid: 88e1c40b17f4eef4d9436cff217583b2,
+    type: 3}
+  grownStateSplrite: {fileID: 21300000, guid: fadb492bd2ce2414a887165188747bfe, type: 3}
