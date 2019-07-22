@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2059966114323155044}
   - component: {fileID: 7761475138644782535}
   - component: {fileID: 2353863462685951920}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: RestAura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb89d0765ecee1e46ac48abb32adb5a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animalType: 0
 --- !u!1 &3434119525446719785
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,9 +84,9 @@ GameObject:
   - component: {fileID: -2536515107357013686}
   - component: {fileID: -1629447960989248116}
   - component: {fileID: 8427671027423859445}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Cat
-  m_TagString: Environment
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
