@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<ITransferable>() != null)
+        if (collision.gameObject.GetComponent<IItem>() != null)
         {
             if (hand.IsEmpty())
             {
