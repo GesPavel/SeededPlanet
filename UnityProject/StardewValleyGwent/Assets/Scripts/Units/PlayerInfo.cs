@@ -7,6 +7,7 @@ public class PlayerInfo : MonoBehaviour
 {
     StaminaDirector staminaDirector;
     public Text playersStaminaText;
+    public Text playersCurrentSumText;
     void Start()
     {
         staminaDirector = FindObjectOfType<StaminaDirector>();
@@ -17,5 +18,6 @@ public class PlayerInfo : MonoBehaviour
     void Update()
     {
         playersStaminaText.text = ((int)staminaDirector.CurrentStamina).ToString();
+        playersCurrentSumText.text = MoneyController.CurrentSum.ToString();
     }
 }

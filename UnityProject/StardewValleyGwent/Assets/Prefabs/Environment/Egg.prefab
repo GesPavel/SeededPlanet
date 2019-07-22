@@ -131,3 +131,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a666ccba91dd5d2458a5b24bdb52cdce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staminaRestoration: 25
