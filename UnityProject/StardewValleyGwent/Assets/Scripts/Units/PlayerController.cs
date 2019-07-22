@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection;
     private bool moving;
     private StaminaDirector stamina;
+    HandController hand;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
         stamina = GetComponent<StaminaDirector>();
         moving = false;
         DontDestroyOnLoad(this.gameObject);
+        hand = GetComponentInChildren<HandController>();
 
     }
 
@@ -114,13 +116,11 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Vegetable>() != null)
+        if (collision.gameObject.GetComponent<ITransferable>() != null)
         {
-            HandController hand = GetComponentInChildren<HandController>();
             if (hand.IsEmpty())
             {
                 hand.PickUpItem(collision.gameObject);
-                collision.GetComponent<Vegetable>().GetGround().isOccupied = false;
             }
         }
     }
