@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2059966114323155044}
   - component: {fileID: 7761475138644782535}
   - component: {fileID: 2353863462685951920}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: RestAura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2071199363
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 25a9d4963964130488750bb4f919144f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
