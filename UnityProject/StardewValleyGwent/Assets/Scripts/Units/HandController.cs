@@ -45,10 +45,10 @@ public class HandController : MonoBehaviour
             {
                 Seed seed = item.GetComponent<Seed>();
                 Ground ground = seed.StandingGround?.GetComponent<Ground>();
-                if(ground!=null)
+                if (ground != null)
                 {
                     if (ground.isOccupied) return;
-                    if(!ground.IsPlowed)
+                    if (!ground.IsPlowed)
                     {
                         Destroy(item.gameObject);
                         return;
@@ -77,7 +77,7 @@ public class HandController : MonoBehaviour
             {
                 SeedCrate seedCrate = hit.collider.GetComponent<SeedCrate>();
                 if (item == null) item = seedCrate.SendItem();
-                else if (item != null && item.GetComponent<Seed>()!=null)
+                else if (item != null && item.GetComponent<Seed>() != null)
                 {
                     seedCrate.SetItem(item);
                     item = null;
@@ -102,10 +102,16 @@ public class HandController : MonoBehaviour
             {
                 FindObjectOfType<PlayerController>().GoToBed();
             }
+            else if (hit.collider.gameObject.GetComponent<Kitchen>() != null)
+            {
+                Kitchen kitchen = hit.collider.GetComponent<Kitchen>();
+                if (item.GetComponent<IEatable>() != null)
+                    item = kitchen.Interact(item);
+            }
         }
     }
 
-    public void PickUpItem (GameObject item)
+    public void PickUpItem(GameObject item)
     {
         this.item = item;
     }
