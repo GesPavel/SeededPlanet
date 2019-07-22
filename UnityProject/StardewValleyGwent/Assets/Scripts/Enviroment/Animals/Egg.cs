@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Egg : MonoBehaviour
+public class Egg : MonoBehaviour,ITransferable,IEatable
 {
-    Ground ground;
-    PlayerController player;
-    Ground standingGround;
-    public GameObject egg;
+    [SerializeField]private float staminaRestoration = 25;
+    public float StaminaRestoration =>staminaRestoration;
+
     void Start()
     {
         Vector2 pos = transform.position;
@@ -15,6 +14,5 @@ public class Egg : MonoBehaviour
         pos.y = Mathf.Ceil(pos.y)+0.5f;
         transform.position = pos;
     }
-
 
 }

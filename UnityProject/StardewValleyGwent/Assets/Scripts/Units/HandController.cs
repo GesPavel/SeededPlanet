@@ -34,10 +34,10 @@ public class HandController : MonoBehaviour
                 stamina.DecreaseStamina(staminaLossPerInstrumentUse);
                 if (instrument != null) Debug.Log($"Instrument {item.gameObject.name} used.");
             }
-            else if (item.GetComponent<Vegetable>() != null)
+            else if (item.GetComponent<IEatable>() != null)
             {
-                Vegetable vegetable = item.GetComponent<Vegetable>();
-                stamina.IncreaseStamina(vegetable.staminaRestoration);
+                IEatable food = item.GetComponent<IEatable>();
+                stamina.IncreaseStamina(food.StaminaRestoration);
                 Destroy(item);
                 item = null;
             }

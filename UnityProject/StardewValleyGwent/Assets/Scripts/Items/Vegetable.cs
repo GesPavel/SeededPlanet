@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vegetable : MonoBehaviour
+public class Vegetable : MonoBehaviour,ITransferable,IEatable
 {
     Ground ground;
-    public float staminaRestoration = 25; 
-   
+    [SerializeField]private float staminaRestoration = 25;
+    public float StaminaRestoration => staminaRestoration;
     public void SetGround(Ground ground)
     {
         this.ground = ground;
