@@ -16,14 +16,5 @@ public class Well : MonoBehaviour
 
     }
 
-    public void Interact(HandScript hand)
-    {
-        
-        if (hand.IsWithItem())
-
-            can = hand.SendItem().GetComponent<WateringCan>();
-        if (can != null)
-            can.FillUp();
-
-    }
+ 
 }

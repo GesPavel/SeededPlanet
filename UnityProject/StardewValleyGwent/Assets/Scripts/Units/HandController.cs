@@ -63,27 +63,28 @@ public class HandController : MonoBehaviour
     private void InteractWithTheEnvironment()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 1, LayerMask.GetMask("BlockingLayer"));
+        GameObject enviroment = hit.collider.gameObject;
         if (hit.collider != null)
         {
             Debug.Log($"Player interact with {hit.collider.gameObject.name}");
-            if (hit.collider.gameObject.GetComponent<ToolBar>() != null)
+            if (enviroment.GetComponent<ToolBar>() != null)
             {
                 ToolBar toolbar = hit.collider.GetComponent<ToolBar>();
                 GameObject instument = toolbar.SendItem();
                 toolbar.SetItem(item);
                 item = instument;
             }
-            else if (hit.collider.gameObject.GetComponent<SeedCrate>() != null)
+            else if (enviroment.GetComponent<SeedCrate>() != null)
             {
                 SeedCrate seedCrate = hit.collider.GetComponent<SeedCrate>();
                 if (item == null) item = seedCrate.SendItem();
-                else if (item != null && item.GetComponent<Seed>()!=null)
+                else if (item != null && item.GetComponent<Seed>() != null)
                 {
                     seedCrate.SetItem(item);
                     item = null;
                 }
             }
-            else if (hit.collider.gameObject.GetComponent<VeggieCrate>() != null)
+            else if (enviroment.GetComponent<VeggieCrate>() != null)
             {
                 VeggieCrate veggieCrate = hit.collider.GetComponent<VeggieCrate>();
                 if (item == null) item = veggieCrate.SendItem();
@@ -93,14 +94,19 @@ public class HandController : MonoBehaviour
                     item = null;
                 }
             }
-            else if (hit.collider.gameObject.tag == "Well")
+            else if (enviroment.tag == "Well")
             {
                 item?.GetComponent<WateringCan>()?.FillUp();
             }
 
-            else if (hit.collider.gameObject.GetComponent<Bed>() != null)
+            else if (enviroment.GetComponent<Bed>() != null)
             {
                 FindObjectOfType<PlayerController>().GoToBed();
+            }
+            else if (enviroment.GetComponent<Merchant>() != null)
+            {
+                Merchant merchant = enviroment.GetComponent<Merchant>();
+                item = merchant.Trade(item);
             }
         }
     }
