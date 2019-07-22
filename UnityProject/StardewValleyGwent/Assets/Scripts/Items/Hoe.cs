@@ -18,27 +18,12 @@ public class Hoe : MonoBehaviour, Instrument
 
     }
 
-    public void Use()
+    public void Use(Ground ground)
     {
-        if (standingGround != null)
+        if (ground != null)
         {
-                standingGround.Plow();
+                ground.Plow();
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            standingGround = collision.gameObject.GetComponent<Ground>();
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Ground" && standingGround==collision.gameObject.GetComponent<Ground>())
-        {
-            standingGround = null;
-        }
-    }
 }

@@ -5,12 +5,15 @@ using UnityEngine;
 public class HandController : MonoBehaviour
 {
     public KeyCode useButton, interactButton;
+    public float staminaLossPerInstrumentUse = 5;
     GameObject item;
     StaminaDirector stamina;
-    public float staminaLossPerInstrumentUse = 5;
+    PlayerController playerController;
+
     private void Start()
     {
         stamina = FindObjectOfType<StaminaDirector>();
+        playerController = GetComponentInParent<PlayerController>();
     }
     private void Update()
     {
@@ -25,49 +28,32 @@ public class HandController : MonoBehaviour
 
     private void UseItem()
     {
-        if (item != null)
-        {
-            if (item.GetComponent<Instrument>() != null)
-            {
-                Instrument instrument = item?.GetComponent<Instrument>();
-                instrument?.Use();
-                stamina.DecreaseStamina(staminaLossPerInstrumentUse);
-                if (instrument != null) Debug.Log($"Instrument {item.gameObject.name} used.");
-            }
-            else if (item.GetComponent<IEatable>() != null)
-            {
-                IEatable food = item.GetComponent<IEatable>();
-                stamina.IncreaseStamina(food.StaminaRestoration);
-                Destroy(item);
-                item = null;
-            }
-            else if (item.GetComponent<Seed>() != null)
-            {
-                Seed seed = item.GetComponent<Seed>();
-                Ground ground = seed.StandingGround?.GetComponent<Ground>();
-                if(ground!=null)
-                {
-                    if (ground.isOccupied) return;
-                    if(!ground.IsPlowed)
-                    {
-                        Destroy(item.gameObject);
-                        return;
-                    }
-                    ground.AddPlant(seed.plant);
-                    Destroy(item.gameObject);
-                }
+        if (item == null) return;
 
-            }
+        if (item.GetComponent<Instrument>() != null)
+        {
+            Instrument instrument = item.GetComponent<Instrument>();
+            if (instrument == null) return;
+            instrument.Use(playerController.GetCurrentGroundPosition());
+            stamina.DecreaseStamina(staminaLossPerInstrumentUse);
         }
+        else if (item.GetComponent<IEatable>() != null)
+        {
+            IEatable food = item.GetComponent<IEatable>();
+            stamina.IncreaseStamina(food.StaminaRestoration);
+            Destroy(item);
+            item = null;
+        }
+
     }
     private void InteractWithTheEnvironment()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 1, LayerMask.GetMask("BlockingLayer"));
-        
+
         if (hit.collider != null)
         {
             GameObject enviroment = hit.collider.gameObject;
-            
+
             if (enviroment.GetComponent<ToolBar>() != null)
             {
                 ToolBar toolbar = hit.collider.GetComponent<ToolBar>();
@@ -102,7 +88,7 @@ public class HandController : MonoBehaviour
 
             else if (enviroment.GetComponent<Bed>() != null)
             {
-                FindObjectOfType<PlayerController>().GoToBed();
+                playerController.GoToBed();
             }
             else if (enviroment.GetComponent<Merchant>() != null)
             {
@@ -117,7 +103,7 @@ public class HandController : MonoBehaviour
         }
     }
 
-    public void PickUpItem (GameObject item)
+    public void PickUpItem(GameObject item)
     {
         this.item = item;
     }

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-interface IUsable
+public interface IUsable
 {
-    void Use();
 }
 

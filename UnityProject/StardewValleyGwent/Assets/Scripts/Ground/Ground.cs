@@ -36,16 +36,16 @@ public class Ground : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.GetComponent<PlayerController>()!=null)
         {
-            collision.gameObject.GetComponent<PlayerController>().currentGroundPosition = this;
+            collision.gameObject.GetComponent<PlayerController>().SetCurrentGroundPosition(this);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<PlayerController>().currentGroundPosition == this)
+        if (collision.gameObject.GetComponent<PlayerController>() != null && collision.gameObject.GetComponent<PlayerController>().GetCurrentGroundPosition() == this)
         {
-            collision.gameObject.GetComponent<PlayerController>().currentGroundPosition = null;
+            collision.gameObject.GetComponent<PlayerController>().SetCurrentGroundPosition(null);
         }
     }
     public void AddWater(float water)

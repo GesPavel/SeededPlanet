@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float moveDelay;
     public GameObject leftHand, rightHand;
-    public Ground currentGroundPosition;
+
+    private Ground currentGroundPosition;
     private Rigidbody2D rb2d;
     private Vector3 lookDirection;
     private Vector3 moveDirection;
@@ -99,6 +100,21 @@ public class PlayerController : MonoBehaviour
     public Ground GetCurrentGroundPosition()
     {
         return currentGroundPosition;
+    }
+
+    public void SetCurrentGroundPosition(Ground ground)
+    {
+        if (ground == null)
+        {
+            ground = null;
+            return;
+        }
+        if (ground.GetComponent<Ground>() == null)
+        {
+            ground = null;
+            return;
+        }
+        currentGroundPosition = ground;
     }
     public void FallAsleep()
     {
