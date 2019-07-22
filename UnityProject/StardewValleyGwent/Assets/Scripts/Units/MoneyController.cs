@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoneyController : MonoBehaviour
 {
-    [SerializeField]private int initialSum;
+    [SerializeField] private int initialSum;
     public static int CurrentSum { get; private set; }
 
     private void Start()
@@ -13,16 +13,16 @@ public class MoneyController : MonoBehaviour
     }
     public void AddMoney(int sum)
     {
-        if (sum > 0)
-        {
-            CurrentSum += sum;
-        }
+        CurrentSum += sum;
     }
 
-    public bool Subtract(int sum)
+    public void Subtract(int sum)
     {
-        if (sum > CurrentSum) return false;
         CurrentSum -= sum;
-        return true;
+    }
+
+    public bool CheckIsEnoughMoney(int sum)
+    {
+        return CurrentSum >= sum;
     }
 }
