@@ -69,11 +69,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(movePlayer(moveDirection + transform.position));
             moveDirection = Vector3.zero;
         }
-        if (Input.GetKeyDown(interact))
-        {
-            rightHand.GetComponent<HandScript>().InteractWithEnviroment();
 
-        }
     }
 
     //Функция будет проверят потенциальное столкновение игрока, если он пойдет по данному направлению.

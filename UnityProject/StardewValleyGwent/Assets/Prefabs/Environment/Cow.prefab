@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 2713254179914369803}
   - component: {fileID: 4807887317495037768}
   - component: {fileID: 8581179516531450766}
-  - component: {fileID: 4311885180921060939}
   - component: {fileID: 4213904221208536513}
-  m_Layer: 10
+  - component: {fileID: 8488346881813420709}
+  m_Layer: 13
   m_Name: Cow
-  m_TagString: Environment
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3593029706234687275}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.15, y: 3.52, z: 0}
+  m_LocalPosition: {x: 9.132, y: 3.681, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -90,7 +90,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2071199363
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b417c5eb001866642b6d6faa49507db5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -103,22 +103,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &4311885180921060939
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3593029706234687275}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 2.1199996, y: 3.7399998}
-  m_Direction: 0
 --- !u!114 &4213904221208536513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,3 +120,19 @@ MonoBehaviour:
   timeForWalking: 5
   timeForStop: -3
   direction: {x: 0, y: 0}
+--- !u!58 &8488346881813420709
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3593029706234687275}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.6373162

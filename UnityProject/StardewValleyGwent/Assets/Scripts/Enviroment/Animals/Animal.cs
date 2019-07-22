@@ -35,13 +35,15 @@ public class Animal : MonoBehaviour
     }
     public void Move()
     {
-        transform.up = direction;
+        
         if (timeForWalking > 0)
         {
             Vector3 pos = rb.position;
             direction.Normalize();
-            rb.MovePosition((Vector2)rb.transform.position + direction * speed * Time.deltaTime);
             timeForWalking -= Time.deltaTime;
+            rb.MovePosition((Vector2)rb.transform.position + direction * speed * Time.deltaTime);
+            
+            
         }
         else
         {
@@ -54,17 +56,18 @@ public class Animal : MonoBehaviour
 
                 direction.x = direction.x * (-1) * Mathf.Sin(Random.Range(Mathf.PI / 3, 5 * Mathf.PI / 3));
                 direction.y = direction.y * (-1) * Mathf.Sin(Random.Range(Mathf.PI / 3, 5 * Mathf.PI / 3));
+                
                 timeForWalking = Random.Range(3, 8);
                 timeForStop = Random.Range(-1, -5);
             }
-
+            
         }
 
     }
 
-    void Update()
+    public virtual void Update()
     {
-
+        transform.up = direction;
         Move();
     }
 
