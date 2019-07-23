@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Egg : MonoBehaviour,IItem,IEatable
 {
-    [SerializeField] private string objectsName;
+    [SerializeField] private string objectsName = "Egg";
     public string ObjectsName => objectsName;
 
     [SerializeField]private float staminaRestoration = 25;
