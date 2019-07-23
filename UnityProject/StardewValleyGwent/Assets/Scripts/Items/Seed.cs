@@ -12,7 +12,7 @@ public class Seed : MonoBehaviour,Instrument
     {
         if (ground != null)
         {
-            if (ground.isOccupied) return;
+            if (ground.isOccupiedByPlant) return;
             if (!ground.IsPlowed)
             {
                 Destroy(this.gameObject);

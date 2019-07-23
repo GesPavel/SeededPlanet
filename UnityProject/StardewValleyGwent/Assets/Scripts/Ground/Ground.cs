@@ -6,14 +6,20 @@ using UnityEngine;
 public class Ground : MonoBehaviour
 {
     [SerializeField] private static Dictionary<GroundStates, Sprite> SpriteMap;
+    private GroundStates currentState;
+
     [SerializeField] private static float maxWaterValue = 25;
     private static float waterDryPerSecond;
-    public bool IsPlowed { get;private set; } = false;
-
     [HideInInspector] private float currentWaterCount;
-    private GroundStates currentState;
-    public bool isOccupied { get; set; }
-    public float CurrentWaterCount { get => currentWaterCount; set => currentWaterCount = value; }
+    public bool IsWatered { get; private set; } = false;
+    private float CurrentWaterCount { get => currentWaterCount; set => currentWaterCount = value; }
+
+    private float fertilization;
+    public bool IsFertilized { get; private set; }
+
+    public bool IsPlowed { get; private set; }
+    public bool isOccupiedByPlant { get; set; }
+
 
     public enum GroundStates
     {
@@ -27,16 +33,39 @@ public class Ground : MonoBehaviour
     {
         FillMap();
         EnterState(GroundStates.DryRaw);
-        isOccupied = false;
-        
+        IsPlowed = false;
+        isOccupiedByPlant = false;
+
     }
     private void Update()
     {
         Dry();
+        if (isOccupiedByPlant)
+            TransferFertilizerToPlant();
     }
+
+    private void TransferFertilizerToPlant()
+    {
+        if (fertilization <= 0)
+        {
+            fertilization = 0;
+            IsFertilized = false;
+        }
+        else
+            fertilization--;
+
+    }
+
+    public void AddFertilizer(float fertilizerAmount)
+    {
+        fertilization += fertilizerAmount;
+        Debug.Log(1);
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerController>()!=null)
+        if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
             collision.gameObject.GetComponent<PlayerController>().SetCurrentGroundPosition(this);
         }
@@ -56,15 +85,17 @@ public class Ground : MonoBehaviour
         else if (currentState == GroundStates.DryRaw)
             EnterState(GroundStates.WetRaw);
         CurrentWaterCount += water;
+        IsWatered = true;
         if (CurrentWaterCount > maxWaterValue)
             CurrentWaterCount = maxWaterValue;
     }
     private void Dry()
     {
         CurrentWaterCount -= waterDryPerSecond;
-        if (CurrentWaterCount <= 0 )
+        if (CurrentWaterCount <= 0)
         {
             CurrentWaterCount = 0;
+            IsWatered = false;
             if (currentState == GroundStates.WetPlowed)
                 EnterState(GroundStates.DryPlowed);
             else if (currentState == GroundStates.WetRaw)
@@ -73,7 +104,7 @@ public class Ground : MonoBehaviour
     }
     public void Plow()
     {
-        IsPlowed=true;
+        IsPlowed = true;
         if (currentState == GroundStates.DryRaw)
             EnterState(GroundStates.DryPlowed);
         else if (currentState == GroundStates.WetRaw)
@@ -81,17 +112,17 @@ public class Ground : MonoBehaviour
     }
     public void AddPlant(GameObject plant)
     {
-        if (!isOccupied)
+        if (!isOccupiedByPlant)
         {
             GameObject sapling = Instantiate(plant, transform.position, Quaternion.identity);
             sapling.GetComponent<Plant>().SetBaseGround(this);
-            isOccupied = true;
+            isOccupiedByPlant = true;
         }
     }
     private void EnterState(GroundStates state)
     {
         currentState = state;
-        Sprite sprite =  SpriteMap[state];
+        Sprite sprite = SpriteMap[state];
         gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
     }
     private void FillMap()
@@ -103,7 +134,7 @@ public class Ground : MonoBehaviour
         SpriteMap.Add(GroundStates.DryPlowed, vault.DryPlowedSprite);
         SpriteMap.Add(GroundStates.WetPlowed, vault.WetPlowedSprite);
     }
-    
+
 }
 
 

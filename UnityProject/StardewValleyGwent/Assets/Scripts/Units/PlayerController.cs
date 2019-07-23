@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private StaminaDirector stamina;
     HandController hand;
 
+    Bed bed;
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
         moving = false;
         DontDestroyOnLoad(this.gameObject);
         hand = GetComponentInChildren<HandController>();
+        bed = FindObjectOfType<Bed>();
 
     }
 
@@ -34,7 +36,7 @@ public class PlayerController : MonoBehaviour
         {
             if (stamina.CurrentStamina <= 0)
             {
-                gameObject.transform.position = FindObjectOfType<Bed>().gameObject.transform.position;
+                GoToBed();
                 stamina.RestoreStamina();
                 return;
             }
@@ -123,7 +125,8 @@ public class PlayerController : MonoBehaviour
     }
     public void GoToBed()
     {
-        transform.position = FindObjectOfType<Bed>().transform.position;
+        transform.position = bed.GetWakeUpPoint().transform.position;
+        
         FallAsleep();
     }
     private void OnTriggerEnter2D(Collider2D collision)

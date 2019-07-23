@@ -5,7 +5,7 @@ using UnityEngine;
 public class Plant : MonoBehaviour
 {
 
-    [SerializeField] private float growthTime;
+    [SerializeField] private float growthTime = 5;
     [SerializeField] private GameObject vegetable;
     public Ground ground;
     private PlantStates currentState;
@@ -71,7 +71,7 @@ public class Plant : MonoBehaviour
     void InstantiateVegetable()
     {
         GameObject newVegetable = Instantiate(vegetable, transform.position, Quaternion.identity);
-        ground.isOccupied = false;
+        ground.isOccupiedByPlant = false;
     }
 
     public void SetBaseGround(Ground ground)
@@ -81,7 +81,9 @@ public class Plant : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > growthTime / stateNumber)
+        float growthTimePerPhase = DetermineGrowthTime();
+        Debug.Log(growthTimePerPhase);
+        if (timer > growthTimePerPhase)
         {
             EnterNextState();
             if (currentState == PlantStates.Vegetable)
@@ -91,5 +93,25 @@ public class Plant : MonoBehaviour
             }
             timer = 0.0f;
         }
+    }
+
+    private float DetermineGrowthTime()
+    {
+        float groundDependentCoefficent = DetermineGroundDependentCoefficent();
+        float averageGrowthPerPhase = (growthTime * groundDependentCoefficent) / stateNumber;
+        return averageGrowthPerPhase;
+    }
+
+    private float DetermineGroundDependentCoefficent()
+    {
+        const float WATER_BUFF = 1.8f;
+        const float FERTILIZER_BUFF = 1.5f;
+        float waterCoefficient = 1;
+        if (ground.IsWatered)
+            waterCoefficient = WATER_BUFF;
+        float fertilizerCoefficent = 1;
+        if (ground.IsFertilized)
+            fertilizerCoefficent = FERTILIZER_BUFF;
+        return waterCoefficient * fertilizerCoefficent;  
     }
 }
