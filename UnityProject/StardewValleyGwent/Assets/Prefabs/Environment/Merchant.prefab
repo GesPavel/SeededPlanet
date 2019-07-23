@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582035559d2e6134fa55419d0d8d79ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemToSell: {fileID: 8893104194026024712, guid: 6617f5ff26816f642922c59073dfd337,
+  itemToSell: {fileID: 360744774490303011, guid: e42a4573f7e3a954e87dc092da9a0289,
     type: 3}
   margin: 1.2
 --- !u!114 &8306950905998245316

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8581179516531450766}
   - component: {fileID: 4213904221208536513}
   - component: {fileID: 8488346881813420709}
+  - component: {fileID: 1253561959}
   m_Layer: 13
   m_Name: Cow
   m_TagString: Animal
@@ -136,3 +137,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.6373162
+--- !u!114 &1253561959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3593029706234687275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 926fb3ecc0b4d8b4787621ae455b5447, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  speed: 0
+  timeForWalking: 5
+  timeForStop: -3
+  direction: {x: 0, y: 0}
