@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Kitchen : MonoBehaviour,IManufacturer
+public class KitchenStove : MonoBehaviour,IManufacturer
 {
     [System.Serializable]
     public class RawAndCookedFood
@@ -35,7 +35,6 @@ public class Kitchen : MonoBehaviour,IManufacturer
         {
             return objectToCook;
         }
-
         var cookedFood = Instantiate(foodPairs[foodToCook.ObjectsName]);
         Destroy(objectToCook.gameObject);
         return cookedFood;

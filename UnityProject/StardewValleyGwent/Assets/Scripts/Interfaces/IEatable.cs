@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IEatable:IUsable
+public interface IEdible:IUsable
 {
     float StaminaRestoration { get;}
 }

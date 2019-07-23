@@ -89,11 +89,11 @@ public class PlayerController : MonoBehaviour
     {
         moving = true;
         float step = speed * Time.deltaTime;
-        float Remainingdistance = (transform.position - destination).sqrMagnitude;
-        while (Remainingdistance > float.Epsilon)
+        float remainingDistance = (transform.position - destination).sqrMagnitude;
+        while (remainingDistance > float.Epsilon)
         {
             rb2d.MovePosition(Vector3.MoveTowards(rb2d.position, destination, step));
-            Remainingdistance = (rb2d.transform.position - destination).sqrMagnitude;
+            remainingDistance = (rb2d.transform.position - destination).sqrMagnitude;
             yield return new WaitForSeconds(Time.deltaTime);
         }
         yield return new WaitForSeconds(moveDelay);

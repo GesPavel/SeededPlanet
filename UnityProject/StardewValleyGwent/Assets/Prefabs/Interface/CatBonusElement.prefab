@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1610052924569765259}
   - component: {fileID: 1610052924569765261}
   m_Layer: 0
-  m_Name: CatBonus
+  m_Name: CatBonusElement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,8 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d12700edb5fdea4c949c9a956cb3473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeOfAnimal: 0
-  currentAnimalOfThisTypeText: {fileID: 1610052925348842807}
+  typeOfAnimalToShow: 0
+  currentAnimalAmountText: {fileID: 1610052925348842807}
 --- !u!1 &1610052925348842805
 GameObject:
   m_ObjectHideFlags: 0

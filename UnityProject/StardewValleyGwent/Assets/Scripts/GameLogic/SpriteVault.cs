@@ -15,8 +15,8 @@ public class SpriteVault : MonoBehaviour
     public Sprite biggerSaplingStateSprite;
     public Sprite grownStateSplrite;
     [Tooltip("Спрайты растения котика")]
-    public Sprite sproutStateSpriteCat;
-    public Sprite saplingStateSpriteCat;
-    public Sprite biggerSaplingStateSpriteCat;
-    public Sprite grownStateSplriteCat;
+    public Sprite catSproutStateSprite;
+    public Sprite catSaplingStateSprite;
+    public Sprite catBiggerSaplingStateSprite;
+    public Sprite catGrownStateSplrite;
 }

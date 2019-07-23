@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CookedFood : MonoBehaviour,IItem,IEatable
+public class CookedFood : MonoBehaviour,IItem,IEdible
 {
     [SerializeField] private string objectsName;
     public string ObjectsName => objectsName;

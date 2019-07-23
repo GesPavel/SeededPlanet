@@ -4,6 +4,7 @@ using UnityEngine;
 using Pathfinding;
 public class ChickenMale : Animal
 {
+   
     float timeToSex = 1;
     public override void OnCollisionEnter2D(Collision2D coll)
     {
@@ -19,20 +20,19 @@ public class ChickenMale : Animal
         AIPath aiPath = GetComponent<AIPath>();
         if (aiPath.canSearch == false && aiPath.canMove == false)
         {
+            transform.up = direction;
             Move();
         }
-        if (timeToSex>0)
+        if (timeToSex>0) 
         {
             aiPath.canMove = true;
             aiPath.canSearch = true;
             
         }
-        if (timeToSex<=0)
+        if (timeToSex<=0) 
         {
             aiPath.canMove = false;
             aiPath.canSearch = false;
-            transform.up = direction;
-            Move();
             timeToSex += Time.deltaTime;
         }
 

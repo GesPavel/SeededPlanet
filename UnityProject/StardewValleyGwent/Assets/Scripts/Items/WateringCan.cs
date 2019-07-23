@@ -17,13 +17,13 @@ public class WateringCan : MonoBehaviour, Instrument
         {
             ground.AddWater(waterPerUse);
             water -= waterPerUse;
-            Debug.Log(water);
+
         }
     }
 
     public void FillUp()
     {
         water = maxWaterVolume;
-        Debug.Log($"Current water = {water}");
+
     }
 }

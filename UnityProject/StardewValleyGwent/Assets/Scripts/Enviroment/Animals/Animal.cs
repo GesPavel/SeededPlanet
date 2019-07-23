@@ -14,7 +14,8 @@ public class Animal : MonoBehaviour
     public float timeForStop = -3;
     [HideInInspector]
     public Vector2 direction = new Vector2();
-    void Start()
+
+    void Start() 
     {
         direction.x = Random.Range(-10, 10);
         direction.y = Random.Range(-10, 10);
@@ -22,17 +23,23 @@ public class Animal : MonoBehaviour
         speed = Random.Range(0.5f, 2);
     }
 
+
     public virtual void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "Environment")
+        if (coll.gameObject.tag == "Environment") 
         {
-                
-          speed = Random.Range(0.5f, 2);
-          direction.x = direction.x * (-1) * Mathf.Sin(Random.Range(2 * Mathf.PI / 3, 4 * Mathf.PI / 3));
-          direction.y = direction.y * (-1) * Mathf.Sin(Random.Range(2 * Mathf.PI / 3, 4 * Mathf.PI / 3));
-          timeForStop = Random.Range(-1, -5);
+            ChangeDirection();
+
         }
     }
+    public void ChangeDirection()
+    {
+        speed = Random.Range(0.5f, 2);
+        direction.x = direction.x * (-1) * Mathf.Sin(Random.Range(2 * Mathf.PI / 3, 4 * Mathf.PI / 3));
+        direction.y = direction.y * (-1) * Mathf.Sin(Random.Range(2 * Mathf.PI / 3, 4 * Mathf.PI / 3));
+        timeForStop = Random.Range(-1, -5);
+    }
+
     public void Move()
     {
         
@@ -54,11 +61,9 @@ public class Animal : MonoBehaviour
             if (timeForStop > 0)
             {
 
-                direction.x = direction.x * (-1) * Mathf.Sin(Random.Range(Mathf.PI / 3, 5 * Mathf.PI / 3));
-                direction.y = direction.y * (-1) * Mathf.Sin(Random.Range(Mathf.PI / 3, 5 * Mathf.PI / 3));
-                
+                ChangeDirection();
                 timeForWalking = Random.Range(3, 8);
-                timeForStop = Random.Range(-1, -5);
+                
             }
             
         }
