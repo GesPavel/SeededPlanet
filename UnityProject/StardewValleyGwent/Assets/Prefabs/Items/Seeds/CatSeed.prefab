@@ -131,4 +131,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4abf96dee8564ac44acc87c78b3db4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectsName: CatSeed
   plant: {fileID: 6399104116248822375, guid: d746b416b977a3f449b30f904fb40ae9, type: 3}

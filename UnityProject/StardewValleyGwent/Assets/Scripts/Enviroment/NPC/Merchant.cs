@@ -46,9 +46,6 @@ public class Merchant : MonoBehaviour
             return item;
         }
     }
-
-    
-
     private int DeterminePrice(GameObject item)
     {
         return priceList.GetPriceOf(item);
