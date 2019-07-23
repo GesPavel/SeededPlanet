@@ -8,6 +8,7 @@ public class PriceList : MonoBehaviour
     public int priceForVeggie = 25;
     public int priceForEgg = 50;
     public int priceForSeed = 10;
+    public int priceForCatSeed = 100;
     private Dictionary<ValuebleItems, int> prices;
 
     private void Start()
@@ -20,7 +21,8 @@ public class PriceList : MonoBehaviour
     {
         Vegetable, 
         Egg,
-        Seed
+        Seed,
+        CatSeed
     }
     private void FillPriceList(float randomPriceMultiplier)
     {
@@ -28,7 +30,7 @@ public class PriceList : MonoBehaviour
         prices.Add(ValuebleItems.Vegetable,(int) (priceForVeggie * randomPriceMultiplier));
         prices.Add(ValuebleItems.Egg,(int) (priceForVeggie * randomPriceMultiplier));
         prices.Add(ValuebleItems.Seed,(int) (priceForSeed * randomPriceMultiplier));
-        
+        prices.Add(ValuebleItems.CatSeed, (int)(priceForSeed * randomPriceMultiplier));
     }
     public int GetPriceOf(GameObject item)
     {
@@ -43,6 +45,10 @@ public class PriceList : MonoBehaviour
         else if (item.GetComponent<Seed>() != null)
         {
             return prices[ValuebleItems.Seed];
+        }
+        else if (item.GetComponent<CatSeed>() != null)
+        {
+            return prices[ValuebleItems.CatSeed];
         }
         else
         {
