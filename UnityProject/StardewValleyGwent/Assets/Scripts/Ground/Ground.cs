@@ -59,7 +59,7 @@ public class Ground : MonoBehaviour
     public void AddFertilizer(float fertilizerAmount)
     {
         fertilization += fertilizerAmount;
-        Debug.Log(1);
+
     }
 
 

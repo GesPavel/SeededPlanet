@@ -82,7 +82,7 @@ public class Plant : MonoBehaviour
     {
         timer += Time.deltaTime;
         float growthTimePerPhase = DetermineGrowthTime();
-        Debug.Log(growthTimePerPhase);
+   
         if (timer > growthTimePerPhase)
         {
             EnterNextState();

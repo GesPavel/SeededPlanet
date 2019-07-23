@@ -5,14 +5,14 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     private GameObject player;
-    Vector3 pos;
+    Vector3 cameraPosition;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
-        pos = player.transform.position;
-        pos.z = -10;
-        transform.position = pos;
+        cameraPosition = player.transform.position;
+        cameraPosition.z = -10;
+        transform.position = cameraPosition;
     }
 
     void Update()
@@ -21,9 +21,9 @@ public class CameraMovement : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            pos = player.transform.position;
-            pos.z = -10;
-            transform.position = pos;
+            cameraPosition = player.transform.position;
+            cameraPosition.z = -10;
+            transform.position = cameraPosition;
         }
     }
     

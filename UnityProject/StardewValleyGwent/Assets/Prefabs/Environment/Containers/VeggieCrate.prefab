@@ -74,7 +74,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1841055919
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
 --- !u!33 &1727859367062393429
 MeshFilter:
@@ -275,7 +275,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1148929015
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f4e7595026815b549a6fc41d9218699b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -297,13 +297,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4615906496749393937}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bab5ea4d5a6a78941a8a023c5c41c6a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 40a61e59c4c534f4cbf47072a517c73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indicator: {fileID: 5930875409115960484}
+  vegetableIndicator: {fileID: 5930875409115960484}
   vegetable: {fileID: 5142369330590630118, guid: 30c6d26813462604bb0fc5ddd087c7ef,
     type: 3}
-  veggieCounter: 1
+  veggiesCounter: 5
 --- !u!58 &1337442341749959924
 CircleCollider2D:
   m_ObjectHideFlags: 0

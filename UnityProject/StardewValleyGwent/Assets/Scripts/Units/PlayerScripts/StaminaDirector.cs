@@ -22,12 +22,12 @@ public class StaminaDirector : MonoBehaviour
     }
     private void Update()
     {
-        float staminaLosssReduceСoefficient = 0;
-        foreach(int typeOfAnimelNearCount in NearestCalmingAnimalsCount.Values)
+        float staminaLossReduceСoefficient = 0;
+        foreach(int typeOfAnimalNearCount in NearestCalmingAnimalsCount.Values)
         {
-            staminaLosssReduceСoefficient += typeOfAnimelNearCount;
+            staminaLossReduceСoefficient += typeOfAnimalNearCount;
         }
-        CurrentStamina -= Time.deltaTime * (StaminaLoss-staminaLosssReduceСoefficient);
+        CurrentStamina -= Time.deltaTime * (StaminaLoss-staminaLossReduceСoefficient);
         if (CurrentStamina > maxStamina) CurrentStamina = maxStamina;
     }
     public void DecreaseStamina(float staminaLost)

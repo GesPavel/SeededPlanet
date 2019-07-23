@@ -116,7 +116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2462947220544974200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec98ece2e23214140b5c8a6a14c710f8, type: 3}
+  m_Script: {fileID: 11500000, guid: 1bb0f7fc06eb62f4c826e71d91abc8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rawAndCookedFood:

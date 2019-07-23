@@ -9,7 +9,7 @@ public class Bed : MonoBehaviour
     {
         Vector2 wakeUpPointPosition = 
             new Vector2(this.transform.position.x + 1, this.transform.position.y);
-        wakeUpPoint = Instantiate(FindObjectOfType<EmptyPoint>().gameObject, wakeUpPointPosition,
+            wakeUpPoint = Instantiate(FindObjectOfType<EmptyPoint>().gameObject, wakeUpPointPosition,
             Quaternion.identity);
     }
 

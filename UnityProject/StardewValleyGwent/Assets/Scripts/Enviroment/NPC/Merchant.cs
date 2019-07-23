@@ -11,7 +11,7 @@ public class Merchant : MonoBehaviour
     [SerializeField] private float margin = 1.2f;
     private void Start()
     {
-       playersMoney = FindObjectOfType<MoneyController>();
+        playersMoney = FindObjectOfType<MoneyController>();
         priceList = GetComponent<PriceList>();
     }
 
@@ -24,7 +24,7 @@ public class Merchant : MonoBehaviour
                 int buyingPrice = DeterminePrice(item);
                 playersMoney.AddMoney(buyingPrice);
                 Destroy(item);
-                Debug.Log(MoneyController.CurrentSum);
+
                 return null;
             }
             else

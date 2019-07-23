@@ -38,9 +38,9 @@ public class HandController : MonoBehaviour
             instrument.Use(playerController.GetCurrentGroundPosition());
             stamina.DecreaseStamina(staminaLossPerInstrumentUse);
         }
-        else if (item.GetComponent<IEatable>() != null)
+        else if (item.GetComponent<IEdible>() != null)
         {
-            IEatable food = item.GetComponent<IEatable>();
+            IEdible food = item.GetComponent<IEdible>();
             stamina.IncreaseStamina(food.StaminaRestoration);
             Destroy(item);
             item = null;
@@ -53,16 +53,16 @@ public class HandController : MonoBehaviour
 
         if (hit.collider != null)
         {
-            GameObject enviroment = hit.collider.gameObject;
+            GameObject environment = hit.collider.gameObject;
 
-            if (enviroment.GetComponent<ToolBar>() != null)
+            if (environment.GetComponent<ToolBar>() != null)
             {
                 ToolBar toolbar = hit.collider.GetComponent<ToolBar>();
                 GameObject instument = toolbar.SendItem();
                 toolbar.SetItem(item);
                 item = instument;
             }
-            else if (enviroment.GetComponent<SeedCrate>() != null)
+            else if (environment.GetComponent<SeedCrate>() != null)
             {
                 SeedCrate seedCrate = hit.collider.GetComponent<SeedCrate>();
                 if (item == null) item = seedCrate.SendItem();
@@ -72,34 +72,34 @@ public class HandController : MonoBehaviour
                     item = null;
                 }
             }
-            else if (enviroment.GetComponent<VeggieCrate>() != null)
+            else if (environment.GetComponent<VeggiesCrate>() != null)
             {
-                VeggieCrate veggieCrate = hit.collider.GetComponent<VeggieCrate>();
-                if (item == null) item = veggieCrate.SendItem();
+                VeggiesCrate veggiesCrate = hit.collider.GetComponent<VeggiesCrate>();
+                if (item == null) item = veggiesCrate.SendItem();
                 else if (item != null && item.GetComponent<Vegetable>() != null)
                 {
-                    veggieCrate.SetItem(item);
+                    veggiesCrate.SetItem(item);
                     item = null;
                 }
             }
-            else if (enviroment.tag == "Well")
+            else if (environment.tag == "Well")
             {
                 item?.GetComponent<WateringCan>()?.FillUp();
             }
 
-            else if (enviroment.GetComponent<Bed>() != null)
+            else if (environment.GetComponent<Bed>() != null)
             {
                 playerController.GoToBed();
             }
-            else if (enviroment.GetComponent<Merchant>() != null)
+            else if (environment.GetComponent<Merchant>() != null)
             {
-                Merchant merchant = enviroment.GetComponent<Merchant>();
+                Merchant merchant = environment.GetComponent<Merchant>();
                 item = merchant.Trade(item);
             }
-            else if (enviroment.GetComponent<Kitchen>() != null)
+            else if (environment.GetComponent<KitchenStove>() != null)
             {
-                Kitchen kitchen = enviroment.GetComponent<Kitchen>();
-                item = kitchen.Interact(item);
+                KitchenStove stove = environment.GetComponent<KitchenStove>();
+                item = stove.Interact(item);
             }
         }
     }

@@ -3,36 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class VeggieCrate : MonoBehaviour
+public class VeggiesCrate : MonoBehaviour
 {
-    public TextMeshPro indicator;
+    public TextMeshPro vegetableIndicator;
     public GameObject vegetable;
-    public int veggieCounter = 0;
+    public int veggiesCounter = 0;
     private void Start()
     {
         if (vegetable != null)
         {
-            indicator.text = veggieCounter.ToString();
+            vegetableIndicator.text = veggiesCounter.ToString();
             return;
         }
         vegetable = null;
-        veggieCounter = 0;
-        indicator.text = veggieCounter.ToString();
+        veggiesCounter = 0;
+        vegetableIndicator.text = veggiesCounter.ToString();
     }
     public void SetItem(GameObject item)
     {
         Destroy(item);
-        veggieCounter++;
-        indicator.text = veggieCounter.ToString();
+        veggiesCounter++;
+        vegetableIndicator.text = veggiesCounter.ToString();
     }
     public GameObject SendItem()
     {
-        if (veggieCounter == 0)
+        if (veggiesCounter == 0)
         {
             return null;
         }
-        veggieCounter--;
-        indicator.text = veggieCounter.ToString();
+        veggiesCounter--;
+        vegetableIndicator.text = veggiesCounter.ToString();
         return Instantiate(vegetable, transform.position, Quaternion.identity);
     }
 }

@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class BonusElementIcon : MonoBehaviour
 {
-    [SerializeField]StaminaDirector.CalmingAnimals typeOfAnimal;
-    public Text currentAnimalOfThisTypeText;
+    [SerializeField]StaminaDirector.CalmingAnimals typeOfAnimalToShow;
+    public Text currentAnimalAmountText;
 
     private void Start()
     {
     }
     void Update()
     {
-        currentAnimalOfThisTypeText.text = StaminaDirector.NearestCalmingAnimalsCount[typeOfAnimal].ToString();
+        currentAnimalAmountText.text = StaminaDirector.NearestCalmingAnimalsCount[typeOfAnimalToShow].ToString();
     }
 }

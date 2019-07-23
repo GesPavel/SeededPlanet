@@ -5,10 +5,10 @@ using UnityEngine;
 public class SpawnPointScript : MonoBehaviour
 {
     private GameObject player;
-    bool playersPositionchanged;
+    bool playersPositionChanged;
     void Start()
     {
-        playersPositionchanged = false;       
+        playersPositionChanged = false;       
     }
 
     void Update()
@@ -16,10 +16,10 @@ public class SpawnPointScript : MonoBehaviour
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
-            if (!playersPositionchanged)
+            if (!playersPositionChanged)
             {
                 player.transform.position = this.transform.position;
-                playersPositionchanged = true;
+                playersPositionChanged = true;
             }
         }
     }
