@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Seed : MonoBehaviour,Instrument
+public class Seed : MonoBehaviour, Instrument
 {
     PlayerController player;
     public Ground StandingGround { get; private set; }
