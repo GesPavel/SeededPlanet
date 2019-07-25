@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KitchenStove : MonoBehaviour,IManufacturer
+public class KitchenStove : MonoBehaviour,IConvertor
 {
     [System.Serializable]
     public class RawAndCookedFood
@@ -26,7 +26,7 @@ public class KitchenStove : MonoBehaviour,IManufacturer
             foodPairs.Add(rawFood.ObjectsName,pair.cookedFood);
         }
     }
-    public GameObject Interact(GameObject objectToCook)
+    public GameObject Convert(GameObject objectToCook)
     {
         if (objectToCook == null) return objectToCook;
         IItem foodToCook = objectToCook.GetComponent<IItem>();
