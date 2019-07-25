@@ -8,6 +8,10 @@ public class Well : MonoBehaviour, IConvertor
 
     public GameObject Convert(GameObject item)
     {
+        if (item == null)
+        {
+            return null;
+        }
         can = item.GetComponent<WateringCan>();
         if (can == null)
         {

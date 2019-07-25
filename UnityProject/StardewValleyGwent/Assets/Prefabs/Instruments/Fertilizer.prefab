@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8456883429394012928}
   - component: {fileID: 8456883429394012929}
   - component: {fileID: 8456883429394012930}
+  - component: {fileID: 1006363497181415504}
   m_Layer: 0
   m_Name: Fertilizer
   m_TagString: Untagged
@@ -93,3 +94,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portionPerUse: 25
+--- !u!58 &1006363497181415504
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8456883429394012931}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.50000006

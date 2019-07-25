@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WateringCan : MonoBehaviour, Instrument
+public class WateringCan : MonoBehaviour, Instrument,IItem
 {
     public static float water = 0;
     public static float maxWaterVolume = 100;
     public static float waterPerUse = 25;
     PlayerController player;
     Ground standingGround;
+    [SerializeField] private string objectsName;
+    public string ObjectsName => objectsName;
+
     public void Use(Ground ground)
     {
 
