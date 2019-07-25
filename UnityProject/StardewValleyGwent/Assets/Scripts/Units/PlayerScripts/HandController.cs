@@ -52,6 +52,7 @@ public class HandController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 1, LayerMask.GetMask("BlockingLayer"));
         if (hit.collider == null)
         {
+            item = null;
             return;
         }
 
@@ -59,6 +60,7 @@ public class HandController : MonoBehaviour
         IInteractable interactable = environment.GetComponent<IInteractable>();
         if (interactable == null)
         {
+            item = null;
             return;
         }
 

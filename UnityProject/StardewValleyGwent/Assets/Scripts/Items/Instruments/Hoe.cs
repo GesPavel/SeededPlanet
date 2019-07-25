@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hoe : MonoBehaviour, Instrument
+public class Hoe : MonoBehaviour, Instrument,IItem
 {
     PlayerController player;
     Ground standingGround;
+
+    public string ObjectsName => throw new System.NotImplementedException();
 
     void Start()
     {
