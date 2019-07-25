@@ -27,7 +27,7 @@ public class TimeManager : MonoBehaviour
         if (timer > minuteInSeconds)
         {
             StartNewMinute();
-            timer = 0;
+            timer = timer - minuteInSeconds;
         }
     }
 
