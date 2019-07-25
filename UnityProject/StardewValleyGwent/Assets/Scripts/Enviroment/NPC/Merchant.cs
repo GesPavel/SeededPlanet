@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Merchant : MonoBehaviour
+public class Merchant : MonoBehaviour,IConvertor
 {
     PriceList priceList;
     MoneyController playersMoney;
@@ -15,7 +15,7 @@ public class Merchant : MonoBehaviour
         priceList = GetComponent<PriceList>();
     }
 
-    public GameObject Trade(GameObject item)
+    public GameObject Convert(GameObject item)
     {
         try
         {

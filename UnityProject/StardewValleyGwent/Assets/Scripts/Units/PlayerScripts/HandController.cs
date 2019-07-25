@@ -50,60 +50,34 @@ public class HandController : MonoBehaviour
     private void InteractWithTheEnvironment()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 1, LayerMask.GetMask("BlockingLayer"));
-
-        if (hit.collider != null)
+        if (hit.collider == null)
         {
-            GameObject environment = hit.collider.gameObject;
+            return;
+        }
 
-            if (environment.GetComponent<ToolBar>() != null)
-            {
-                ToolBar toolbar = hit.collider.GetComponent<ToolBar>();
-                GameObject instument = toolbar.SendItem();
-                toolbar.SetItem(item);
-                item = instument;
-            }
-            else if (environment.GetComponent<SeedCrate>() != null)
-            {
-                SeedCrate seedCrate = hit.collider.GetComponent<SeedCrate>();
-                if (item == null) item = seedCrate.SendItem();
-                else if (item != null && item.GetComponent<Seed>() != null)
-                {
-                    seedCrate.SetItem(item);
-                    item = null;
-                }
-            }
-            else if (environment.GetComponent<VeggiesCrate>() != null)
-            {
-                VeggiesCrate veggiesCrate = hit.collider.GetComponent<VeggiesCrate>();
-                if (item == null) item = veggiesCrate.SendItem();
-                else if (item != null && item.GetComponent<Vegetable>() != null)
-                {
-                    veggiesCrate.SetItem(item);
-                    item = null;
-                }
-            }
-            else if (environment.tag == "Well")
-            {
-                item?.GetComponent<WateringCan>()?.FillUp();
-            }
+        GameObject environment = hit.collider.gameObject;
+        IInteractable interactable = environment.GetComponent<IInteractable>();
+        if (interactable == null)
+        {
+            return;
+        }
 
-            else if (environment.GetComponent<Bed>() != null)
-            {
-                playerController.GoToBed();
-            }
-            else if (environment.GetComponent<Merchant>() != null)
-            {
-                Merchant merchant = environment.GetComponent<Merchant>();
-                item = merchant.Trade(item);
-            }
-            else if (environment.GetComponent<KitchenStove>() != null)
-            {
-                KitchenStove stove = environment.GetComponent<KitchenStove>();
-                item = stove.Interact(item);
-            }
+        ICrate crate = environment.GetComponent<ICrate>();
+        IConvertor convertor = environment.GetComponent<IConvertor>();
+        IFurniture furniture = environment.GetComponent<IFurniture>();
+        if (crate != null)
+        {
+            item = crate.ChangeItem(item);
+        }
+        else if (convertor != null)
+        {
+            item = convertor.Convert(item);
+        }
+        else if (furniture != null)
+        {
+            furniture.Interact();
         }
     }
-
     public void PickUpItem(GameObject item)
     {
         this.item = item;

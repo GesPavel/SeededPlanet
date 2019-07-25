@@ -16,12 +16,10 @@ public class ChickenGirl : Animal
             if (coll.gameObject.tag == "ChickenMale")
             {
 
-                GameObject thisEgg = Instantiate(egg, transform.position, Quaternion.identity); //создается яйцо
-                speed = Random.Range(0.5f, 2);
-                direction.x = direction.x * Mathf.Sin(Random.Range(2 * Mathf.PI / 3, 4 * Mathf.PI / 3));
-                direction.y = direction.y * Mathf.Sin(Random.Range(2 * Mathf.PI / 3, 4 * Mathf.PI / 3));
-                outOfEggs = true;
-                
+                    GameObject thisEgg = Instantiate(egg, transform.position, Quaternion.identity);
+                    ChangeDirection();
+                    outOfEggs = true;
+                   
             }
         }
     }

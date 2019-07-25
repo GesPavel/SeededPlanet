@@ -32,7 +32,11 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-       
+        if (stamina.CurrentStamina <= 0)
+        {
+            moving = false;
+            GoToBed();
+        }
     }
     private void FixedUpdate()
     {
@@ -119,7 +123,7 @@ public class PlayerController : MonoBehaviour
         }
         currentGroundPosition = ground;
     }
-    public void FallAsleep()
+    private void FallAsleep()
     {
         stamina.RestoreStamina();
 

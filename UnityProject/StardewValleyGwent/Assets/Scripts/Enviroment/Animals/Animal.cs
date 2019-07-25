@@ -14,13 +14,21 @@ public class Animal : MonoBehaviour
     public float timeForStop = -3;
     [HideInInspector]
     public Vector2 direction = new Vector2();
+    public float maxSpeedRange = 2;
+    public float minSpeedRange = 0.5f;
+    public float maxTimeForStop = -1;
+    public float minTimeForStop = -5;
+    public float maxTimeForWalk = 4;
+    public float minTimeForWalk = 9;
+    public float maxSinRange = 4 * Mathf.PI / 3;
+    public float minSinRange = 2 * Mathf.PI / 3;
 
     void Start() 
     {
         direction.x = Random.Range(-10, 10);
         direction.y = Random.Range(-10, 10);
         rb = GetComponent<Rigidbody2D>();
-        speed = Random.Range(0.5f, 2);
+        speed = Random.Range(minSpeedRange, maxSpeedRange);
     }
 
 
@@ -28,16 +36,16 @@ public class Animal : MonoBehaviour
     {
         if (coll.gameObject.tag == "Environment") 
         {
-            ChangeDirection();
-
+           
         }
     }
     public void ChangeDirection()
     {
-        speed = Random.Range(0.5f, 2);
-        direction.x = direction.x * (-1) * Mathf.Sin(Random.Range(2 * Mathf.PI / 3, 4 * Mathf.PI / 3));
-        direction.y = direction.y * (-1) * Mathf.Sin(Random.Range(2 * Mathf.PI / 3, 4 * Mathf.PI / 3));
-        timeForStop = Random.Range(-1, -5);
+        speed = Random.Range(minSpeedRange, maxSpeedRange);
+        direction.x = direction.x * Mathf.Sin(Random.Range(minSinRange, maxSinRange));
+        direction.y = direction.y * Mathf.Sin(Random.Range(minSinRange, maxSinRange));
+        timeForStop = Random.Range(minTimeForStop, maxTimeForStop);
+        transform.up = direction;
     }
 
     public void Move()
@@ -62,18 +70,28 @@ public class Animal : MonoBehaviour
             {
 
                 ChangeDirection();
-                timeForWalking = Random.Range(3, 8);
+                timeForWalking = Random.Range(minTimeForWalk, maxTimeForWalk);
                 
             }
             
         }
+        transform.up = direction;
 
     }
-
+    public void OnRayCollision()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 1, LayerMask.GetMask("BlockingLayer"));
+        if (hit.collider != null)
+        {
+            ChangeDirection();
+        }
+    }
     public virtual void Update()
     {
-        transform.up = direction;
+        
         Move();
+        
+        OnRayCollision();
     }
 
 }
