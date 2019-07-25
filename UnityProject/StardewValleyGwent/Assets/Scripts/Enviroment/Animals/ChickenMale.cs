@@ -11,7 +11,8 @@ public class ChickenMale : Animal
         base.OnCollisionEnter2D(coll);
         if (coll.gameObject.tag == "ChickenGirl")
         {
-                timeToSex = -60;
+           
+            timeToSex = -60;
         }
      }
     public override void Update()
@@ -20,8 +21,9 @@ public class ChickenMale : Animal
         AIPath aiPath = GetComponent<AIPath>();
         if (aiPath.canSearch == false && aiPath.canMove == false)
         {
-            transform.up = direction;
+            
             Move();
+            OnRayCollision();
         }
         if (timeToSex>0) 
         {
