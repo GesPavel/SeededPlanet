@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 442344280782105401}
   - component: {fileID: 8132292765157733323}
   - component: {fileID: 538054125531355841}
+  - component: {fileID: 5995169124520343116}
   m_Layer: 9
   m_Name: Well
   m_TagString: Well
@@ -96,3 +97,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.48
+--- !u!114 &5995169124520343116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4042714667559652253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284d7e26f6a55e54fbf93794f3207109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

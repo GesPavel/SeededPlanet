@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bed : MonoBehaviour
+public class Bed : MonoBehaviour,IFurniture
 {
     GameObject wakeUpPoint;
     private void Start()
@@ -12,9 +12,12 @@ public class Bed : MonoBehaviour
             wakeUpPoint = Instantiate(FindObjectOfType<EmptyPoint>().gameObject, wakeUpPointPosition,
             Quaternion.identity);
     }
-
     public GameObject GetWakeUpPoint()
     {
         return wakeUpPoint;
+    }
+    public void Interact() {
+        var player = FindObjectOfType<StaminaDirector>();
+        player.RestoreStamina();
     }
 }

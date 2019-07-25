@@ -183,13 +183,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 5930875409115960484}
-    characterCount: 0
+    characterCount: 2
     spriteCount: 0
     spaceCount: 1
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -216,8 +216,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4615906496749393941}
   - component: {fileID: 4615906496749393938}
-  - component: {fileID: -7830796860214024856}
   - component: {fileID: 1337442341749959924}
+  - component: {fileID: 6343565903478640978}
   m_Layer: 9
   m_Name: VeggieCrate
   m_TagString: Crate
@@ -288,22 +288,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-7830796860214024856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4615906496749393937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40a61e59c4c534f4cbf47072a517c73d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vegetableIndicator: {fileID: 5930875409115960484}
-  vegetable: {fileID: 5142369330590630118, guid: 30c6d26813462604bb0fc5ddd087c7ef,
-    type: 3}
-  veggiesCounter: 5
 --- !u!58 &1337442341749959924
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -320,3 +304,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.48
+--- !u!114 &6343565903478640978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4615906496749393937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16738da20cb297844b52c5b23da7348b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seedIndicator: {fileID: 5930875409115960484}
+  itemType: {fileID: 5142369330590630118, guid: 30c6d26813462604bb0fc5ddd087c7ef,
+    type: 3}
+  itemsCounter: 3

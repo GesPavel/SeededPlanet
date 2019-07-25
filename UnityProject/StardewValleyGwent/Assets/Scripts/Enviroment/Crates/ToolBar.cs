@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ToolBar : MonoBehaviour
+public class ToolBar : MonoBehaviour,ICrate
 {
     [SerializeField]private GameObject instrument;
 
@@ -11,20 +11,18 @@ public class ToolBar : MonoBehaviour
         if (instrument != null) return;
         instrument = null;
     }
-    public void SetItem(GameObject item)
-    {
-        instrument = item;
-    }
-    public GameObject SendItem()
-    {
-        return instrument;
-    }
     private void Update()
     {
         if (instrument != null)
         {
             instrument.transform.position = transform.position;
         }
+    }
+    public GameObject ChangeItem(GameObject item)
+    {
+        var itemToSend = instrument;
+        instrument = item;
+        return itemToSend;
     }
 }
 

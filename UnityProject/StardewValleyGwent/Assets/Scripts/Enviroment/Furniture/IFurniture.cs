@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ICrate :IInteractable
+public interface IFurniture:IInteractable
 {
-    GameObject ChangeItem(GameObject item);
+    void Interact();
 }
