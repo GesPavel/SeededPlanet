@@ -6,7 +6,7 @@ public class Plant : MonoBehaviour
 {
 
     [SerializeField] private float growthTime = 5;
-    [SerializeField] private GameObject vegetable;
+    public GameObject[] vegetable;
     public Ground ground;
     private PlantStates currentState;
     private Dictionary<PlantStates, Sprite> SpriteMap;
@@ -68,9 +68,9 @@ public class Plant : MonoBehaviour
         EnterState(NextState());
     }
     
-    void InstantiateVegetable()
+    public virtual void InstantiateVegetable()
     {
-        GameObject newVegetable = Instantiate(vegetable, transform.position, Quaternion.identity);
+        GameObject newVegetable = Instantiate(vegetable[0], transform.position, Quaternion.identity);
         ground.isOccupiedByPlant = false;
     }
 
@@ -78,7 +78,7 @@ public class Plant : MonoBehaviour
     {
         this.ground = ground;
     }
-    void Update()
+    public virtual void Update()
     {
         timer += Time.deltaTime;
         float growthTimePerPhase = DetermineGrowthTime();

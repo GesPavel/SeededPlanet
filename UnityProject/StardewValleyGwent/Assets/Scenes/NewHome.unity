@@ -22575,7 +22575,7 @@ PrefabInstance:
         type: 3}
       propertyPath: itemToSell
       value: 
-      objectReference: {fileID: 7877893155125190746, guid: bf54c2979b8c39648bcb427d55653de4,
+      objectReference: {fileID: 3869678349352161374, guid: 89325ee31ec0af046af1f4e2aa21746e,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f6bbed041eeb36489a7f9d5e41394be, type: 3}
@@ -24614,7 +24614,7 @@ PrefabInstance:
         type: 3}
       propertyPath: itemToSell
       value: 
-      objectReference: {fileID: 8893104194026024712, guid: 6617f5ff26816f642922c59073dfd337,
+      objectReference: {fileID: 5225710043301698549, guid: 11a72e5a5dba3b8468418ddaba4d1e34,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f6bbed041eeb36489a7f9d5e41394be, type: 3}
@@ -28497,6 +28497,12 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4615906496749393939, guid: 14c8b8e2ba6f7ed428f4ebb901cab171,
+        type: 3}
+      propertyPath: seed
+      value: 
+      objectReference: {fileID: 5225710043301698549, guid: 11a72e5a5dba3b8468418ddaba4d1e34,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14c8b8e2ba6f7ed428f4ebb901cab171, type: 3}
 --- !u!1001 &1563963129
@@ -29419,6 +29425,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8306950905998245315, guid: 3f6bbed041eeb36489a7f9d5e41394be,
+        type: 3}
+      propertyPath: itemToSell
+      value: 
+      objectReference: {fileID: 1899606694480825272, guid: a0a9b2510a1183b4f8e22dda94510ce4,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f6bbed041eeb36489a7f9d5e41394be, type: 3}
 --- !u!4 &1681066794 stripped
