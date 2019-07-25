@@ -32,6 +32,7 @@ public class UniversalCrate : MonoBehaviour,ICrate
 
     public GameObject ChangeItem(GameObject item)
     {
+        
         if (item != null)
         {
             SetItem(item);

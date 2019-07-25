@@ -21419,6 +21419,16 @@ PrefabInstance:
       propertyPath: stepGap
       value: 1.4
       objectReference: {fileID: 0}
+    - target: {fileID: 7444546032800042562, guid: be518a48edf550744beda8b0207ed60d,
+        type: 3}
+      propertyPath: takeOrPutItemButton
+      value: 101
+      objectReference: {fileID: 0}
+    - target: {fileID: 7444546032800042562, guid: be518a48edf550744beda8b0207ed60d,
+        type: 3}
+      propertyPath: takeItefFromGround
+      value: 101
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be518a48edf550744beda8b0207ed60d, type: 3}
 --- !u!4 &260855609 stripped
@@ -24669,7 +24679,7 @@ PrefabInstance:
         type: 3}
       propertyPath: itemToSell
       value: 
-      objectReference: {fileID: 3434119525446719785, guid: d4ae9591a27f3c44ebb25f259ea50335,
+      objectReference: {fileID: 3869678349352161374, guid: 89325ee31ec0af046af1f4e2aa21746e,
         type: 3}
     - target: {fileID: 8306950905998245316, guid: 3f6bbed041eeb36489a7f9d5e41394be,
         type: 3}
@@ -25411,12 +25421,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 230bb9e279bcd4d4ba0dd848d58660a3, type: 3}
---- !u!1 &1080960707 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1080960707, guid: aa824f0a44b8f6b4d8c0759d1b86c1ea,
-    type: 3}
-  m_PrefabInstance: {fileID: 3644609337209939553}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1089903290 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4442570101998383550, guid: 230bb9e279bcd4d4ba0dd848d58660a3,
@@ -32255,10 +32259,20 @@ PrefabInstance:
     - target: {fileID: 84412091, guid: aa824f0a44b8f6b4d8c0759d1b86c1ea, type: 3}
       propertyPath: wakeUpPoint
       value: 
-      objectReference: {fileID: 1080960707}
+      objectReference: {fileID: 0}
     - target: {fileID: 1080960708, guid: aa824f0a44b8f6b4d8c0759d1b86c1ea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821841658425769752, guid: aa824f0a44b8f6b4d8c0759d1b86c1ea,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821841658425769752, guid: aa824f0a44b8f6b4d8c0759d1b86c1ea,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa824f0a44b8f6b4d8c0759d1b86c1ea, type: 3}

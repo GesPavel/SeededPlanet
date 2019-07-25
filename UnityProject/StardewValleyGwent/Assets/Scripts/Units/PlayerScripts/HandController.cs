@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HandController : MonoBehaviour
 {
-    public KeyCode useButton, interactButton;
+    public KeyCode useButton, interactButton,takeItefFromGround;
     public float staminaLossPerInstrumentUse = 5;
     GameObject item;
     StaminaDirector stamina;
