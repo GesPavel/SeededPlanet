@@ -44,8 +44,8 @@
 //        {
 //            Furnuter = fur.Interact();
 //        }
-//        if (Factory)
-//            item = Factory.Interact();
+//        if (Converter)
+//            item = Factory.Interact(item);
 //    }
 
 //    public void setItem(GameObject item)
