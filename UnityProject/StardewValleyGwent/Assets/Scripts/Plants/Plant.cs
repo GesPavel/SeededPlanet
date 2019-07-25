@@ -6,13 +6,14 @@ public class Plant : MonoBehaviour
 {
 
     [SerializeField] private float growthTime = 5;
-    [SerializeField] private GameObject vegetable;
+    public GameObject[] vegetable;
     public Ground ground;
     private PlantStates currentState;
     private Dictionary<PlantStates, Sprite> SpriteMap;
 //  private Dictionary<PlantStates, float> GrowthTimeMap;
     private float timer;
     private int stateNumber;
+
     enum PlantStates
     {
         Sprout,
@@ -68,9 +69,9 @@ public class Plant : MonoBehaviour
         EnterState(NextState());
     }
     
-    void InstantiateVegetable()
+    public virtual void InstantiateVegetable()
     {
-        GameObject newVegetable = Instantiate(vegetable, transform.position, Quaternion.identity);
+        GameObject newVegetable = Instantiate(vegetable[UnityEngine.Random.Range(0, vegetable.Length)], transform.position, Quaternion.identity);
         ground.isOccupiedByPlant = false;
     }
 
@@ -78,7 +79,7 @@ public class Plant : MonoBehaviour
     {
         this.ground = ground;
     }
-    void Update()
+    public virtual void Update()
     {
         timer += Time.deltaTime;
         float growthTimePerPhase = DetermineGrowthTime();
@@ -93,6 +94,7 @@ public class Plant : MonoBehaviour
             }
             timer = 0.0f;
         }
+
     }
 
     private float DetermineGrowthTime()
