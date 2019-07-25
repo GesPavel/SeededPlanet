@@ -9,8 +9,8 @@ public class WateringCan : MonoBehaviour, Instrument,IItem
     public static float waterPerUse = 25;
     PlayerController player;
     Ground standingGround;
-
-    public string ObjectsName => throw new System.NotImplementedException();
+    [SerializeField] private string objectsName;
+    public string ObjectsName => objectsName;
 
     public void Use(Ground ground)
     {

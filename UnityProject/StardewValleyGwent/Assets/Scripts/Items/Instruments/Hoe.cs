@@ -6,8 +6,8 @@ public class Hoe : MonoBehaviour, Instrument,IItem
 {
     PlayerController player;
     Ground standingGround;
-
-    public string ObjectsName => throw new System.NotImplementedException();
+    [SerializeField] private string objectsName;
+    public string ObjectsName => objectsName;
 
     void Start()
     {

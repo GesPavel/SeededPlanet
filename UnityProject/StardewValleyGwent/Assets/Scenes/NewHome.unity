@@ -25077,6 +25077,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 771319048166933366, guid: 8596fb0b198408b44a0a8bb26f85a4ac,
+        type: 3}
+      propertyPath: objectsName
+      value: Watering Can
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8596fb0b198408b44a0a8bb26f85a4ac, type: 3}
 --- !u!1 &1005386885 stripped
@@ -27615,6 +27620,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 450836740189146330, guid: e447a60cd5c69ae47bb8599a20c2d822,
+        type: 3}
+      propertyPath: objectsName
+      value: Hoe
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e447a60cd5c69ae47bb8599a20c2d822, type: 3}
@@ -32137,6 +32147,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8456883429394012930, guid: 319b830c2b76bf84ea12f396558b94f8,
+        type: 3}
+      propertyPath: objectsName
+      value: Fertilizer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 319b830c2b76bf84ea12f396558b94f8, type: 3}

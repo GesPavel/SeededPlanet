@@ -5,8 +5,8 @@ using UnityEngine;
 public class Fertilizer : MonoBehaviour, Instrument,IItem
 {
     public float portionPerUse = 25.0f;
-
-    public string ObjectsName => throw new System.NotImplementedException();
+    [SerializeField] private string objectsName;
+    public string ObjectsName => objectsName;
 
     public void Use(Ground ground)
     {
