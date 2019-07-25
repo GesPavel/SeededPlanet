@@ -128,8 +128,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1899606694480825272}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c584348cd748ff4b9d89e18682b31c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 7df770f983ff2dc459a077fb6e6aec62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsName: CowSeed
+  objectsName: Cow Seed
   plant: {fileID: 2652613073865685760, guid: af6951d7d8da97240925ef2f75cc7705, type: 3}

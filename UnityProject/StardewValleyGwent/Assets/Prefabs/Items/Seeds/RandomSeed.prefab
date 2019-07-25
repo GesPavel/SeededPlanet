@@ -128,8 +128,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5225710043301698549}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad47d971c9b8af7418379ce07351ae78, type: 3}
+  m_Script: {fileID: 11500000, guid: 7df770f983ff2dc459a077fb6e6aec62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsName: RandomSeed
+  objectsName: Random Seed
   plant: {fileID: 7496245884986503228, guid: b7c0f9d83d6e6b546b4002b5913a00c0, type: 3}

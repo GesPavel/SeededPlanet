@@ -89,22 +89,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7496245884986503228}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a67b71aa47b6fde40bfdc8a5f20f988d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4df3b820c1505534da4b95aace32c766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growthTime: 3
+  growthTime: 5
   vegetable:
   - {fileID: 5142369330590630118, guid: 30c6d26813462604bb0fc5ddd087c7ef, type: 3}
   - {fileID: 5587703481954138804, guid: 248f328b0d33d2140b2285fdc28165c9, type: 3}
-  - {fileID: 3434119525446719785, guid: d4ae9591a27f3c44ebb25f259ea50335, type: 3}
-  - {fileID: 248574044856599722, guid: 16439d8cfbf4863419dbadb2470ed102, type: 3}
-  - {fileID: 9113170302938159314, guid: 6a72b37c3682e044fa7553e25d70fa51, type: 3}
-  - {fileID: 8415101792380855987, guid: 3388632e2316bea4292fa1808bcefed4, type: 3}
   - {fileID: 3869678349352161374, guid: 89325ee31ec0af046af1f4e2aa21746e, type: 3}
-  - {fileID: 7877893155125190746, guid: bf54c2979b8c39648bcb427d55653de4, type: 3}
   - {fileID: 3593029706234687275, guid: 56b09058c9aa1494db1c682350d69fa6, type: 3}
-  - {fileID: 1899606694480825272, guid: a0a9b2510a1183b4f8e22dda94510ce4, type: 3}
+  - {fileID: 9113170302938159314, guid: 6a72b37c3682e044fa7553e25d70fa51, type: 3}
+  - {fileID: 248574044856599722, guid: 16439d8cfbf4863419dbadb2470ed102, type: 3}
+  - {fileID: 3434119525446719785, guid: d4ae9591a27f3c44ebb25f259ea50335, type: 3}
   - {fileID: 5225710043301698549, guid: 11a72e5a5dba3b8468418ddaba4d1e34, type: 3}
+  - {fileID: 1899606694480825272, guid: a0a9b2510a1183b4f8e22dda94510ce4, type: 3}
+  - {fileID: 8415101792380855987, guid: 3388632e2316bea4292fa1808bcefed4, type: 3}
+  - {fileID: 7877893155125190746, guid: bf54c2979b8c39648bcb427d55653de4, type: 3}
   - {fileID: 6465113107521610836, guid: 8596fb0b198408b44a0a8bb26f85a4ac, type: 3}
-  - {fileID: 360744774490303011, guid: e42a4573f7e3a954e87dc092da9a0289, type: 3}
+  - {fileID: 8941196423842519156, guid: e447a60cd5c69ae47bb8599a20c2d822, type: 3}
   ground: {fileID: 0}

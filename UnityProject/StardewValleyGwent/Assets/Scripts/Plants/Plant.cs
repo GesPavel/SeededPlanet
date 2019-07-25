@@ -13,6 +13,7 @@ public class Plant : MonoBehaviour
 //  private Dictionary<PlantStates, float> GrowthTimeMap;
     private float timer;
     private int stateNumber;
+
     enum PlantStates
     {
         Sprout,
@@ -70,7 +71,7 @@ public class Plant : MonoBehaviour
     
     public virtual void InstantiateVegetable()
     {
-        GameObject newVegetable = Instantiate(vegetable[0], transform.position, Quaternion.identity);
+        GameObject newVegetable = Instantiate(vegetable[UnityEngine.Random.Range(0, vegetable.Length)], transform.position, Quaternion.identity);
         ground.isOccupiedByPlant = false;
     }
 
@@ -93,6 +94,7 @@ public class Plant : MonoBehaviour
             }
             timer = 0.0f;
         }
+
     }
 
     private float DetermineGrowthTime()
