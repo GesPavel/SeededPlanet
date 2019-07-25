@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public KeyCode left, right, up, down, interact;
+    public KeyCode left, right, up, down;
     public float speed;
     public float moveDelay;
     public GameObject leftHand, rightHand;
 
     private Ground currentGroundPosition;
     private Rigidbody2D rb2d;
-    private Vector3 lookDirection;
-    private Vector3 moveDirection;
-    private bool moving;
     private StaminaDirector stamina;
     HandController hand;
-
     Bed bed;
+    [SerializeField]private LayerMask blockingLayer;
+
+    private Vector3 lookDirection;
+    private Vector3 destinationPoint;
+    private bool moving;
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -26,78 +28,77 @@ public class PlayerController : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         hand = GetComponentInChildren<HandController>();
         bed = FindObjectOfType<Bed>();
-
+        destinationPoint = transform.position;
     }
-
-
     void Update()
     {
-        if (!moving)
-        {
-            if (stamina.CurrentStamina <= 0)
-            {
-                GoToBed();
-                stamina.RestoreStamina();
-                return;
-            }
-            MoveControll();
-        }
+       
+    }
+    private void FixedUpdate()
+    {
+        MoveControll();
     }
 
     private void MoveControll()
+    {  
+        if (!moving)
+        {
+            lookDirection = GetLookDirection();
+            if (lookDirection == Vector3.zero)
+            {
+                return;
+            }
+            transform.up = lookDirection;
+            if (CanMove(lookDirection))
+            {
+                destinationPoint = transform.position + lookDirection;
+                moving = true;
+            }
+        }
+        else if (moving)
+        {
+            MakeStepToDestination(ref destinationPoint);
+        }
+    }
+    private void MakeStepToDestination(ref Vector3 destinationPoint)
     {
+        float remainingDistance = (transform.position - destinationPoint).magnitude;
+        if (remainingDistance < float.Epsilon)
+        {
+            transform.position = destinationPoint;
+            moving = false;
+            return;
+        }
+        Vector3 newPos = Vector3.MoveTowards(transform.position, destinationPoint, speed*Time.fixedDeltaTime);
+        rb2d.MovePosition(newPos);
+    }
+     
+    private Vector3 GetLookDirection()
+    {
+        Vector3 lookDir = Vector3.zero;
         if (Input.GetKey(left))
         {
-            lookDirection = Vector3.left;
-            moveDirection = lookDirection;
+            lookDir = Vector3.left;
         }
         else if (Input.GetKey(right))
         {
-            lookDirection = Vector3.right;
-            moveDirection = lookDirection;
+            lookDir = Vector3.right;
         }
         else if (Input.GetKey(up))
         {
-            lookDirection = Vector3.up;
-            moveDirection = lookDirection;
+            lookDir = Vector3.up;
         }
         else if (Input.GetKey(down))
         {
-            lookDirection = Vector3.down;
-            moveDirection = lookDirection;
+            lookDir = Vector3.down;
         }
-        rb2d.transform.up = lookDirection;
-        if (CanMove(moveDirection))
-        {
-            StartCoroutine(movePlayer(moveDirection + transform.position));
-            moveDirection = Vector3.zero;
-        }
-
+        return lookDir;
     }
-
-    //Функция будет проверят потенциальное столкновение игрока, если он пойдет по данному направлению.
-    //Если есть препятствие, функция возвращает false.
     private bool CanMove(Vector3 direction)
     {
-        RaycastHit2D hit = Physics2D.Raycast(rb2d.transform.position, direction, 1, LayerMask.GetMask("BlockingLayer"));
+        RaycastHit2D hit = Physics2D.Raycast(rb2d.transform.position, direction, 1,blockingLayer);
         if (hit.collider != null) return false;
         return true;
-    }
-
-    //Сопрограмма для перемещения игрока между ячейками.
-    IEnumerator movePlayer(Vector3 destination)
-    {
-        moving = true;
-        float step = speed * Time.deltaTime;
-        float remainingDistance = (transform.position - destination).sqrMagnitude;
-        while (remainingDistance > float.Epsilon)
-        {
-            rb2d.MovePosition(Vector3.MoveTowards(rb2d.position, destination, step));
-            remainingDistance = (rb2d.transform.position - destination).sqrMagnitude;
-            yield return new WaitForSeconds(Time.deltaTime);
-        }
-        yield return new WaitForSeconds(moveDelay);
-        moving = false;
     }
     public Ground GetCurrentGroundPosition()
     {
@@ -126,7 +127,7 @@ public class PlayerController : MonoBehaviour
     public void GoToBed()
     {
         transform.position = bed.GetWakeUpPoint().transform.position;
-        
+
         FallAsleep();
     }
     private void OnTriggerEnter2D(Collider2D collision)
