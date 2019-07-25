@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Ground currentGroundPosition;
     private Rigidbody2D rb2d;
     private StaminaDirector stamina;
+    private HandController handController;
     HandController hand;
     Bed bed;
     [SerializeField]private LayerMask blockingLayer;
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
         hand = GetComponentInChildren<HandController>();
         bed = FindObjectOfType<Bed>();
         destinationPoint = transform.position;
+        handController = GetComponentInChildren<HandController>();
     }
     void Update()
     {
@@ -134,9 +136,9 @@ public class PlayerController : MonoBehaviour
 
         FallAsleep();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<IItem>() != null)
+        if (collision.gameObject.GetComponent<IItem>() != null && Input.GetKeyDown(handController.takeItefFromGround))
         {
             if (hand.IsEmpty())
             {
