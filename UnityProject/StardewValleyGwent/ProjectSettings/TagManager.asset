@@ -31,7 +31,7 @@ TagManager:
   - CameraBorder
   - Ground
   - AnimalLayer
-  - 
+  - LakeLayer
   - 
   - 
   - 
@@ -61,6 +61,9 @@ TagManager:
     locked: 0
   - name: Chicken
     uniqueID: 802017941
+    locked: 0
+  - name: LakeLayer
+    uniqueID: 3698844639
     locked: 0
   - name: Animal
     uniqueID: 2071199363
