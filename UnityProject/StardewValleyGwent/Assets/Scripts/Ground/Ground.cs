@@ -19,6 +19,7 @@ public class Ground : MonoBehaviour
 
     public bool IsPlowed { get; private set; }
     public bool isOccupiedByPlant { get; set; }
+    GameObject sapling;
 
 
     public enum GroundStates
@@ -110,15 +111,34 @@ public class Ground : MonoBehaviour
         else if (currentState == GroundStates.WetRaw)
             EnterState(GroundStates.WetPlowed);
     }
+    public void Raw()
+    {
+        IsPlowed = false;
+        if (currentState == GroundStates.DryPlowed)
+            EnterState(GroundStates.DryRaw);
+        else if (currentState == GroundStates.WetPlowed)
+            EnterState(GroundStates.WetRaw);
+
+    }
+
     public void AddPlant(GameObject plant)
     {
         if (!isOccupiedByPlant)
         {
-            GameObject sapling = Instantiate(plant, transform.position, Quaternion.identity);
+            sapling = Instantiate(plant, transform.position, Quaternion.identity);
             sapling.GetComponent<Plant>().SetBaseGround(this);
             isOccupiedByPlant = true;
         }
     }
+    public void DeletePlant()
+    {
+        if (isOccupiedByPlant)
+        {
+            Destroy(sapling);
+            isOccupiedByPlant = false;
+        }
+    }
+
     private void EnterState(GroundStates state)
     {
         currentState = state;
