@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6261356562230469772}
   - component: {fileID: 4118912605968028782}
   - component: {fileID: 3754452913059692316}
-  - component: {fileID: 6329239584711055200}
   - component: {fileID: 5582644680764618592}
+  - component: {fileID: 8751806429189950007}
   m_Layer: 0
   m_Name: Fishing rod
   m_TagString: Hoe
@@ -69,7 +69,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1841055919
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f9bced8b68f0b8746b2de22b78e7d5a7, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -103,19 +103,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6329239584711055200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3279124896826786766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4dc3f6ea4a8b774eb6b1af733fcd571, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectsName: Hoe
 --- !u!61 &5582644680764618592
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -142,3 +129,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15123829, y: 0.96}
   m_EdgeRadius: 0
+--- !u!114 &8751806429189950007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3279124896826786766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53441f6ee71c5194588134cae607293c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsName: Fishing Rod
+  lakeLayer:
+    serializedVersion: 2
+    m_Bits: 16384
+  fish: {fileID: 5930742536389730271, guid: 2300eb09d28449643a21ff6d4b385dff, type: 3}

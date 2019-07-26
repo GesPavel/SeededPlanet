@@ -8,14 +8,14 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float moveDelay;
     public GameObject leftHand, rightHand;
-
     private Ground currentGroundPosition;
     private Rigidbody2D rb2d;
     private StaminaDirector stamina;
     private HandController handController;
     HandController hand;
     Bed bed;
-    [SerializeField]private LayerMask blockingLayer;
+    [SerializeField] private LayerMask blockingLayer;
+    [SerializeField] private LayerMask lakeLayer;
 
     private Vector3 lookDirection;
     private Vector3 destinationPoint;
@@ -102,10 +102,12 @@ public class PlayerController : MonoBehaviour
     }
     private bool CanMove(Vector3 direction)
     {
-        RaycastHit2D hit = Physics2D.Raycast(rb2d.transform.position, direction, 1,blockingLayer);
-        if (hit.collider != null) return false;
+        RaycastHit2D blockingHit = Physics2D.Raycast(rb2d.transform.position, direction, 1,blockingLayer);
+        RaycastHit2D lakeHit = Physics2D.Raycast(rb2d.transform.position, direction, 1, lakeLayer);
+        if (lakeHit.collider || blockingHit.collider != null) return false;
         return true;
     }
+
     public Ground GetCurrentGroundPosition()
     {
         return currentGroundPosition;
