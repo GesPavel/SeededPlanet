@@ -10,6 +10,10 @@ public class Fertilizer : MonoBehaviour, Instrument,IItem
 
     public void Use(Ground ground)
     {
+        if(ground==null)
+        {
+            return;
+        }
         ground.AddFertilizer(portionPerUse);
     }
 }
