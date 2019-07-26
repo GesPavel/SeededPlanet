@@ -4,19 +4,27 @@ using UnityEngine;
 
 public class Bed : MonoBehaviour,IFurniture
 {
-    GameObject wakeUpPoint;
+    public GameObject wakeUpPoint;
+    TimeManager time;
+    public static int hoursForHealthySleep = 8;
+    public static int hoursForFaint = 12;
     private void Start()
     {
-        Vector2 wakeUpPointPosition = 
-            new Vector2(this.transform.position.x + 1, this.transform.position.y);
-            wakeUpPoint = Instantiate(FindObjectOfType<EmptyPoint>().gameObject, wakeUpPointPosition,
-            Quaternion.identity);
+        time = FindObjectOfType<TimeManager>();
     }
+
     public GameObject GetWakeUpPoint()
     {
         return wakeUpPoint;
     }
     public void Interact() {
+        
+        SleepInHours(hoursForHealthySleep);
+    }
+
+    public void SleepInHours(int hours)
+    {
+        time.SkipHours(hours);
         var player = FindObjectOfType<StaminaDirector>();
         player.RestoreStamina();
     }

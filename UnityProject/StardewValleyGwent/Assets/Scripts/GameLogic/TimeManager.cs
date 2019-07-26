@@ -1,11 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 
 public class TimeManager : MonoBehaviour
 {
-
-
-
     public int MinutesSinceNewHour { get; private set; }
     public int HoursSinceMidnight { get; private set; }
     public int CurrentDay { get; private set; }
@@ -27,32 +25,50 @@ public class TimeManager : MonoBehaviour
         if (timer > minuteInSeconds)
         {
             StartNewMinute();
-            timer = timer - minuteInSeconds;
+            timer -= minuteInSeconds;
         }
     }
 
     private void StartNewMinute()
     {
        MinutesSinceNewHour++;
-        if (MinutesSinceNewHour > 59)
+       CheckIfNewHour();
+    }
+
+    private void CheckIfNewHour()
+    {
+        if (MinutesSinceNewHour >= 60)
         {
             BeginNextHour();
+            MinutesSinceNewHour -= 60;
+            CheckIfNewHour();
         }
     }
 
     private void BeginNextHour()
     {
         HoursSinceMidnight++;
-        if (HoursSinceMidnight > 23)
-        {
-            startnewday();
-        }
-        MinutesSinceNewHour = 0;
+        CheckIfNewDay();
     }
 
-    private void startnewday()
+    private void CheckIfNewDay()
+    {
+        if(HoursSinceMidnight >= 24)
+        {
+            StartNewDay();
+            HoursSinceMidnight -= 24;
+            CheckIfNewDay();
+        }
+    }
+
+    private void StartNewDay()
     {
         CurrentDay++;
-        HoursSinceMidnight = 0;
+    }
+
+    public void SkipHours(int hours)
+    {
+        HoursSinceMidnight += hours;
+        CheckIfNewDay();
     }
 }

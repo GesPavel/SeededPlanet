@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         if (stamina.CurrentStamina <= 0)
         {
             moving = false;
-            GoToBed();
+            stamina.Faint();
         }
     }
     private void FixedUpdate()
@@ -113,28 +113,13 @@ public class PlayerController : MonoBehaviour
 
     public void SetCurrentGroundPosition(Ground ground)
     {
-        if (ground == null)
-        {
-            ground = null;
-            return;
-        }
-        if (ground.GetComponent<Ground>() == null)
-        {
-            ground = null;
-            return;
-        }
+
         currentGroundPosition = ground;
     }
-    private void FallAsleep()
-    {
-        stamina.RestoreStamina();
 
-    }
-    public void GoToBed()
+    public void MoveToBed()
     {
         transform.position = bed.GetWakeUpPoint().transform.position;
-
-        FallAsleep();
     }
     private void OnTriggerStay2D(Collider2D collision)
     {

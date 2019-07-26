@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,6 +31,13 @@ public class StaminaDirector : MonoBehaviour
         CurrentStamina -= Time.deltaTime * (StaminaLoss-staminaLossReduceСoefficient);
         if (CurrentStamina > maxStamina) CurrentStamina = maxStamina;
     }
+
+    internal void Faint()
+    {
+        player.MoveToBed();
+        FindObjectOfType<Bed>().SleepInHours(Bed.hoursForFaint);
+    }
+
     public void DecreaseStamina(float staminaLost)
     {
         CurrentStamina -= staminaLost;
