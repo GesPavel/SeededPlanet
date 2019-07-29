@@ -9,6 +9,8 @@ public class RobotHarvester : MonoBehaviour
     AIPath aiPath;
     IAstarAI ai;
     RobotTaskController taskController;
+    RobotStrategy strategy;
+    GameObject itemInHand;
 
     public bool HasTask { get; private set; }
 
@@ -22,22 +24,59 @@ public class RobotHarvester : MonoBehaviour
 
     }
 
+  
     void Update()
     {
         DetermineWhatToDo();
+        if (itemInHand != null)
+        {
+            itemInHand.transform.position = transform.position;
+            itemInHand.transform.up = transform.up;
+        }
     }
 
     private void DetermineWhatToDo()
     {
         aiPath.canMove = HasTask;
         aiPath.canSearch = HasTask;
+        if (aiPath.reachedEndOfPath)
+        {
+            Debug.Log(1);
+            OnPathComplete();
+        }
     }
 
-    internal void SetTask(HarvestTask task)
+    public void SetTask(AbstractTask task)
     {
         aiPath.destination = task.Destination.position;
-        taskController.DeclareBusy(this);
+        if (!HasTask)
+        {
+            taskController.DeclareBusy(this);
+            HasTask = true;
+        }
+        
         task.ClaimTask();
-        HasTask = true;
+        gameObject.AddComponent(task.GetStrategyAccordingToType());
+   }
+    private void OnPathComplete()
+    {
+        strategy = GetComponent(typeof(RobotStrategy)) as RobotStrategy; 
+        strategy.Act();
+    }
+    public void PickUpItem(GameObject item)
+    {
+        itemInHand = item;
+    }
+    internal void StoreItem(UniversalCrate crate)
+    {
+        crate.ChangeItem(itemInHand);
+    }
+    public void SetDistanceToPathComplete(float dist)
+    {
+        aiPath.endReachedDistance = dist;
+    }
+    public float GetDistanceToPathComplete()
+    {
+        return aiPath.endReachedDistance;
     }
 }

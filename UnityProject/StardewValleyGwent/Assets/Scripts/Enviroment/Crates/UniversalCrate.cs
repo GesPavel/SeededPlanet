@@ -2,26 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
+using UnityEditor;
 
-public class UniversalCrate : MonoBehaviour,ICrate
+public class UniversalCrate : MonoBehaviour, ICrate
 {
     public TextMeshPro seedIndicator;
-    [SerializeField]private GameObject itemType;
-    [SerializeField]private int itemsCounter = 0;
+    public GameObject itemType;
+    [SerializeField] private int itemsCounter = 0;
 
     private void Start()
     {
         seedIndicator.text = itemsCounter.ToString();
+        itemType = null;
     }
-    public void SetItem(GameObject item)
+    public void PutItem(GameObject item)
     {
-        Destroy(item);
-        itemsCounter++;
-        seedIndicator.text = itemsCounter.ToString();
+        if (itemType == null)
+        {
+            itemType = Instantiate(item);
+        }
+        if (ItemIsValid(item))
+        {
+            Destroy(item);
+            itemsCounter++;
+            seedIndicator.text = itemsCounter.ToString();
+        }
     }
+
+    public bool ItemIsValid(GameObject item)
+    {
+        if (itemType != null)
+        {
+            IItem itemInterface = item.GetComponent<IItem>();
+            IItem itemInCrateInterface = itemType.GetComponent<IItem>();
+            return itemInterface.ObjectsName == itemInCrateInterface.ObjectsName;
+        }
+        return false;
+    }
+
     public GameObject SendItem()
     {
-        if (itemsCounter == 0)
+        if (itemsCounter == 0 || itemType == null)
         {
             return null;
         }
@@ -35,7 +57,7 @@ public class UniversalCrate : MonoBehaviour,ICrate
         
         if (item != null)
         {
-            SetItem(item);
+            PutItem(item);
             return null;
         }
         else

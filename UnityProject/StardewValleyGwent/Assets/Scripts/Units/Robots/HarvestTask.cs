@@ -1,36 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HarvestTask : MonoBehaviour
+public class HarvestTask : AbstractTask
 {
-    public Transform Destination { get; set; }
-    bool inProgress = false;
-    RobotTaskController taskController;
-
-    private void Start()
+    protected override void AddToTaskListIfNecessary()
     {
-        taskController = FindObjectOfType<RobotTaskController>();
         taskController.AddHarvestTask(this);
-        Destination = gameObject.transform;
     }
-    public void ClaimTask()
+    protected override void RemoveFromTaskListIfNecessary()
     {
-        inProgress = true;
         taskController.RemoveHarvestTask(this);
     }
-
-    public void DropTask()
+    public override Type GetStrategyAccordingToType()
     {
-        inProgress = false;
-        taskController.AddHarvestTask(this);
+        return typeof (HarvestRobotStategy);
     }
-
-    public bool IsInProgress()
+    protected override void DetermineDestination()
     {
-        return inProgress;
+        Destination = gameObject.transform;
     }
-
-
 }
 
