@@ -66,7 +66,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1722371813
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: bd2ea396f3be7bd48ac4bca8e049be47, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -146,7 +146,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1722371813
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 83bba90e70516e44499d385f3a6800d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -173,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useButton: 323
   interactButton: 324
+  takeItemfFromGround: 101
   staminaLossPerInstrumentUse: 5
 --- !u!1 &8471427184795161971
 GameObject:
@@ -189,6 +190,7 @@ GameObject:
   - component: {fileID: 4785096512091500954}
   - component: {fileID: 7206390254378149341}
   - component: {fileID: 1134842016561277185}
+  - component: {fileID: 2033495045421912905}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -247,7 +249,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1722371813
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9b5c0acfaa17c6247ae0db4edebbba11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -313,11 +315,16 @@ MonoBehaviour:
   right: 100
   up: 119
   down: 115
-  interact: 0
   speed: 15
   moveDelay: 0
   leftHand: {fileID: 1017005567085935254}
   rightHand: {fileID: 3342890049334773046}
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  lakeLayer:
+    serializedVersion: 2
+    m_Bits: 16384
 --- !u!114 &7206390254378149341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,3 +351,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialSum: 120
+--- !u!114 &2033495045421912905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8471427184795161971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7832156e17f77954bb87c07303aeae5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  activeItemSlot: {fileID: 0}
