@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4242015038916532308}
   - component: {fileID: 6130302463290943670}
   - component: {fileID: 6350105870904886212}
-  - component: {fileID: 4318843685870103480}
   - component: {fileID: 2397020488518863800}
+  - component: {fileID: 1429983480}
   m_Layer: 0
   m_Name: Shovel
   m_TagString: Hoe
@@ -69,7 +69,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1841055919
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 223689ea253f8de43a22ee5de2bca7b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -103,19 +103,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4318843685870103480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4736570839270620950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4dc3f6ea4a8b774eb6b1af733fcd571, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectsName: Hoe
 --- !u!61 &2397020488518863800
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -129,7 +116,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.14438085, y: 0}
+  m_Offset: {x: 0.0027327687, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -140,5 +127,18 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15123829, y: 0.96}
+  m_Size: {x: 0.29634067, y: 0.96}
   m_EdgeRadius: 0
+--- !u!114 &1429983480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4736570839270620950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1f4530bc342ff41be7d74bf3b3a4bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsName: Shovel
