@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Egg : MonoBehaviour,IItem,IEdible
+public class Egg : MonoBehaviour,IItem,IEdibleItem
 {
     [SerializeField] private string objectsName = "Egg";
     public string ObjectsName => objectsName;

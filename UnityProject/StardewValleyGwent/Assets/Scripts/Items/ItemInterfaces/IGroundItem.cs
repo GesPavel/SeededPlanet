@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
- interface Instrument :  IUsable
+ interface IGroundItem :  IUsable
 {
     void Use(Ground ground);
+
 }

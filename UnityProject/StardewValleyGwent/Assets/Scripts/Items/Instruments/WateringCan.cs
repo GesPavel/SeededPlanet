@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WateringCan : MonoBehaviour, Instrument,IItem
+public class WateringCan : MonoBehaviour, IGroundItem,IItem
 {
     public static float water = 0;
     public static float maxWaterVolume = 100;

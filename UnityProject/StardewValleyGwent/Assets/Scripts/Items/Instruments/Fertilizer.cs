@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fertilizer : MonoBehaviour, Instrument,IItem
+public class Fertilizer : MonoBehaviour, IGroundItem,IItem
 {
     public float portionPerUse = 25.0f;
     [SerializeField] private string objectsName;

@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public interface IEdibleItem:IUsable
+public interface INonGroundItem : IUsable
 {
-    float StaminaRestoration { get;}
+    void Use();
 }
