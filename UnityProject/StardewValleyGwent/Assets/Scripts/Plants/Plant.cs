@@ -10,7 +10,7 @@ public class Plant : MonoBehaviour
     public Ground ground;
     private PlantStates currentState;
     private Dictionary<PlantStates, Sprite> SpriteMap;
-//  private Dictionary<PlantStates, float> GrowthTimeMap;
+    //  private Dictionary<PlantStates, float> GrowthTimeMap;
     private float timer;
     private int stateNumber;
 
@@ -25,7 +25,7 @@ public class Plant : MonoBehaviour
     void Start()
     {
         FillSpriteMap();
-    //  FillGrowthTimeMap();
+        //  FillGrowthTimeMap();
         EnterState(PlantStates.Sprout);
         stateNumber = Enum.GetValues(typeof(PlantStates)).Length;
     }
@@ -42,18 +42,18 @@ public class Plant : MonoBehaviour
 
     }
 
-   /** Для будущих поколений людей, которым не плевать, сколько времени растение находитя в каждой стадии
-    private void FillGrowthTimeMap()
-    {
-        GrowthTimeMap = new Dictionary<PlantStates, float>();
-        GrowthTimeMap.Add(PlantStates.Sprout, growthTime/stateNumber);
-        GrowthTimeMap.Add(PlantStates.Sapling, growthTime / stateNumber);
-        GrowthTimeMap.Add(PlantStates.BiggerSapling, growthTime / stateNumber);
-        GrowthTimeMap.Add(PlantStates.GrownPlant, growthTime / stateNumber);
-        GrowthTimeMap.Add(PlantStates.Vegetable, 0.0f);
+    /** Для будущих поколений людей, которым не плевать, сколько времени растение находитя в каждой стадии
+     private void FillGrowthTimeMap()
+     {
+         GrowthTimeMap = new Dictionary<PlantStates, float>();
+         GrowthTimeMap.Add(PlantStates.Sprout, growthTime/stateNumber);
+         GrowthTimeMap.Add(PlantStates.Sapling, growthTime / stateNumber);
+         GrowthTimeMap.Add(PlantStates.BiggerSapling, growthTime / stateNumber);
+         GrowthTimeMap.Add(PlantStates.GrownPlant, growthTime / stateNumber);
+         GrowthTimeMap.Add(PlantStates.Vegetable, 0.0f);
 
-    }
-    */
+     }
+     */
 
     private void EnterState(PlantStates state)
     {
@@ -68,11 +68,12 @@ public class Plant : MonoBehaviour
     {
         EnterState(NextState());
     }
-    
+
     public virtual void InstantiateVegetable()
     {
         GameObject newVegetable = Instantiate(vegetable[UnityEngine.Random.Range(0, vegetable.Length)], transform.position, Quaternion.identity);
         ground.isOccupiedByPlant = false;
+        newVegetable.AddComponent<HarvestTask>();
     }
 
     public void SetBaseGround(Ground ground)
@@ -83,7 +84,7 @@ public class Plant : MonoBehaviour
     {
         timer += Time.deltaTime;
         float growthTimePerPhase = DetermineGrowthTime();
-   
+
         if (timer > growthTimePerPhase)
         {
             EnterNextState();
@@ -114,6 +115,6 @@ public class Plant : MonoBehaviour
         float fertilizerCoefficent = 1;
         if (ground.IsFertilized)
             fertilizerCoefficent = FERTILIZER_BUFF;
-        return waterCoefficient * fertilizerCoefficent;  
+        return waterCoefficient * fertilizerCoefficent;
     }
 }
