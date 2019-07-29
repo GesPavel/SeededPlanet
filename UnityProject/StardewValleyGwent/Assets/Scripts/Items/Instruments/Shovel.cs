@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shovel : MonoBehaviour, Instrument, IItem
+public class Shovel : MonoBehaviour, IGroundItem, IItem
 {
     PlayerController player;
     Ground standingGround;

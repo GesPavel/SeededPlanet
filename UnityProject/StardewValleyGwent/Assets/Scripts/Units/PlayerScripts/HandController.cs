@@ -31,19 +31,26 @@ public class HandController : MonoBehaviour
         if (item == null) return;
         if (item.GetComponent<IUsable>() == null) return;
 
-        if (item.GetComponent<Instrument>() != null)
+        if (item.GetComponent<IGroundItem>() != null)
         {
-            Instrument instrument = item.GetComponent<Instrument>();
+            IGroundItem instrument = item.GetComponent<IGroundItem>();
             if (instrument == null) return;
             instrument.Use(playerController.GetCurrentGroundPosition());
             stamina.DecreaseStamina(staminaLossPerInstrumentUse);
         }
-        else if (item.GetComponent<IEdible>() != null)
+        else if (item.GetComponent<IEdibleItem>() != null)
         {
-            IEdible food = item.GetComponent<IEdible>();
+            IEdibleItem food = item.GetComponent<IEdibleItem>();
             stamina.IncreaseStamina(food.StaminaRestoration);
             Destroy(item);
             item = null;
+        }
+        else if (item.GetComponent<INonGroundItem>() != null)
+        {
+            INonGroundItem thing = item.GetComponent<INonGroundItem>();
+            if (thing == null) return;
+            thing.Use();
+            stamina.DecreaseStamina(staminaLossPerInstrumentUse);
         }
 
     }

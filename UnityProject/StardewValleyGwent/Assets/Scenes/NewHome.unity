@@ -28221,6 +28221,12 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8751806429189950007, guid: 71b33e0218da9b24d9c1b23b27ade159,
+        type: 3}
+      propertyPath: fishingFloat
+      value: 
+      objectReference: {fileID: 2839755083876528381, guid: 2cabd3ee2742920449bd1d21abd201b8,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71b33e0218da9b24d9c1b23b27ade159, type: 3}
 --- !u!4 &396629663 stripped
@@ -39585,6 +39591,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 745180175}
     m_Modifications:
+    - target: {fileID: 8456883429394012931, guid: 319b830c2b76bf84ea12f396558b94f8,
+        type: 3}
+      propertyPath: m_Name
+      value: Fertilizer
+      objectReference: {fileID: 0}
     - target: {fileID: 8456883429394012928, guid: 319b830c2b76bf84ea12f396558b94f8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -39643,11 +39654,6 @@ PrefabInstance:
     - target: {fileID: 8456883429394012930, guid: 319b830c2b76bf84ea12f396558b94f8,
         type: 3}
       propertyPath: objectsName
-      value: Fertilizer
-      objectReference: {fileID: 0}
-    - target: {fileID: 8456883429394012931, guid: 319b830c2b76bf84ea12f396558b94f8,
-        type: 3}
-      propertyPath: m_Name
       value: Fertilizer
       objectReference: {fileID: 0}
     m_RemovedComponents: []

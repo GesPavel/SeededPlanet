@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hoe : MonoBehaviour, Instrument,IItem
+public class Hoe : MonoBehaviour, IGroundItem,IItem
 {
     PlayerController player;
     Ground standingGround;
