@@ -22,25 +22,8 @@ public class FishingFloat : MonoBehaviour
         changeToAbove = false;
     }
 
-
-    void Update()
+    void BehaveUnderTheWater()
     {
-        if (timeAboveTheWater >= 0)
-        {
-            GetComponent<SpriteRenderer>().enabled = true;
-            timeAboveTheWater -= Time.deltaTime;
-            youCanGetFish = false;
-        }
-        if (timeAboveTheWater < 0)
-        {
-            if (changeToUnder)
-            {
-                timeUnderTheWater = Random.Range(minRangeAboveAndUnder, maxRangeUnder);
-                changeToAbove = true;
-                changeToUnder = false;
-            }
-        }
-
 
         if (timeUnderTheWater >= 0)
         {
@@ -59,5 +42,39 @@ public class FishingFloat : MonoBehaviour
             }
 
         }
+
     }
+    void BehaveAboveTheWater()
+    {
+        if (timeAboveTheWater >= 0)
+        {
+            GetComponent<SpriteRenderer>().enabled = true;
+            timeAboveTheWater -= Time.deltaTime;
+            youCanGetFish = false;
+        }
+        if (timeAboveTheWater < 0)
+        {
+            if (changeToUnder)
+            {
+                timeUnderTheWater = Random.Range(minRangeAboveAndUnder, maxRangeUnder);
+                changeToAbove = true;
+                changeToUnder = false;
+            }
+        }
+
+    }
+    void Update()
+    {
+        BehaveAboveTheWater();
+        BehaveUnderTheWater();
+    }
+    /*
+            else if (item.GetComponent<INonGroundItem>() != null)
+        {
+            INonGroundItem thing = item.GetComponent<INonGroundItem>();
+            if (thing == null) return;
+            thing.Use();
+            stamina.DecreaseStamina(staminaLossPerInstrumentUse);
+        }
+        */
 }
