@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < slots.Length; i++)
         {
-            if (!slots[i].IsFool)
+            if (!slots[i].IsFull)
             {
                 slots[i].Set(item);
                 return true;

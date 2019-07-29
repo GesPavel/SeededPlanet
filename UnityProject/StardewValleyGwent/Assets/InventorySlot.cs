@@ -15,29 +15,25 @@ public class InventorySlot : MonoBehaviour
     {
         itemsHolder = ItemsHolder.instance;
     }
-    public bool IsFool { get; private set; } = false;
+    public bool IsFull { get; private set; } = false;
     public void Set(GameObject item)
     {
         itemsIcon.sprite = item.GetComponent<SpriteRenderer>().sprite;
         itemsName = item.GetComponent<IItem>().ObjectsName;
-        IsFool = true;
+        IsFull = true;
     }
 
     public void Remove()
     {
         itemsIcon.sprite = placeHolder;
         itemsName = null;
-        IsFool = false;
+        IsFull = false;
     }
 
     public void Drop()
     {
         var droppedObject = itemsHolder.GetItemByName(itemsName);
         Remove();
-        if (droppedObject == null)
-        {
-            return;
-        }
         droppedObject.transform.position=FindObjectOfType<PlayerController>().transform.position;
     }
     public void PutOtemInHand()
