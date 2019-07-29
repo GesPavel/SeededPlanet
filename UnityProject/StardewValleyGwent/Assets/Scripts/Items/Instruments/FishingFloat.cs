@@ -69,12 +69,6 @@ public class FishingFloat : MonoBehaviour
         BehaveUnderTheWater();
     }
     /*
-            else if (item.GetComponent<INonGroundItem>() != null)
-        {
-            INonGroundItem thing = item.GetComponent<INonGroundItem>();
-            if (thing == null) return;
-            thing.Use();
-            stamina.DecreaseStamina(staminaLossPerInstrumentUse);
-        }
+
         */
 }
