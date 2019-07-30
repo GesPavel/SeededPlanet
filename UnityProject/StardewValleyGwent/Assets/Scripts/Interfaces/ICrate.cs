@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ICrate :IInteractable
 {
-    GameObject ChangeItem(GameObject item);
+    GameObject TradeItem(GameObject item);
 }
