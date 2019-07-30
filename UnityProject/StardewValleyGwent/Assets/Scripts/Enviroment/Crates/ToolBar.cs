@@ -18,7 +18,7 @@ public class ToolBar : MonoBehaviour,ICrate
             instrument.transform.position = transform.position;
         }
     }
-    public GameObject ChangeItem(GameObject item)
+    public GameObject TradeItem(GameObject item)
     {
         var itemToSend = instrument;
         instrument = item;
