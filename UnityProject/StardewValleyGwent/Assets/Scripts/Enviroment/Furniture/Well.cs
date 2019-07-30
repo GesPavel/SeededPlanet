@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Well : MonoBehaviour, IConvertor
+public class Well : MonoBehaviour, IConverter
 {
     WateringCan can;
 
