@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fish : MonoBehaviour, IItem, IEdible
+public class Fish : MonoBehaviour, IItem, IEdibleItem
 {
     [SerializeField]
     private string objectsName = "Fish";

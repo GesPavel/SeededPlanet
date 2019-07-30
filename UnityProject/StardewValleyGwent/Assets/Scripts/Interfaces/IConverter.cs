@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
- interface Instrument :  IUsable
+public interface IConverter : IInteractable
 {
-    void Use(Ground ground);
+    GameObject Convert(GameObject item);
 }

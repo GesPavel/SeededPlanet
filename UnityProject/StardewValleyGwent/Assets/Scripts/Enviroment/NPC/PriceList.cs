@@ -28,13 +28,13 @@ public class PriceList : MonoBehaviour
         }
     }
 
-    public int GetPriceOf(GameObject item)
+    public int GetPriceOf(string itemsName)
     {
-        IItem itemToTrade = item.GetComponent<IItem>();
-        if(!priceList.ContainsKey(itemToTrade.ObjectsName))
+        if(!priceList.ContainsKey(itemsName))
         {
             throw new Exception("Not Founded");
         }
-        return priceList[itemToTrade.ObjectsName];
+        return priceList[itemsName];
     }
+
 }

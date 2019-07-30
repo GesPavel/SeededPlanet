@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vegetable : MonoBehaviour,IItem,IEdible
+public class Vegetable : MonoBehaviour,IItem,IEdibleItem
 {
     [SerializeField] private string objectsName;
     public string ObjectsName => objectsName;

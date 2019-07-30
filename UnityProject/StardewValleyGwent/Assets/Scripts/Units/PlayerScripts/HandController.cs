@@ -1,26 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public class HandController : MonoBehaviour
 {
-    public KeyCode useButton, interactButton,takeItefFromGround;
+    public KeyCode useButton, interactButton,takeItemfFromGround;
     public float staminaLossPerInstrumentUse = 5;
-    GameObject item;
+    public GameObject Item { get; private set; }
     StaminaDirector stamina;
     PlayerController playerController;
+    Inventory inventory;
 
     private void Start()
     {
         stamina = FindObjectOfType<StaminaDirector>();
         playerController = GetComponentInParent<PlayerController>();
+        inventory=GetComponentInParent<Inventory>();
     }
     private void Update()
     {
-        if (item != null)
+        if (Item != null)
         {
-            item.transform.position = transform.position;
-            item.transform.up = transform.up;
+            Item.transform.position = transform.position;
+            Item.transform.up = transform.up;
+            inventory.activeItemSlot.Set(Item);
+        }
+        else
+        {
+            inventory.activeItemSlot.Remove();
+        }
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
         }
         if (Input.GetKeyDown(useButton)) UseItem();
         if (Input.GetKeyDown(interactButton)) InteractWithTheEnvironment();
@@ -28,22 +39,29 @@ public class HandController : MonoBehaviour
 
     private void UseItem()
     {
-        if (item == null) return;
-        if (item.GetComponent<IUsable>() == null) return;
+        if (Item == null) return;
+        if (Item.GetComponent<IUsable>() == null) return;
 
-        if (item.GetComponent<Instrument>() != null)
+        if (Item.GetComponent<IGroundItem>() != null)
         {
-            Instrument instrument = item.GetComponent<Instrument>();
+            IGroundItem instrument = Item.GetComponent<IGroundItem>();
             if (instrument == null) return;
             instrument.Use(playerController.GetCurrentGroundPosition());
             stamina.DecreaseStamina(staminaLossPerInstrumentUse);
         }
-        else if (item.GetComponent<IEdible>() != null)
+        else if (Item.GetComponent<IEdibleItem>() != null)
         {
-            IEdible food = item.GetComponent<IEdible>();
+            IEdibleItem food = Item.GetComponent<IEdibleItem>();
             stamina.IncreaseStamina(food.StaminaRestoration);
-            Destroy(item);
-            item = null;
+            Destroy(Item);
+            Item = null;
+        }
+        else if (Item.GetComponent<INonGroundItem>() != null)
+        {
+            INonGroundItem thing = Item.GetComponent<INonGroundItem>();
+            if (thing == null) return;
+            thing.Use();
+            stamina.DecreaseStamina(staminaLossPerInstrumentUse);
         }
 
     }
@@ -52,7 +70,7 @@ public class HandController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 1, LayerMask.GetMask("BlockingLayer"));
         if (hit.collider == null)
         {
-            item = null;
+            Item = null;
             return;
         }
 
@@ -60,20 +78,20 @@ public class HandController : MonoBehaviour
         IInteractable interactable = environment.GetComponent<IInteractable>();
         if (interactable == null)
         {
-            item = null;
+            Item = null;
             return;
         }
 
         ICrate crate = environment.GetComponent<ICrate>();
-        IConvertor convertor = environment.GetComponent<IConvertor>();
+        IConverter convertor = environment.GetComponent<IConverter>();
         IFurniture furniture = environment.GetComponent<IFurniture>();
         if (crate != null)
         {
-            item = crate.TradeItem(item);
+            Item = crate.ChangeItem(Item);
         }
         else if (convertor != null)
         {
-            item = convertor.Convert(item);
+            Item = convertor.Convert(Item);
         }
         else if (furniture != null)
         {
@@ -82,10 +100,10 @@ public class HandController : MonoBehaviour
     }
     public void PickUpItem(GameObject item)
     {
-        this.item = item;
+        this.Item = item;
     }
     public bool IsEmpty()
     {
-        return item == null;
+        return Item == null;
     }
 }

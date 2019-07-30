@@ -145,4 +145,8 @@ MonoBehaviour:
   lakeLayer:
     serializedVersion: 2
     m_Bits: 16384
-  fish: {fileID: 5930742536389730271, guid: 2300eb09d28449643a21ff6d4b385dff, type: 3}
+  haul:
+  - {fileID: 5930742536389730271, guid: 2300eb09d28449643a21ff6d4b385dff, type: 3}
+  - {fileID: 5225710043301698549, guid: 11a72e5a5dba3b8468418ddaba4d1e34, type: 3}
+  fishingFloat: {fileID: 2839755083876528381, guid: 2cabd3ee2742920449bd1d21abd201b8,
+    type: 3}

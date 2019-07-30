@@ -68,7 +68,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1148929015
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4034e65ecfd65574c8c3f825c0c9c4a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -116,11 +116,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2462947220544974200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bb0f7fc06eb62f4c826e71d91abc8c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 3560b06cad9570f4b9c3f616cb2930a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawAndCookedFood:
-  - rawFood: {fileID: 5142369330590630118, guid: 30c6d26813462604bb0fc5ddd087c7ef,
+  initialAndFinalProducts:
+  - initialProduct: {fileID: 5142369330590630118, guid: 30c6d26813462604bb0fc5ddd087c7ef,
       type: 3}
-    cookedFood: {fileID: 3100840862575522904, guid: c1409d40cfc1a5f439336e9f7b42d6df,
+    finalProduct: {fileID: 3100840862575522904, guid: c1409d40cfc1a5f439336e9f7b42d6df,
+      type: 3}
+  - initialProduct: {fileID: 5587703481954138804, guid: 248f328b0d33d2140b2285fdc28165c9,
+      type: 3}
+    finalProduct: {fileID: 3100840862575522904, guid: c1409d40cfc1a5f439336e9f7b42d6df,
+      type: 3}
+  - initialProduct: {fileID: 8893104194026024712, guid: 6617f5ff26816f642922c59073dfd337,
+      type: 3}
+    finalProduct: {fileID: 3100840862575522904, guid: c1409d40cfc1a5f439336e9f7b42d6df,
+      type: 3}
+  - initialProduct: {fileID: 5930742536389730271, guid: 2300eb09d28449643a21ff6d4b385dff,
+      type: 3}
+    finalProduct: {fileID: 3100840862575522904, guid: c1409d40cfc1a5f439336e9f7b42d6df,
       type: 3}
