@@ -52,10 +52,16 @@ public class HandController : MonoBehaviour
         else if (Item.GetComponent<IEdibleItem>() != null)
         {
             IEdibleItem food = Item.GetComponent<IEdibleItem>();
-            stamina.IncreaseStamina(food.StaminaRestoration);
+            stamina.IncreaseStamina(food.StaminaRestoration);            
+            if (Item.GetComponent<IBuffable>() != null)
+            {
+                IBuffable buffFood = Item.GetComponent<IBuffable>();
+                buffFood.Buff();
+            }
             Destroy(Item);
             Item = null;
         }
+
         else if (Item.GetComponent<INonGroundItem>() != null)
         {
             INonGroundItem thing = Item.GetComponent<INonGroundItem>();

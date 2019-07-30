@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2324650403117263184}
   - component: {fileID: 6317638750234155353}
-  - component: {fileID: 2320343687760441298}
   - component: {fileID: 3769335755609445232}
+  - component: {fileID: 8835430669431837941}
   m_Layer: 0
   m_Name: Mushroom
   m_TagString: Untagged
@@ -81,20 +81,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2320343687760441298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1058101392263161007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39813df92823c4947918435773b075af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectsName: Mushroom
-  staminaRestoration: 25
 --- !u!61 &3769335755609445232
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -121,3 +107,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.87, y: 0.85}
   m_EdgeRadius: 0
+--- !u!114 &8835430669431837941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058101392263161007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0115658c1682f7e4bae885c2b9af53df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsName: Mushroom
+  staminaRestoration: 25
+  catsHallucination: {fileID: 9134235749112123360, guid: 3fa52219da8d81348a77ea5d40d139a8,
+    type: 3}
