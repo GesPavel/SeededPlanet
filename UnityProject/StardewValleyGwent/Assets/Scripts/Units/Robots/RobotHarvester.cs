@@ -7,12 +7,11 @@ using System;
 public class RobotHarvester : MonoBehaviour
 {
     AIPath aiPath;
-    IAstarAI ai;
     RobotTaskController taskController;
     RobotStrategy strategy;
-    GameObject itemInHand;
+    GameObject itemInManipulator;
 
-    public bool HasTask { get; private set; }
+    public bool HasTask { get; set; }
 
     private void Start()
     {
@@ -21,17 +20,22 @@ public class RobotHarvester : MonoBehaviour
         taskController.AddHarvester(this);
         taskController.DeclareFree(this);
         HasTask = false;
-
     }
 
   
     void Update()
     {
         DetermineWhatToDo();
-        if (itemInHand != null)
+        MoveItemWithRobot();
+        
+    }
+
+    private void MoveItemWithRobot()
+    {
+        if (itemInManipulator != null)
         {
-            itemInHand.transform.position = transform.position;
-            itemInHand.transform.up = transform.up;
+            itemInManipulator.transform.position = transform.position;
+            itemInManipulator.transform.up = transform.up;
         }
     }
 
@@ -39,9 +43,8 @@ public class RobotHarvester : MonoBehaviour
     {
         aiPath.canMove = HasTask;
         aiPath.canSearch = HasTask;
-        if (aiPath.reachedEndOfPath)
+        if (aiPath.reachedEndOfPath && HasTask)
         {
-            Debug.Log(1);
             OnPathComplete();
         }
     }
@@ -54,22 +57,24 @@ public class RobotHarvester : MonoBehaviour
             taskController.DeclareBusy(this);
             HasTask = true;
         }
-        
         task.ClaimTask();
         gameObject.AddComponent(task.GetStrategyAccordingToType());
    }
     private void OnPathComplete()
     {
-        strategy = GetComponent(typeof(RobotStrategy)) as RobotStrategy; 
-        strategy.Act();
+        strategy = GetComponent(typeof(RobotStrategy)) as RobotStrategy;
+        if (strategy != null)
+        {
+            strategy.Act();
+        }
     }
     public void PickUpItem(GameObject item)
     {
-        itemInHand = item;
+        itemInManipulator = item;
     }
     internal void StoreItem(UniversalCrate crate)
     {
-        crate.ChangeItem(itemInHand);
+        itemInManipulator = crate.TradeItem(itemInManipulator);
     }
     public void SetDistanceToPathComplete(float dist)
     {

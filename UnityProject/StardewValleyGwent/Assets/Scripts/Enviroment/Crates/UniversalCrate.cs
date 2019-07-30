@@ -8,53 +8,17 @@ using UnityEditor;
 public class UniversalCrate : MonoBehaviour, ICrate
 {
     public TextMeshPro seedIndicator;
-    public GameObject itemType;
+    public GameObject crateItem;
     [SerializeField] private int itemsCounter = 0;
 
     private void Start()
     {
         seedIndicator.text = itemsCounter.ToString();
-        itemType = null;
+        crateItem = null;
     }
-    public void PutItem(GameObject item)
+    public GameObject TradeItem(GameObject item)
     {
-        if (itemType == null)
-        {
-            itemType = Instantiate(item);
-        }
-        if (ItemIsValid(item))
-        {
-            Destroy(item);
-            itemsCounter++;
-            seedIndicator.text = itemsCounter.ToString();
-        }
-    }
 
-    public bool ItemIsValid(GameObject item)
-    {
-        if (itemType != null)
-        {
-            IItem itemInterface = item.GetComponent<IItem>();
-            IItem itemInCrateInterface = itemType.GetComponent<IItem>();
-            return itemInterface.ObjectsName == itemInCrateInterface.ObjectsName;
-        }
-        return false;
-    }
-
-    public GameObject SendItem()
-    {
-        if (itemsCounter == 0 || itemType == null)
-        {
-            return null;
-        }
-        itemsCounter--;
-        seedIndicator.text = itemsCounter.ToString();
-        return Instantiate(itemType, transform.position, Quaternion.identity);
-    }
-
-    public GameObject ChangeItem(GameObject item)
-    {
-        
         if (item != null)
         {
             PutItem(item);
@@ -65,4 +29,68 @@ public class UniversalCrate : MonoBehaviour, ICrate
             return SendItem();
         }
     }
+    public void PutItem(GameObject item)
+    {
+        if (crateItem == null)
+        {
+            SetCrateItem(item);
+        }
+        if (ItemIsValid(item))
+        {
+            Destroy(item);
+            itemsCounter++;
+            seedIndicator.text = itemsCounter.ToString();
+        }
+    }
+
+    private void SetCrateItem(GameObject item)
+    {
+        GameObject itemToStore = Instantiate(item);
+        if (itemToStore.GetComponent<BoxCollider2D>())
+        {
+            itemToStore.GetComponent<BoxCollider2D>().enabled = false;
+        }
+        else if (itemToStore.GetComponent<CircleCollider2D>())
+        {
+            itemToStore.GetComponent<CircleCollider2D>().enabled = false;
+        }
+        itemToStore.transform.position = gameObject.transform.position;
+        itemToStore.transform.rotation = Quaternion.identity;
+        crateItem = itemToStore;
+    }
+
+    public bool ItemIsValid(GameObject item)
+    {
+        if (crateItem != null)
+        {
+            IItem itemInterface = item.GetComponent<IItem>();
+            IItem itemInCrateInterface = crateItem.GetComponent<IItem>();
+            return itemInterface.ObjectsName == itemInCrateInterface.ObjectsName;
+        }
+        return false;
+    }
+
+    public GameObject SendItem()
+    {
+        if (itemsCounter == 0 || crateItem == null)
+        {
+            return null;
+        }
+        itemsCounter--;
+        seedIndicator.text = itemsCounter.ToString();
+        GameObject itemToGive = Instantiate(crateItem);
+        if (itemsCounter == 0)
+        {
+            ClearCrate();
+        }
+        return itemToGive;
+    }
+
+    private void ClearCrate()
+    {
+        Destroy(crateItem);
+        crateItem = null;
+    }
+
+    
 }

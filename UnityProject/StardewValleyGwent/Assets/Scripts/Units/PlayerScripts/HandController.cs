@@ -69,7 +69,7 @@ public class HandController : MonoBehaviour
         IFurniture furniture = environment.GetComponent<IFurniture>();
         if (crate != null)
         {
-            item = crate.ChangeItem(item);
+            item = crate.TradeItem(item);
         }
         else if (convertor != null)
         {

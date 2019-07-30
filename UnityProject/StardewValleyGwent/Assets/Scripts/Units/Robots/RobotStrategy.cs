@@ -4,5 +4,6 @@ using UnityEngine;
 public abstract class RobotStrategy : MonoBehaviour
 {
     public abstract void Act();
+    public abstract void ExitStrategy();
     
 }

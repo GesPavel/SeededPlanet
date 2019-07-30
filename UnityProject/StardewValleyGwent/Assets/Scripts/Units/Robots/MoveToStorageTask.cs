@@ -7,11 +7,11 @@ public class MoveToStorageTask : AbstractTask
     GameObject itemToStore;
     protected override void AddToTaskListIfNecessary()
     {
-        
+        return;
     }
     protected override void RemoveFromTaskListIfNecessary()
     {
-
+        return;
     }
 
     public override Type GetStrategyAccordingToType()
@@ -20,24 +20,41 @@ public class MoveToStorageTask : AbstractTask
     }
     protected override void DetermineDestination()
     {
+        itemToStore = gameObject;
         UniversalCrate[] crates =  FindObjectsOfType<UniversalCrate>();
-        for (int i = 0; i< crates.Length; i++)
+        Destination = TryToFindCratesWithValidItems(crates);
+        if (Destination == null)
+        {
+            Destination = TryToFindEmptyCrates(crates);
+        }
+        if (Destination == null)
+        {
+            Debug.Log("Нет свободных ящиков");
+        }
+    }
+
+    private Transform TryToFindEmptyCrates(UniversalCrate[] crates)
+    {
+        for (int i = 0; i < crates.Length; i++)
+        {
+            if (crates[i].crateItem == null)
+            {
+                return crates[i].transform;
+            }
+        }
+        return null;
+    }
+
+    private Transform TryToFindCratesWithValidItems(UniversalCrate[] crates)
+    {
+        for (int i = 0; i < crates.Length; i++)
         {
             if (crates[i].ItemIsValid(itemToStore))
             {
-                Destination = crates[i].transform;
-                return;
+                return crates[i].transform;
             }
         }
-        for (int i = 0; i < crates.Length; i++)
-        {
-            if (crates[i].itemType == null)
-            {
-                Destination = crates[i].transform;
-                return;
-            }
-        }
-
+        return null;
     }
 
     internal void SetItemType(GameObject item)
