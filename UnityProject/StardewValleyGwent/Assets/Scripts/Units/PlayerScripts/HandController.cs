@@ -83,7 +83,7 @@ public class HandController : MonoBehaviour
         }
 
         ICrate crate = environment.GetComponent<ICrate>();
-        IConvertor convertor = environment.GetComponent<IConvertor>();
+        IConverter convertor = environment.GetComponent<IConverter>();
         IFurniture furniture = environment.GetComponent<IFurniture>();
         if (crate != null)
         {
