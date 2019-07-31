@@ -92,5 +92,8 @@ public class UniversalCrate : MonoBehaviour, ICrate
         crateItem = null;
     }
 
-    
+    public bool IsEmpty()
+    {
+        return crateItem == null;
+    }
 }

@@ -25,7 +25,10 @@ public abstract class AbstractTask : MonoBehaviour
         inProgress = true;
         RemoveFromTaskListIfNecessary();
     }
-
+     public void FailTask()
+    {
+        Destroy(this);
+    }
     protected abstract void RemoveFromTaskListIfNecessary();
 
 

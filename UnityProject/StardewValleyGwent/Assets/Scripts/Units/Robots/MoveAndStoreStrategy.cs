@@ -6,6 +6,7 @@ public class MoveAndStoreStrategy : RobotStrategy
 {
     int crateLayerMask;
     RobotHarvester robot;
+    
     private void Start()
     {
         crateLayerMask = LayerMask.GetMask("BlockingLayer");
@@ -24,14 +25,28 @@ public class MoveAndStoreStrategy : RobotStrategy
     private void InteractWithTheCrate(GameObject crateGameObject)
     {
         UniversalCrate crate = crateGameObject.GetComponent<UniversalCrate>();
-        robot.StoreItem(crate);
-        ExitStrategy();
+        if (crate.ItemIsValid(robot.itemInManipulator) || crate.IsEmpty())
+        {
+            robot.StoreItem(crate);
+            ExitStrategy();
+        }
+        else
+        {
+            FailStrategy();
+        }
+    }
+
+    private void FailStrategy()
+    {
+        robot.itemInManipulator.GetComponent<MoveToStorageTask>().FailTask();
+        MoveToStorageTask task = robot.itemInManipulator.AddComponent<MoveToStorageTask>();
+        robot.ReceiveTask(task);
+        Destroy(this);
     }
 
     public override void ExitStrategy()
     {
-        FindObjectOfType<RobotTaskController>().DeclareFree(robot);
-        robot.HasTask = false;
+        robot.SetFree();
         Destroy(this);
     }
 }

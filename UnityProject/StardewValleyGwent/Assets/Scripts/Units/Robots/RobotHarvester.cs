@@ -9,7 +9,9 @@ public class RobotHarvester : MonoBehaviour
     AIPath aiPath;
     RobotTaskController taskController;
     RobotStrategy strategy;
-    GameObject itemInManipulator;
+    public GameObject itemInManipulator;
+    float distanceToPathComplete = 0.1f;
+
 
     public bool HasTask { get; set; }
 
@@ -22,12 +24,12 @@ public class RobotHarvester : MonoBehaviour
         HasTask = false;
     }
 
-  
+
     void Update()
     {
         DetermineWhatToDo();
         MoveItemWithRobot();
-        
+
     }
 
     private void MoveItemWithRobot()
@@ -39,17 +41,28 @@ public class RobotHarvester : MonoBehaviour
         }
     }
 
+    public void SetFree()
+    {
+        taskController.DeclareFree(this);
+        HasTask = false;
+        strategy = null;
+
+        aiPath.destination = Vector3.positiveInfinity;
+    }
+
     private void DetermineWhatToDo()
     {
+        Debug.Log(aiPath.destination);
         aiPath.canMove = HasTask;
         aiPath.canSearch = HasTask;
-        if (aiPath.reachedEndOfPath && HasTask)
+        if ((aiPath.destination - gameObject.transform.position).magnitude <= distanceToPathComplete && HasTask)
         {
-            OnPathComplete();
+            Debug.Log((aiPath.destination - gameObject.transform.position).magnitude);
+                OnPathComplete();
         }
     }
 
-    public void SetTask(AbstractTask task)
+    public void ReceiveTask(AbstractTask task)
     {
         aiPath.destination = task.Destination.position;
         if (!HasTask)
@@ -59,7 +72,8 @@ public class RobotHarvester : MonoBehaviour
         }
         task.ClaimTask();
         gameObject.AddComponent(task.GetStrategyAccordingToType());
-   }
+
+    }
     private void OnPathComplete()
     {
         strategy = GetComponent(typeof(RobotStrategy)) as RobotStrategy;
@@ -78,10 +92,10 @@ public class RobotHarvester : MonoBehaviour
     }
     public void SetDistanceToPathComplete(float dist)
     {
-        aiPath.endReachedDistance = dist;
+        distanceToPathComplete = dist;
     }
     public float GetDistanceToPathComplete()
     {
-        return aiPath.endReachedDistance;
+        return distanceToPathComplete;
     }
 }

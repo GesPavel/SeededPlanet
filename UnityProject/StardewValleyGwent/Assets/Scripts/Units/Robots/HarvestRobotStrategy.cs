@@ -15,19 +15,31 @@ public class HarvestRobotStategy : RobotStrategy
     }
     public override void Act()
     {
-        
+
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 0.1f, vegetableLayerMask);
-        harvestTask = hit.collider.gameObject.GetComponent<HarvestTask>();
-        if (harvestTask != null)
+        if (hit.collider != null && hit.collider.gameObject.GetComponent<HarvestTask>() != null)
         {
+            harvestTask = hit.collider.gameObject.GetComponent<HarvestTask>();
             GatherVegetableAndStartNewTask();
+            ExitStrategy();
         }
-        ExitStrategy();
+        else
+        {
+            FailStrategy();
+        }
+    }
+
+    private void FailStrategy()
+    {
+        robot.SetFree();
+
+        Destroy(this);
     }
 
     private void GatherVegetableAndStartNewTask()
     {
         GatherVegetable();
+
         StartNewTask();
     }
 
@@ -35,7 +47,7 @@ public class HarvestRobotStategy : RobotStrategy
     {
         MoveToStorageTask newTask = harvestTask.gameObject.AddComponent<MoveToStorageTask>();
         newTask.SetItemType(harvestTask.gameObject);
-        robot.SetTask(newTask);
+        robot.ReceiveTask(newTask);
     }
 
     private void GatherVegetable()

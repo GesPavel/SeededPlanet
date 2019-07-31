@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -42,7 +43,22 @@ public class RobotTaskController : MonoBehaviour
 
     public void RemoveHarvestTask(HarvestTask harvestTask)
     {
-        harvestTasks.Remove(harvestTask);
+        if (HarvestTaskIsOnTheList(harvestTask))
+        {
+            harvestTasks.Remove(harvestTask);
+        }
+    }
+
+    private bool HarvestTaskIsOnTheList(HarvestTask harvestTask)
+    {
+        foreach (HarvestTask task in harvestTasks)
+        {
+            if (task == harvestTask)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void DeclareFree(RobotHarvester harvester)
@@ -56,7 +72,7 @@ public class RobotTaskController : MonoBehaviour
     }
     private void Notify(RobotHarvester harvester, HarvestTask task)
     {
-        harvester.SetTask(task);
+        harvester.ReceiveTask(task);
 
     }
 }

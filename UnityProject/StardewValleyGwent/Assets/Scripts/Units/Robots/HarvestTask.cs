@@ -21,5 +21,9 @@ public class HarvestTask : AbstractTask
     {
         Destination = gameObject.transform;
     }
+    private void OnDisable()
+    {
+        RemoveFromTaskListIfNecessary();
+    }
 }
 
