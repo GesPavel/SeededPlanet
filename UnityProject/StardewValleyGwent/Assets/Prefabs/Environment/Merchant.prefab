@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8306950905998245317}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.5, y: 12.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 1}
   m_Children:
   - {fileID: 1106958667044683778}
   m_Father: {fileID: 0}
@@ -95,8 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582035559d2e6134fa55419d0d8d79ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemToSell: {fileID: 360744774490303011, guid: e42a4573f7e3a954e87dc092da9a0289,
-    type: 3}
   margin: 1.2
 --- !u!114 &8306950905998245316
 MonoBehaviour:
@@ -209,4 +207,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5801bd68b960042b60cce406367655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AssortmentWindow: {fileID: 0}
+  assortmentWindow: {fileID: 0}
