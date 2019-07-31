@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     Bed bed;
     [SerializeField] private LayerMask blockingLayer;
     [SerializeField] private LayerMask lakeLayer;
-
     private Vector3 lookDirection;
     private Vector3 destinationPoint;
     private bool moving;
