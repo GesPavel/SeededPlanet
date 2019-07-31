@@ -39,8 +39,14 @@ public class HandController : MonoBehaviour
 
     private void UseItem()
     {
-        if (Item == null) return;
-        if (Item.GetComponent<IUsable>() == null) return;
+        if (Item == null)
+        {
+            return;
+        }
+        if (Item.GetComponent<IUsable>() == null)
+        {
+            return;
+        }
 
         if (Item.GetComponent<IGroundItem>() != null)
         {
@@ -69,6 +75,7 @@ public class HandController : MonoBehaviour
             thing.Use();
             stamina.DecreaseStamina(staminaLossPerInstrumentUse);
         }
+
 
     }
     private void InteractWithTheEnvironment()
