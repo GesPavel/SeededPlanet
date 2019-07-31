@@ -28,7 +28,10 @@ public class FishingRod : MonoBehaviour, INonGroundItem, IItem
             floatIsActive = true;
         }
     }
-
+    void OnDisable()
+    {
+        Destroy(newFishingFloat);
+    }
     void Update()
     {
         RaycastHit2D lakeHit = Physics2D.Raycast(transform.position, transform.up, 1, lakeLayer);

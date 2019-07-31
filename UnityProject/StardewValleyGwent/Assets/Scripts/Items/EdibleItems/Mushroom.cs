@@ -12,6 +12,6 @@ public class Mushroom : Vegetable, IBuffable
         player = FindObjectOfType<PlayerController>().gameObject;
         newHallucination = Instantiate(catsHallucination, transform.position, Quaternion.identity);
         newHallucination.transform.SetParent(player.transform);
-        Destroy(newHallucination,10);
+        Destroy(newHallucination,5);
     }
 }

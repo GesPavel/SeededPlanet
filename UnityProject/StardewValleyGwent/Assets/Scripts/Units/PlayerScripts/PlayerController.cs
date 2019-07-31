@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     Bed bed;
     [SerializeField] private LayerMask blockingLayer;
     [SerializeField] private LayerMask lakeLayer;
-
     private Vector3 lookDirection;
     private Vector3 destinationPoint;
     private bool moving;
@@ -48,7 +47,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void MoveControll()
-    {  
+    {
         if (!moving)
         {
             lookDirection = GetLookDirection();
@@ -77,10 +76,10 @@ public class PlayerController : MonoBehaviour
             moving = false;
             return;
         }
-        Vector3 newPos = Vector3.MoveTowards(transform.position, destinationPoint, speed*Time.fixedDeltaTime);
+        Vector3 newPos = Vector3.MoveTowards(transform.position, destinationPoint, speed * Time.fixedDeltaTime);
         rb2d.MovePosition(newPos);
     }
-     
+
     private Vector3 GetLookDirection()
     {
         Vector3 lookDir = Vector3.zero;
@@ -104,7 +103,7 @@ public class PlayerController : MonoBehaviour
     }
     private bool CanMove(Vector3 direction)
     {
-        RaycastHit2D blockingHit = Physics2D.Raycast(rb2d.transform.position, direction, 1,blockingLayer);
+        RaycastHit2D blockingHit = Physics2D.Raycast(rb2d.transform.position, direction, 1, blockingLayer);
         RaycastHit2D lakeHit = Physics2D.Raycast(rb2d.transform.position, direction, 1, lakeLayer);
         if (lakeHit.collider || blockingHit.collider != null) return false;
         return true;
@@ -140,6 +139,13 @@ public class PlayerController : MonoBehaviour
                     Destroy(collision.gameObject);
                 }
             }
+        }
+        if (handController.Item == null && Input.GetKeyDown(handController.useButton))
+        {
+            if (collision.gameObject.GetComponent<ProductZone>() != null)
+            {             
+                collision.gameObject.GetComponent<ProductZone>().SpawnProduct();
+            }           
         }
     }
 }

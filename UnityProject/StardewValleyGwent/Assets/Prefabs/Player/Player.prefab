@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 7206390254378149341}
   - component: {fileID: 1134842016561277185}
   - component: {fileID: 2033495045421912905}
+  - component: {fileID: 7651187477057365383}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -315,7 +316,7 @@ MonoBehaviour:
   right: 100
   up: 119
   down: 115
-  speed: 15
+  speed: 13
   moveDelay: 0
   leftHand: {fileID: 1017005567085935254}
   rightHand: {fileID: 3342890049334773046}
@@ -373,3 +374,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   activeItemSlot: {fileID: 0}
+--- !u!114 &7651187477057365383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8471427184795161971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7190f1de0c7d840a80ddb3f1130f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToBuffSpeed: 5

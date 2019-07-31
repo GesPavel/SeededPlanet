@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Animal : MonoBehaviour
+public abstract class Animal : MonoBehaviour
 {
     [HideInInspector]
     public Rigidbody2D rb;
@@ -23,7 +23,7 @@ public class Animal : MonoBehaviour
     public float maxSinRange = 4 * Mathf.PI / 3;
     public float minSinRange = 2 * Mathf.PI / 3;
 
-    void Start() 
+    void Start()
     {
         direction.x = Random.Range(-10, 10);
         direction.y = Random.Range(-10, 10);
@@ -34,9 +34,9 @@ public class Animal : MonoBehaviour
 
     public virtual void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "Environment") 
+        if (coll.gameObject.tag == "Environment")
         {
-           
+
         }
     }
     public void ChangeDirection()
@@ -50,15 +50,15 @@ public class Animal : MonoBehaviour
 
     public void Move()
     {
-        
+
         if (timeForWalking > 0)
         {
             Vector3 pos = rb.position;
             direction.Normalize();
             timeForWalking -= Time.deltaTime;
             rb.MovePosition((Vector2)rb.transform.position + direction * speed * Time.deltaTime);
-            
-            
+
+
         }
         else
         {
@@ -71,9 +71,9 @@ public class Animal : MonoBehaviour
 
                 ChangeDirection();
                 timeForWalking = Random.Range(minTimeForWalk, maxTimeForWalk);
-                
+
             }
-            
+
         }
         transform.up = direction;
 
@@ -88,10 +88,9 @@ public class Animal : MonoBehaviour
     }
     public virtual void Update()
     {
-        
+
         Move();
-        
+
         OnRayCollision();
     }
-
 }

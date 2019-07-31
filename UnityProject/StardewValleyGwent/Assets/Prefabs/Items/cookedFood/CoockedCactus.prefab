@@ -68,7 +68,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1841055919
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 404d259cbe27ad94aaac474ef2b10343, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -111,3 +111,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsName: Cooked cactus
   staminaRestoration: 40
+  buffSpeed: 3
