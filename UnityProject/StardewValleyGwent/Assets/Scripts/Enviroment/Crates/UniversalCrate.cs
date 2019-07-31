@@ -79,6 +79,14 @@ public class UniversalCrate : MonoBehaviour, ICrate
         itemsCounter--;
         seedIndicator.text = itemsCounter.ToString();
         GameObject itemToGive = Instantiate(crateItem);
+        if (itemToGive.GetComponent<BoxCollider2D>() != null)
+        {
+            itemToGive.GetComponent<BoxCollider2D>().enabled = true;
+        }
+        if (itemToGive.GetComponent<CircleCollider2D>() != null)
+        {
+            itemToGive.GetComponent<CircleCollider2D>().enabled = true;
+        }
         if (itemsCounter == 0)
         {
             ClearCrate();
