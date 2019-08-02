@@ -6,7 +6,7 @@ public class ItemsHolder : MonoBehaviour
 {
     public ItemAssets itemsList;
 
-    public GameObject GetItemByName(string name)
+    public GameObject GetItemByName(string name)//??
     {
         for(int i = 0; i < itemsList.prefabsList.Count; i++)
         {
