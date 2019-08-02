@@ -5,19 +5,19 @@ using UnityEngine;
 public class ItemsHolder : MonoBehaviour
 {
     public ItemAssets itemsList;
-
-    public GameObject GetItemByName(string name)//??
+    public List<GameObject> prefabsList;
+    public GameObject CreateItemByName(string name)
     {
-        for(int i = 0; i < itemsList.prefabsList.Count; i++)
+        for(int i = 0; i < prefabsList.Count; i++)
         {
-            IItem item = itemsList.prefabsList[i].GetComponent<IItem>();
+            IItem item = prefabsList[i].GetComponent<IItem>();
             if (item == null)
             {
                 continue;
             }
             if (item.ObjectsName == name)
             {
-                var objectToGet = Instantiate(itemsList.prefabsList[i]);
+                GameObject objectToGet = Instantiate(prefabsList[i]) as GameObject;
                 return objectToGet;
             }
         }

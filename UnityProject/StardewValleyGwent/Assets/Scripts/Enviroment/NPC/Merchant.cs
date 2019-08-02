@@ -54,7 +54,7 @@ public class Merchant : MonoBehaviour, IConverter
         if (playersMoney.IsAbleToPay(sellingPrice))
         {
             playersMoney.Subtract(sellingPrice);
-            var itemToSell = itemsHolder.GetItemByName(itemsName);
+            var itemToSell = itemsHolder.CreateItemByName(itemsName);
             handController.PickUpItem(Instantiate(itemToSell));
         }
     }
