@@ -32,14 +32,18 @@ public class InventorySlot : MonoBehaviour
 
     public void Drop()
     {
-        var droppedObject = itemsHolder.GetItemByName(itemsName);
+        var droppedObject = itemsHolder.CreateItemByName(itemsName);
         Remove();
+        if (droppedObject == null)
+        {
+            return;
+        }
         droppedObject.transform.position=FindObjectOfType<PlayerController>().transform.position;
     }
     public void PutOtemInHand()
     {
         HandController handController = FindObjectOfType<HandController>();
-        var objectToHand = itemsHolder.GetItemByName(itemsName);
+        GameObject objectToHand = itemsHolder.CreateItemByName(itemsName);
         Remove();
         if (handController.Item != null)
         {
