@@ -7,7 +7,6 @@ public class HandController : MonoBehaviour
     public KeyCode actionButton, TakePutButton, InventoryButton;
     public GameObject ItemInHand { get; private set; }
     public LayerMask itemsLayer;
-    public InventorySlot activeSlot;
     public string sortingLayerItemsOnFloor = "ItemOnFloor";
     public string sortingLayerItemsOnUnits = "ItemOnUnit";
     public float staminaLossPerInstrumentUse = 5;
@@ -37,16 +36,15 @@ public class HandController : MonoBehaviour
         }
         PickUpAndDropLogic();
         if (Input.GetKeyDown(actionButton) && InteractWithTheEnvironment()) { }
-        else if (Input.GetKeyDown(actionButton) && UseItem()) { }
+        else if (Input.GetKeyDown(actionButton) && IsHasItemInHand() && UseItem()) { }
     }
 
     private void PickUpAndDropLogic()
     {
-
         if (Input.GetKeyDown(TakePutButton))
         {
-            RaycastHit2D nearestHit = FindNearestItemsHit();
-            nearestItem = nearestHit.collider.gameObject;
+            RaycastHit2D raycastHit2 = FindNearestItemsHit();
+            nearestItem = ExtractItemObjectFromHit2D(raycastHit2);
             IsTakePutButtonHolded = true;
         }
         if (IsTakePutButtonHolded && Input.GetKey(TakePutButton))
@@ -54,14 +52,23 @@ public class HandController : MonoBehaviour
             TakePutButtonHoldedTime += Time.deltaTime;
             if (TakePutButtonHoldedTime >= 0.5f)
             {
-                DropItemFromHand();
-                TakeItem(nearestItem);
+                if (IsHasItemInHand())
+                {
+                    DropItemFromHand();
+                }
+                if (nearestItem)
+                {
+                    TakeItem(nearestItem);
+                }
                 ResetHolding();
             }
         }
         if (Input.GetKeyUp(TakePutButton) && IsTakePutButtonHolded)
         {
-            inventory.TryPutItem(nearestItem);
+            if (nearestItem)
+            {
+                inventory.TryPutItem(nearestItem);
+            }
             ResetHolding();
         }
     }
@@ -78,6 +85,19 @@ public class HandController : MonoBehaviour
         }
         return nearestItem;
     }
+    private GameObject ExtractItemObjectFromHit2D(RaycastHit2D hit)
+    {
+        if (hit.collider == null)
+        {
+            return null;
+        }
+        IItem item = hit.collider.gameObject.GetComponent<IItem>();
+        if (item == null)
+        {
+            return null;
+        }
+        return hit.collider.gameObject;
+    }
     private void ResetHolding()
     {
         TakePutButtonHoldedTime = 0;
@@ -92,7 +112,6 @@ public class HandController : MonoBehaviour
     public void TakeItem(GameObject item)
     {
         ItemInHand = item;
-        ItemInHand = nearestItem;
         ItemInHand.GetComponent<SpriteRenderer>().sortingLayerName = sortingLayerItemsOnUnits;
         ItemInHand.transform.SetParent(playerController.gameObject.transform);
         ItemInHand.transform.position = transform.position;
@@ -110,8 +129,12 @@ public class HandController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        MoveItem();
+        if (IsHasItemInHand())
+        {
+            MoveItem();
+        }
     }
+
     private void MoveItem()
     {
         ItemInHand.transform.position = transform.position;
@@ -174,15 +197,27 @@ public class HandController : MonoBehaviour
         ICrate crate = environment.GetComponent<ICrate>();
         if (crate != null)
         {
+            GameObject itemFromHand = ItemInHand;
+            if (IsHasItemInHand())
+            {
+                DropItemFromHand();
+            }
+            GameObject itemFromCrate = crate.TradeItem(itemFromHand);   
+            if (itemFromCrate)
+            {
+                TakeItem(itemFromCrate);
+            }
             return true;
         }
-
         IConverter convertor = environment.GetComponent<IConverter>();
-        if (convertor != null)
+        if (convertor != null && IsHasItemInHand())
         {
+            GameObject itemFromHand = ItemInHand;
+            GameObject itemFromConvertor = convertor.Convert(itemFromHand);
+            DropItemFromHand();
+            TakeItem(itemFromConvertor);
             return true;
         }
-
         IFurniture furniture = environment.GetComponent<IFurniture>();
         if (furniture != null)
         {
