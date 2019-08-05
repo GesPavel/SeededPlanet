@@ -9,6 +9,7 @@ public class FishingRod : MonoBehaviour, INonGroundItem, IItem
     [SerializeField]
     private string objectsName;
     public string ObjectsName => objectsName;
+    public Sprite Icon => GetComponent<SpriteRenderer>().sprite;
     [SerializeField]
     private LayerMask lakeLayer;
     public GameObject[] haul;

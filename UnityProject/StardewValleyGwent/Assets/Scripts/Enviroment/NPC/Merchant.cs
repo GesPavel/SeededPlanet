@@ -9,7 +9,6 @@ public class Merchant : MonoBehaviour, IConverter
     MoneyController playersMoney;
     HandController handController;
     [SerializeField] private float margin = 1.2f;
-    ItemsHolder itemsHolder;
 
     #region Singleton
     public static Merchant instance;
@@ -26,7 +25,6 @@ public class Merchant : MonoBehaviour, IConverter
         playersMoney = FindObjectOfType<MoneyController>();
         priceList = GetComponent<PriceList>();
         handController = FindObjectOfType<HandController>();
-        itemsHolder = ItemsHolder.instance;
     }
 
     public GameObject Convert(GameObject item)
@@ -44,18 +42,18 @@ public class Merchant : MonoBehaviour, IConverter
         return priceList.GetPriceOf(itemsName);
     }
 
-    public void TrySellItemToPlayer(string itemsName)
-    {
-        if (handController.Item != null)
-        {
-            return;
-        }
-        int sellingPrice = (int)(DeterminePrice(itemsName) * margin);
-        if (playersMoney.IsAbleToPay(sellingPrice))
-        {
-            playersMoney.Subtract(sellingPrice);
-            var itemToSell = itemsHolder.CreateItemByName(itemsName);
-            handController.PickUpItem(Instantiate(itemToSell));
-        }
-    }
+    //public void TrySellItemToPlayer(string itemsName)
+    //{
+    //    if (handController.Item != null)
+    //    {
+    //        return;
+    //    }
+    //    int sellingPrice = (int)(DeterminePrice(itemsName) * margin);
+    //    if (playersMoney.IsAbleToPay(sellingPrice))
+    //    {
+    //        playersMoney.Subtract(sellingPrice);
+    //        var itemToSell = itemsHolder.CreateItemByName(itemsName);
+    //        handController.PickUpItem(Instantiate(itemToSell));
+    //    }
+    //}
 }

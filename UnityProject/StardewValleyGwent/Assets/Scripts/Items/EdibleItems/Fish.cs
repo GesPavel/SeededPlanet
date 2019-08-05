@@ -7,6 +7,7 @@ public class Fish : MonoBehaviour, IItem, IEdibleItem
     [SerializeField]
     private string objectsName = "Fish";
     public string ObjectsName => objectsName;
+    public Sprite Icon => GetComponent<SpriteRenderer>().sprite;
 
     [SerializeField]
     private float staminaRestoration = 25;

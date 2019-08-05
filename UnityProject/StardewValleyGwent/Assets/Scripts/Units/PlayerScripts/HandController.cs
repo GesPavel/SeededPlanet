@@ -4,119 +4,192 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class HandController : MonoBehaviour
 {
-    public KeyCode useButton, interactButton,takeItemfFromGround;
+    public KeyCode actionButton, TakePutButton, InventoryButton;
+    public GameObject ItemInHand { get; private set; }
+    public LayerMask itemsLayer;
+    public InventorySlot activeSlot;
+    public string sortingLayerItemsOnFloor = "ItemOnFloor";
+    public string sortingLayerItemsOnUnits = "ItemOnUnit";
     public float staminaLossPerInstrumentUse = 5;
-    public GameObject Item { get; private set; }
-    StaminaDirector stamina;
-    PlayerController playerController;
-    Inventory inventory;
 
+    private GameObject nearestItem;
+    private InventoryScript inventory;
+    private StaminaDirector stamina;
+    private PlayerController playerController;
+    private float playersHandLength = 0.5f;
+    private float TakePutButtonHoldedTime = 0;
+    private bool IsTakePutButtonHolded = false;
     private void Start()
     {
         stamina = FindObjectOfType<StaminaDirector>();
         playerController = GetComponentInParent<PlayerController>();
-        inventory=GetComponentInParent<Inventory>();
+        inventory = InventoryScript.instance;
     }
     private void Update()
     {
-        if (Item != null)
-        {
-            Item.transform.position = transform.position;
-            Item.transform.up = transform.up;
-            inventory.activeItemSlot.Set(Item);
-        }
-        else
-        {
-            inventory.activeItemSlot.Remove();
-        }
         if (EventSystem.current.IsPointerOverGameObject())
         {
             return;
         }
-        if (Input.GetKeyDown(useButton)) UseItem();
-        if (Input.GetKeyDown(interactButton)) InteractWithTheEnvironment();
+        if (Input.GetKeyDown(InventoryButton))
+        {
+            OpenCloseInventory();
+        }
+        PickUpAndDropLogic();
+        if (Input.GetKeyDown(actionButton) && InteractWithTheEnvironment()) { }
+        else if (Input.GetKeyDown(actionButton) && UseItem()) { }
     }
 
-    private void UseItem()
+    private void PickUpAndDropLogic()
     {
-        if (Item == null)
-        {
-            return;
-        }
-        if (Item.GetComponent<IUsable>() == null)
-        {
-            return;
-        }
 
-        if (Item.GetComponent<IGroundItem>() != null)
+        if (Input.GetKeyDown(TakePutButton))
         {
-            IGroundItem instrument = Item.GetComponent<IGroundItem>();
-            if (instrument == null) return;
+            RaycastHit2D nearestHit = FindNearestItemsHit();
+            nearestItem = nearestHit.collider.gameObject;
+            IsTakePutButtonHolded = true;
+        }
+        if (IsTakePutButtonHolded && Input.GetKey(TakePutButton))
+        {
+            TakePutButtonHoldedTime += Time.deltaTime;
+            if (TakePutButtonHoldedTime >= 0.5f)
+            {
+                DropItemFromHand();
+                TakeItem(nearestItem);
+                ResetHolding();
+            }
+        }
+        if (Input.GetKeyUp(TakePutButton) && IsTakePutButtonHolded)
+        {
+            inventory.TryPutItem(nearestItem);
+            ResetHolding();
+        }
+    }
+    private RaycastHit2D FindNearestItemsHit()
+    {
+        if (IsHasItemInHand())
+        {
+            ItemInHand.GetComponent<Collider2D>().enabled = false;
+        }
+        RaycastHit2D nearestItem = Physics2D.Raycast(playerController.gameObject.transform.position, transform.up, playersHandLength, itemsLayer);
+        if (IsHasItemInHand())
+        {
+            ItemInHand.GetComponent<Collider2D>().enabled = true;
+        }
+        return nearestItem;
+    }
+    private void ResetHolding()
+    {
+        TakePutButtonHoldedTime = 0;
+        IsTakePutButtonHolded = false;
+    }
+    private void DropItemFromHand()
+    {
+        ItemInHand.GetComponent<SpriteRenderer>().sortingLayerName = sortingLayerItemsOnFloor;
+        ItemInHand.transform.SetParent(null);
+        ItemInHand = null;
+    }
+    public void TakeItem(GameObject item)
+    {
+        ItemInHand = item;
+        ItemInHand = nearestItem;
+        ItemInHand.GetComponent<SpriteRenderer>().sortingLayerName = sortingLayerItemsOnUnits;
+        ItemInHand.transform.SetParent(playerController.gameObject.transform);
+        ItemInHand.transform.position = transform.position;
+    }
+    private void OpenCloseInventory()
+    {
+        if (inventory.gameObject.activeSelf)
+        {
+            inventory.gameObject.SetActive(false);
+        }
+        else
+        {
+            inventory.gameObject.SetActive(true);
+        }
+    }
+    private void FixedUpdate()
+    {
+        MoveItem();
+    }
+    private void MoveItem()
+    {
+        ItemInHand.transform.position = transform.position;
+        ItemInHand.transform.up = transform.up;
+    }
+    private bool IsHasItemInHand()
+    {
+        if (ItemInHand)
+        {
+            return true;
+        }
+        else return false;
+    }
+    private bool UseItem()
+    {
+        if (ItemInHand.GetComponent<IGroundItem>() != null)
+        {
+            IGroundItem instrument = ItemInHand.GetComponent<IGroundItem>();
             instrument.Use(playerController.GetCurrentGroundPosition());
             stamina.DecreaseStamina(staminaLossPerInstrumentUse);
+            return true;
         }
-        else if (Item.GetComponent<IEdibleItem>() != null)
+        else if (ItemInHand.GetComponent<IEdibleItem>() != null)
         {
-            IEdibleItem food = Item.GetComponent<IEdibleItem>();
-            stamina.IncreaseStamina(food.StaminaRestoration);            
-            if (Item.GetComponent<IBuffable>() != null)
+            IEdibleItem food = ItemInHand.GetComponent<IEdibleItem>();
+            stamina.IncreaseStamina(food.StaminaRestoration);
+            if (ItemInHand.GetComponent<IBuffable>() != null)
             {
-                IBuffable buffFood = Item.GetComponent<IBuffable>();
+                IBuffable buffFood = ItemInHand.GetComponent<IBuffable>();
                 buffFood.Buff();
             }
-            Destroy(Item);
-            Item = null;
+            Destroy(ItemInHand);
+            ItemInHand = null;
+            return true;
         }
-
-        else if (Item.GetComponent<INonGroundItem>() != null)
+        else if (ItemInHand.GetComponent<INonGroundItem>() != null)
         {
-            INonGroundItem thing = Item.GetComponent<INonGroundItem>();
-            if (thing == null) return;
+            INonGroundItem thing = ItemInHand.GetComponent<INonGroundItem>();
+            if (thing == null) return false;
             thing.Use();
             stamina.DecreaseStamina(staminaLossPerInstrumentUse);
+            return true;
         }
-
-
+        return false;
     }
-    private void InteractWithTheEnvironment()
+    private bool InteractWithTheEnvironment()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 1, LayerMask.GetMask("BlockingLayer"));
         if (hit.collider == null)
         {
-            Item = null;
-            return;
+            return false;
         }
-
         GameObject environment = hit.collider.gameObject;
         IInteractable interactable = environment.GetComponent<IInteractable>();
         if (interactable == null)
         {
-            Item = null;
-            return;
+            return false;
         }
 
         ICrate crate = environment.GetComponent<ICrate>();
-        IConverter convertor = environment.GetComponent<IConverter>();
-        IFurniture furniture = environment.GetComponent<IFurniture>();
         if (crate != null)
         {
-            Item = crate.TradeItem(Item);
+            return true;
         }
-        else if (convertor != null)
+
+        IConverter convertor = environment.GetComponent<IConverter>();
+        if (convertor != null)
         {
-            Item = convertor.Convert(Item);
+            return true;
         }
-        else if (furniture != null)
+
+        IFurniture furniture = environment.GetComponent<IFurniture>();
+        if (furniture != null)
         {
             furniture.Interact();
+            return true;
         }
+        return false;
     }
-    public void PickUpItem(GameObject item)
-    {
-        this.Item = item;
-    }
-    public bool IsEmpty()
-    {
-        return Item == null;
-    }
+
 }

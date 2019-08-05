@@ -9,7 +9,7 @@ public class Shovel : MonoBehaviour, IGroundItem, IItem
     [SerializeField]
     private string objectsName;
     public string ObjectsName => objectsName;
-
+    public Sprite Icon => GetComponent<SpriteRenderer>().sprite;
     void Start()
     {
 

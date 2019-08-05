@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3100840862575522910}
   - component: {fileID: 3100840862575522911}
-  - component: {fileID: 1832203231798011070}
   - component: {fileID: 1003677564426045608}
-  m_Layer: 0
+  - component: {fileID: 231083694650633807}
+  m_Layer: 16
   m_Name: CoockedCactus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,8 +67,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1841055919
-  m_SortingLayer: 8
+  m_SortingLayerID: -1311539205
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7eebd15cce912cd40a85d7bb05c8039b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -81,22 +81,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &1832203231798011070
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3100840862575522904}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.48
 --- !u!114 &1003677564426045608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,3 +96,19 @@ MonoBehaviour:
   objectsName: Cooked cactus
   staminaRestoration: 40
   buffSpeed: 3
+--- !u!58 &231083694650633807
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3100840862575522904}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0025316875, y: 0.014572144}
+  serializedVersion: 2
+  m_Radius: 0.3859571

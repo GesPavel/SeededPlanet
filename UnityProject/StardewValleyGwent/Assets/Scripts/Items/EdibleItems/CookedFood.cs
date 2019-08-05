@@ -8,6 +8,7 @@ public class CookedFood : MonoBehaviour, IItem, IEdibleItem, IBuffable
     public string ObjectsName => objectsName;
     [SerializeField] private float staminaRestoration = 40;
     public float StaminaRestoration => staminaRestoration;
+    public Sprite Icon => GetComponent<SpriteRenderer>().sprite;
     PlayerController player;
     public float buffSpeed;
     public void Start()
