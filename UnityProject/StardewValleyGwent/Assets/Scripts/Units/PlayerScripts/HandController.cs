@@ -103,7 +103,7 @@ public class HandController : MonoBehaviour
         TakePutButtonHoldedTime = 0;
         IsTakePutButtonHolded = false;
     }
-    private void DropItemFromHand()
+    public void DropItemFromHand()
     {
         ItemInHand.GetComponent<SpriteRenderer>().sortingLayerName = sortingLayerItemsOnFloor;
         ItemInHand.transform.SetParent(null);
