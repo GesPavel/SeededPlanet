@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb2d;
     private StaminaDirector stamina;
     private HandController handController;
-    private Inventory inventory;
     HandController hand;
     Bed bed;
     [SerializeField] private LayerMask blockingLayer;
@@ -31,7 +30,7 @@ public class PlayerController : MonoBehaviour
         bed = FindObjectOfType<Bed>();
         destinationPoint = transform.position;
         handController = GetComponentInChildren<HandController>();
-        inventory = GetComponent<Inventory>();
+
     }
     void Update()
     {
@@ -119,33 +118,8 @@ public class PlayerController : MonoBehaviour
 
         currentGroundPosition = ground;
     }
-
     public void MoveToBed()
     {
         transform.position = bed.GetWakeUpPoint().transform.position;
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (Input.GetKeyDown(handController.takeItemfFromGround))
-        {
-            if (collision.gameObject.GetComponent<IItem>() != null)
-            {
-                if (collision.gameObject == handController.Item)
-                {
-                    return;
-                }
-                if (inventory.TrySetItem(collision.gameObject))
-                {
-                    Destroy(collision.gameObject);
-                }
-            }
-        }
-        if (handController.Item == null && Input.GetKeyDown(handController.useButton))
-        {
-            if (collision.gameObject.GetComponent<ProductZone>() != null)
-            {             
-                collision.gameObject.GetComponent<ProductZone>().SpawnProduct();
-            }           
-        }
-    }
+    }   
 }

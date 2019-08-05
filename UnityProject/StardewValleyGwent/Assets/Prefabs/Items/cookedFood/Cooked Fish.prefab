@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6385280265430392870}
   - component: {fileID: 6933890263642936948}
   - component: {fileID: 3153538004581580821}
-  - component: {fileID: 6183228367304509451}
-  m_Layer: 0
+  - component: {fileID: 4345365089277121018}
+  m_Layer: 16
   m_Name: Cooked Fish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,8 +67,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1841055919
-  m_SortingLayer: 8
+  m_SortingLayerID: -1311539205
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 455d0b2c74dcbb74fa50f51542a1da49, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -96,7 +96,7 @@ MonoBehaviour:
   objectsName: CookedFish
   staminaRestoration: 40
   buffSpeed: 5
---- !u!58 &6183228367304509451
+--- !u!58 &4345365089277121018
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,6 +109,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0045001507, y: 0}
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 0.39649427

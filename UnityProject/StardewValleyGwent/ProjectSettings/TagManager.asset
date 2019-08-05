@@ -33,7 +33,7 @@ TagManager:
   - AnimalLayer
   - LakeLayer
   - RobotLayer
-  - 
+  - Items
   - 
   - 
   - 
@@ -71,10 +71,13 @@ TagManager:
   - name: Environment
     uniqueID: 3146038281
     locked: 0
+  - name: ItemOnFloor
+    uniqueID: 2983428091
+    locked: 0
   - name: Units
     uniqueID: 2572595483
     locked: 0
-  - name: Item
+  - name: ItemOnUnit
     uniqueID: 1841055919
     locked: 0
   - name: UI

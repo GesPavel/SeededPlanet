@@ -8,6 +8,7 @@ public class Seed : MonoBehaviour, IGroundItem,IItem
     public Ground StandingGround { get; private set; }
     [SerializeField] private string objectsName;
     public string ObjectsName => objectsName;
+    public Sprite Icon => GetComponent<SpriteRenderer>().sprite;
 
     public GameObject plant;
 

@@ -7,6 +7,7 @@ public class Fertilizer : MonoBehaviour, IGroundItem,IItem
     public float portionPerUse = 25.0f;
     [SerializeField] private string objectsName;
     public string ObjectsName => objectsName;
+    public Sprite Icon => GetComponent<SpriteRenderer>().sprite;
 
     public void Use(Ground ground)
     {

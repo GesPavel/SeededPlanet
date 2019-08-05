@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IItem
 {
-   string ObjectsName { get;}
+    string ObjectsName { get; }
+    Sprite Icon { get; }
 }

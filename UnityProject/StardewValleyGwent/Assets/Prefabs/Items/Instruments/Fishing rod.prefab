@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3754452913059692316}
   - component: {fileID: 5582644680764618592}
   - component: {fileID: 8751806429189950007}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Fishing rod
   m_TagString: Hoe
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3279124896826786766}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.03143075, y: -0.016326105, z: -2.34662}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1.4708}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -68,11 +68,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1841055919
-  m_SortingLayer: 8
+  m_SortingLayerID: -1311539205
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ddbf8d4a77551e1428efbf64affa2670, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -116,7 +116,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.14438085, y: 0}
+  m_Offset: {x: 0.019009084, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -127,7 +127,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15123829, y: 0.96}
+  m_Size: {x: 0.8059577, y: 0.96}
   m_EdgeRadius: 0
 --- !u!114 &8751806429189950007
 MonoBehaviour:

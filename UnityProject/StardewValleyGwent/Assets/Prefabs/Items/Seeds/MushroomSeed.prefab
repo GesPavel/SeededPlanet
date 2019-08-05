@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4435909268191008709}
   - component: {fileID: 6972440543853806940}
   - component: {fileID: 3755713560998577942}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: MushroomSeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 904635103356971811}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.02, y: 0, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 0.2}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -68,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1841055919
-  m_SortingLayer: 8
+  m_SortingLayerID: -1311539205
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1739eb70ecf76284db779975354502b1, type: 3}
   m_Color: {r: 0.81960785, g: 0, b: 1, a: 1}
