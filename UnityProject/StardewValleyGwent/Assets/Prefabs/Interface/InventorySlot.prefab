@@ -119,7 +119,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5040019215295706531}
-        m_MethodName: OnIconClickMethod
+        m_MethodName: ChangeWithHandsItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

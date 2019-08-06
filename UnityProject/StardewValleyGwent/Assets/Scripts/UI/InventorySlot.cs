@@ -64,4 +64,28 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
         InventoryScript.instance.RemoveSlot(this);
         Destroy(gameObject);
     }
+
+    public void ChangeWithHandsItem()
+    {
+        Debug.Log("BUG");
+        HandController handController = FindObjectOfType<HandController>();
+        GameObject itemToHand = itemObject;
+        GameObject itemForSlot = handController.ItemInHand;
+        if (handController.ItemInHand != null)
+        {
+            handController.DropItemFromHand();
+        }
+        itemToHand.SetActive(true);
+        handController.TakeItem(itemToHand);
+        if (itemForSlot == null)
+        {
+            SelfDestruction();
+        }
+        else
+        {
+            FillSlot(itemForSlot);
+        }
+        
+    }
+
 }
