@@ -132,4 +132,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsName: Fish Seed
-  plant: {fileID: 4735347731640977335, guid: 1e3a65243b2c37f4da2fd1f972e3ddb5, type: 3}
+  plant: {fileID: 6967358012896636198, guid: 34c2a28f03a55364dae8fb344c0e01f6, type: 3}
