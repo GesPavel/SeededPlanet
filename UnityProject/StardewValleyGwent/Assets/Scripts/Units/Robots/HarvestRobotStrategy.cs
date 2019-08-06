@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 public class HarvestRobotStategy : RobotStrategy
 {
-    int vegetableLayerMask;
     RobotHarvester robot;
     HarvestTask harvestTask;
+    LayerMask vegetableLayerMask;
     private void Start()
     {
-        vegetableLayerMask = LayerMask.GetMask("Default");
+        vegetableLayerMask = LayerMask.GetMask("Items");
         robot = gameObject.GetComponent<RobotHarvester>();
         robot.SetDistanceToPathComplete(0.1f);
     }

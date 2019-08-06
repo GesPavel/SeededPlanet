@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryScript : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class InventoryScript : MonoBehaviour
     [SerializeField] private Transform dragParent;
     [SerializeField] private InventorySlot slotTemplate;
     private List<InventorySlot> slots;
+    public Text avalibleSpaceLable;
+    HandController handController;
     #region Singleton
     public static InventoryScript instance;
     private void Awake()
@@ -23,6 +26,12 @@ public class InventoryScript : MonoBehaviour
     {
         slots = new List<InventorySlot>();
         gameObject.SetActive(false);
+        avalibleSpaceLable.text = $"{slots.Count}/{size}";
+        handController = FindObjectOfType<HandController>();
+    }
+    private void Update()
+    {
+        avalibleSpaceLable.text = $"{slots.Count}/{size}";
     }
     public bool TryPutItem(GameObject obj)
     {
@@ -52,5 +61,20 @@ public class InventoryScript : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void TryPutItemFromHandToInventory()
+    {
+        if (handController.ItemInHand == null)
+        {
+            return;
+        }
+        if (slots.Count >= size)
+        {
+            return;
+        }
+        GameObject itemFromHand = handController.ItemInHand;
+        handController.DropItemFromHand();
+        TryPutItem(itemFromHand);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 public class HandController : MonoBehaviour
 {
     public KeyCode actionButton, TakePutButton, InventoryButton;
@@ -10,12 +11,14 @@ public class HandController : MonoBehaviour
     public string sortingLayerItemsOnFloor = "ItemOnFloor";
     public string sortingLayerItemsOnUnits = "ItemOnUnit";
     public float staminaLossPerInstrumentUse = 5;
+    public Image takingIndickator;
 
     private GameObject nearestItem;
     private InventoryScript inventory;
     private StaminaDirector stamina;
     private PlayerController playerController;
     private float playersHandLength = 0.5f;
+    private float timeDelayBeforTakeItem = 0.5f;
     private float TakePutButtonHoldedTime = 0;
     private bool IsTakePutButtonHolded = false;
     private void Start()
@@ -47,10 +50,11 @@ public class HandController : MonoBehaviour
             nearestItem = ExtractItemObjectFromHit2D(raycastHit2);
             IsTakePutButtonHolded = true;
         }
-        if (IsTakePutButtonHolded && Input.GetKey(TakePutButton))
+        if (IsTakePutButtonHolded && Input.GetKey(TakePutButton) && (nearestItem!=null || IsHasItemInHand()))
         {
             TakePutButtonHoldedTime += Time.deltaTime;
-            if (TakePutButtonHoldedTime >= 0.5f)
+            takingIndickator.fillAmount += (1 / timeDelayBeforTakeItem) * Time.deltaTime;
+            if (TakePutButtonHoldedTime >= timeDelayBeforTakeItem)
             {
                 if (IsHasItemInHand())
                 {
@@ -102,8 +106,9 @@ public class HandController : MonoBehaviour
     {
         TakePutButtonHoldedTime = 0;
         IsTakePutButtonHolded = false;
+        takingIndickator.fillAmount = 0;
     }
-    private void DropItemFromHand()
+    public void DropItemFromHand()
     {
         ItemInHand.GetComponent<SpriteRenderer>().sortingLayerName = sortingLayerItemsOnFloor;
         ItemInHand.transform.SetParent(null);
