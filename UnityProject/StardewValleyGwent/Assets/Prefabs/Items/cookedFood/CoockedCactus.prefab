@@ -94,8 +94,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsName: Cooked cactus
-  staminaRestoration: 40
+  staminaRestoration: 20
   buffSpeed: 3
+  maxSpeedBuff: 0
 --- !u!58 &231083694650633807
 CircleCollider2D:
   m_ObjectHideFlags: 0

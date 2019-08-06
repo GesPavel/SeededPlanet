@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class StaminaDirector : MonoBehaviour
 {
-    [SerializeField] private float maxStamina = 100; 
+    public float maxStamina = 100; 
     public float CurrentStamina { get; private set; }
     public float StaminaLoss { get; private set; } = 1;
     PlayerController player;
