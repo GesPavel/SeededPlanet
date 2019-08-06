@@ -50,7 +50,7 @@ public class HandController : MonoBehaviour
             nearestItem = ExtractItemObjectFromHit2D(raycastHit2);
             IsTakePutButtonHolded = true;
         }
-        if (IsTakePutButtonHolded && Input.GetKey(TakePutButton) && nearestItem!=null)
+        if (IsTakePutButtonHolded && Input.GetKey(TakePutButton) && (nearestItem!=null || IsHasItemInHand()))
         {
             TakePutButtonHoldedTime += Time.deltaTime;
             takingIndickator.fillAmount += (1 / timeDelayBeforTakeItem) * Time.deltaTime;
