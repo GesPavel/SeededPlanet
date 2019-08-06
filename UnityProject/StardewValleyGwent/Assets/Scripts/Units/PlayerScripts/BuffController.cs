@@ -6,27 +6,27 @@ public class BuffController : MonoBehaviour
 {
     public float timeToBuffSpeed;
     float startSpeed;
-    float startBuffTime;
+    float startSpeedBuffTime;
     PlayerController player;
     
     void Start()
     {
         player = FindObjectOfType<PlayerController>();
         startSpeed = player.speed;
-        startBuffTime = timeToBuffSpeed;
+        startSpeedBuffTime = timeToBuffSpeed;
     }
     void CheckSpeedBuff()
     {
         if (player.speed != startSpeed)
         {
-            if (timeToBuffSpeed > 0)
+            if (timeToBuffSpeed > 0.0f)
             {
                 timeToBuffSpeed -= Time.deltaTime;
             }
-            if (timeToBuffSpeed <= 0)
+            if (timeToBuffSpeed <= 0.0f)
             {
                 player.speed = startSpeed;
-                timeToBuffSpeed = startBuffTime;
+                timeToBuffSpeed = startSpeedBuffTime;
             }
         }
     }

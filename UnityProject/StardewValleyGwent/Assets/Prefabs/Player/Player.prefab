@@ -177,10 +177,10 @@ MonoBehaviour:
   itemsLayer:
     serializedVersion: 2
     m_Bits: 65536
-  activeSlot: {fileID: 0}
   sortingLayerItemsOnFloor: ItemOnFloor
   sortingLayerItemsOnUnits: ItemOnUnit
   staminaLossPerInstrumentUse: 5
+  takingIndickator: {fileID: 0}
 --- !u!1 &8471427184795161971
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 7206390254378149341}
   - component: {fileID: 1134842016561277185}
   - component: {fileID: 7615362925238688191}
+  - component: {fileID: 704319912078423911}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -356,3 +357,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.48
+--- !u!114 &704319912078423911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8471427184795161971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c384119a88b3e419ba2e10b3164aeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToBuffSpeed: 10
+  timeToBuffStamina: 20
