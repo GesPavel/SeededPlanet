@@ -8,6 +8,7 @@ public class RobotHarvester : MonoBehaviour
 {
     AIPath aiPath;
     RobotTaskController taskController;
+    RobotChargeStation home;
     RobotStrategy strategy;
     public GameObject itemInManipulator;
     float distanceToPathComplete = 0.1f;
@@ -52,16 +53,26 @@ public class RobotHarvester : MonoBehaviour
 
     private void DetermineWhatToDo()
     {
-        Debug.Log(aiPath.destination);
-        aiPath.canMove = HasTask;
-        aiPath.canSearch = HasTask;
-        if ((aiPath.destination - gameObject.transform.position).magnitude <= distanceToPathComplete && HasTask)
+        if (HasTask && IsOnDestinationPoint())
         {
-            Debug.Log((aiPath.destination - gameObject.transform.position).magnitude);
-                OnPathComplete();
+          OnPathComplete();
+        }
+        else if (!HasTask)
+        {
+            GoHome();
         }
     }
 
+    
+
+    private bool IsOnDestinationPoint()
+    {
+        return (aiPath.destination - gameObject.transform.position).magnitude <= distanceToPathComplete;
+    }
+    private void GoHome()
+    {
+        aiPath.destination = home.transform.position;
+    }
     public void ReceiveTask(AbstractTask task)
     {
         aiPath.destination = task.Destination.position;
@@ -97,5 +108,9 @@ public class RobotHarvester : MonoBehaviour
     public float GetDistanceToPathComplete()
     {
         return distanceToPathComplete;
+    }
+    public void SetHome(RobotChargeStation station)
+    {
+        home = station;
     }
 }
