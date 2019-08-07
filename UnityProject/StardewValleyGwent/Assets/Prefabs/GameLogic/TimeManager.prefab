@@ -43,4 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8aa4c1a1126924da53c3550cbae13f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minuteInSeconds: 0.1
+  timeSpeed: 60
+  morningHour: 8
+  eveningHour: 21
