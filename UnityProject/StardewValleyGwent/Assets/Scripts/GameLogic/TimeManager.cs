@@ -4,29 +4,30 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    public int MinutesSinceNewHour { get; private set; } = 0;
-    public int HoursSinceMidnight { get; private set; } = 0;
+    public int Minutes { get { return ((int)Seconds % secondsInHour) / secondsInMinute;} }
+    public int Hours { get {return ((int)Seconds / secondsInHour) % hoursInDay; } }
     public int CurrentDay { get; private set; } = 1;
-
     public float timeSpeed = 1f;
-    float seconds;
+    public float Seconds { get; private set;}
+
+    private const int secondsInDay=86400;
+    private const int secondsInHour = 3600;
+    private const int secondsInMinute = 60;
+    private const int hoursInDay = 24;
+  
 
 
     private void Update()
     {
-        seconds += Time.deltaTime*timeSpeed;
-        if (seconds >= 86400)
+        Seconds += Time.deltaTime*timeSpeed;
+        if (Seconds >= secondsInDay)
         {
             CurrentDay++;
-            seconds %= 86400;
-        }
-        MinutesSinceNewHour = ((int)seconds / 60) % 60;
-        HoursSinceMidnight = ((int)seconds / 3600) % 24;
-        Debug.Log($"seconds {seconds} current hour{(seconds/3600)%24}");
+            Seconds %= secondsInDay;
+        }      
     }
-
     public void SkipHours(int hours)
     {
-        seconds += hours * 3600;
+        Seconds += hours * secondsInHour;
     }
 }
