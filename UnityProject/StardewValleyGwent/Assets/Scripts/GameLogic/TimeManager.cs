@@ -4,71 +4,29 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    public int MinutesSinceNewHour { get; private set; }
-    public int HoursSinceMidnight { get; private set; }
-    public int CurrentDay { get; private set; }
+    public int MinutesSinceNewHour { get; private set; } = 0;
+    public int HoursSinceMidnight { get; private set; } = 0;
+    public int CurrentDay { get; private set; } = 1;
 
-    [SerializeField] private float minuteInSeconds = 0.1f;
-    float timer;
-    
-    void Start()
-    {
-        CurrentDay = 1;
-        HoursSinceMidnight = 8;
-        MinutesSinceNewHour = 0;
+    public float timeSpeed = 1f;
+    float seconds;
 
-    }
 
     private void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > minuteInSeconds)
+        seconds += Time.deltaTime*timeSpeed;
+        if (seconds >= 86400)
         {
-            StartNewMinute();
-            timer -= minuteInSeconds;
+            CurrentDay++;
+            seconds %= 86400;
         }
-    }
-
-    private void StartNewMinute()
-    {
-       MinutesSinceNewHour++;
-       CheckIfNewHour();
-    }
-
-    private void CheckIfNewHour()
-    {
-        if (MinutesSinceNewHour >= 60)
-        {
-            BeginNextHour();
-            MinutesSinceNewHour -= 60;
-            CheckIfNewHour();
-        }
-    }
-
-    private void BeginNextHour()
-    {
-        HoursSinceMidnight++;
-        CheckIfNewDay();
-    }
-
-    private void CheckIfNewDay()
-    {
-        if(HoursSinceMidnight >= 24)
-        {
-            StartNewDay();
-            HoursSinceMidnight -= 24;
-            CheckIfNewDay();
-        }
-    }
-
-    private void StartNewDay()
-    {
-        CurrentDay++;
+        MinutesSinceNewHour = ((int)seconds / 60) % 60;
+        HoursSinceMidnight = ((int)seconds / 3600) % 24;
+        Debug.Log($"seconds {seconds} current hour{(seconds/3600)%24}");
     }
 
     public void SkipHours(int hours)
     {
-        HoursSinceMidnight += hours;
-        CheckIfNewDay();
+        seconds += hours * 3600;
     }
 }
