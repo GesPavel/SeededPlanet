@@ -4,71 +4,30 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    public int MinutesSinceNewHour { get; private set; }
-    public int HoursSinceMidnight { get; private set; }
-    public int CurrentDay { get; private set; }
+    public int Minutes { get { return ((int)Seconds % secondsInHour) / secondsInMinute;} }
+    public int Hours { get {return ((int)Seconds / secondsInHour) % hoursInDay; } }
+    public int CurrentDay { get; private set; } = 1;
+    public float timeSpeed = 1f;
+    public float Seconds { get; private set;}
 
-    [SerializeField] private float minuteInSeconds = 0.1f;
-    float timer;
-    
-    void Start()
-    {
-        CurrentDay = 1;
-        HoursSinceMidnight = 8;
-        MinutesSinceNewHour = 0;
+    private const int secondsInDay=86400;
+    private const int secondsInHour = 3600;
+    private const int secondsInMinute = 60;
+    private const int hoursInDay = 24;
+  
 
-    }
 
     private void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > minuteInSeconds)
+        Seconds += Time.deltaTime*timeSpeed;
+        if (Seconds >= secondsInDay)
         {
-            StartNewMinute();
-            timer -= minuteInSeconds;
-        }
+            CurrentDay++;
+            Seconds %= secondsInDay;
+        }      
     }
-
-    private void StartNewMinute()
-    {
-       MinutesSinceNewHour++;
-       CheckIfNewHour();
-    }
-
-    private void CheckIfNewHour()
-    {
-        if (MinutesSinceNewHour >= 60)
-        {
-            BeginNextHour();
-            MinutesSinceNewHour -= 60;
-            CheckIfNewHour();
-        }
-    }
-
-    private void BeginNextHour()
-    {
-        HoursSinceMidnight++;
-        CheckIfNewDay();
-    }
-
-    private void CheckIfNewDay()
-    {
-        if(HoursSinceMidnight >= 24)
-        {
-            StartNewDay();
-            HoursSinceMidnight -= 24;
-            CheckIfNewDay();
-        }
-    }
-
-    private void StartNewDay()
-    {
-        CurrentDay++;
-    }
-
     public void SkipHours(int hours)
     {
-        HoursSinceMidnight += hours;
-        CheckIfNewDay();
+        Seconds += hours * secondsInHour;
     }
 }
