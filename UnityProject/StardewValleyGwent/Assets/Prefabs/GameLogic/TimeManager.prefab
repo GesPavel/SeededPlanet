@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeSpeed: 60
   morningHour: 8
-  eveningHour: 20
+  eveningHour: 21
