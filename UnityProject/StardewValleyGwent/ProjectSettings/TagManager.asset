@@ -71,6 +71,9 @@ TagManager:
   - name: Environment
     uniqueID: 3146038281
     locked: 0
+  - name: Robots
+    uniqueID: 2640686803
+    locked: 0
   - name: ItemOnFloor
     uniqueID: 2983428091
     locked: 0

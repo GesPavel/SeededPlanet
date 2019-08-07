@@ -8,7 +8,7 @@ public class ChickenMale : Animal
 {
     ChickenGirl girlfriend;
     
-    float timeToSex = -60;
+    float timeToSex = 1;
     public override void OnCollisionEnter2D(Collision2D coll)
     {
         base.OnCollisionEnter2D(coll);
