@@ -1,9 +1,14 @@
-﻿using System.Collections;
+﻿using Pathfinding;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class Animal : MonoBehaviour
 {
+    protected AIPath aIPath;
+    protected bool hasReachedDestination = false;
     [HideInInspector]
     public Rigidbody2D rb;
     [HideInInspector]
@@ -25,12 +30,28 @@ public abstract class Animal : MonoBehaviour
 
     void Start()
     {
+        this.gameObject.transform.SetParent(GameObject.Find("Animals").transform);
+        aIPath = GetComponent<AIPath>();
+        aIPath.destination = transform.parent.transform.position;
+
         direction.x = Random.Range(-10, 10);
         direction.y = Random.Range(-10, 10);
         rb = GetComponent<Rigidbody2D>();
         speed = Random.Range(minSpeedRange, maxSpeedRange);
     }
+    public virtual void Update()
+    {
+        if (!hasReachedDestination)
+        {
+            CheckIfAnimalGatheringPointReached();
+        }
+        else
+        {
+            MoveRandomly();
 
+            OnRayCollision();
+        }
+    }
 
     public virtual void OnCollisionEnter2D(Collision2D coll)
     {
@@ -48,7 +69,7 @@ public abstract class Animal : MonoBehaviour
         transform.up = direction;
     }
 
-    public void Move()
+    public void MoveRandomly()
     {
 
         if (timeForWalking > 0)
@@ -86,11 +107,15 @@ public abstract class Animal : MonoBehaviour
             ChangeDirection();
         }
     }
-    public virtual void Update()
+    
+
+    protected virtual void CheckIfAnimalGatheringPointReached()
     {
-
-        Move();
-
-        OnRayCollision();
+        if (aIPath.reachedDestination)
+        {
+            aIPath.canMove = false;
+            aIPath.canSearch = false;
+            hasReachedDestination = true;
+        }
     }
 }
