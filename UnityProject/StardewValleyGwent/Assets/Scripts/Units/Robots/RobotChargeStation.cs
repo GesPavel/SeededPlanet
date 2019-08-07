@@ -12,4 +12,10 @@ public class RobotChargeStation : MonoBehaviour
         robot = robotObject.GetComponent<RobotHarvester>();
         robot.SetHome(this);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        robot.transform.position = transform.position;
+        robot.transform.rotation = Quaternion.identity;
+    }
 }

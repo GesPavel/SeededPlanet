@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using System;
+
 public class ChickenMale : Animal
 {
-   
-    float timeToSex = 1;
+    ChickenGirl girlfriend;
+    
+    float timeToSex = -60;
     public override void OnCollisionEnter2D(Collision2D coll)
     {
         base.OnCollisionEnter2D(coll);
@@ -17,27 +20,72 @@ public class ChickenMale : Animal
      }
     public override void Update()
     {
-        
-        AIPath aiPath = GetComponent<AIPath>();
-        if (aiPath.canSearch == false && aiPath.canMove == false)
+        if (hasReachedDestination)
         {
-            
-            Move();
-            OnRayCollision();
-        }
-        if (timeToSex>0) 
-        {
-            aiPath.canMove = true;
-            aiPath.canSearch = true;
-            
-        }
-        if (timeToSex<=0) 
-        {
-            aiPath.canMove = false;
-            aiPath.canSearch = false;
-            timeToSex += Time.deltaTime;
-        }
+            AIPath aiPath = GetComponent<AIPath>();
+            if (aiPath.canSearch == false && aiPath.canMove == false)
+            {
 
+                MoveRandomly();
+                OnRayCollision();
+            }
+            if (timeToSex > 0)
+            {
+                if (HasGirlFriend())
+                {
+                    aiPath.canMove = true;
+                    aiPath.canSearch = true;
+                }
+                else
+                {
+                    FindGirlFriend();
+                }
+            }
+            else if (timeToSex <= 0)
+            {
+                aiPath.canMove = false;
+                aiPath.canSearch = false;
+                timeToSex += Time.deltaTime;
+            }
+        }
+        else
+        {
+            CheckIfAnimalGatheringPointReached();
+        }
+    }
+
+    private bool HasGirlFriend()
+    {
+        return girlfriend != null;
+    }
+    protected override void CheckIfAnimalGatheringPointReached()
+    {
+        if (aIPath.reachedDestination)
+        {
+            aIPath.canMove = false;
+            aIPath.canSearch = false;
+            hasReachedDestination = true;
+            FindGirlFriend();
+        }
+    }
+
+    private void FindGirlFriend()
+    {
+        ChickenGirl[] hens = FindObjectsOfType<ChickenGirl>();
+        foreach (ChickenGirl girl in hens)
+        {
+            if (!girl.HasBoyFriend())
+            {
+                girlfriend = girl;
+                girl.boyfriend = this;
+                
+                break;
+            }
+        }
+        if (!HasGirlFriend())
+        {
+            timeToSex = -60;
+        }
     }
 }
 

@@ -1,17 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ChickenGirl : Animal
 {
     public GameObject egg;
+    public ChickenMale boyfriend;
     bool outOfEggs = false; 
     float timeToSex = -1; 
     public override void OnCollisionEnter2D(Collision2D coll)
     {
         base.OnCollisionEnter2D(coll);
         
-        if (!outOfEggs)
+        if (!outOfEggs && hasReachedDestination)
         {
             if (coll.gameObject.tag == "ChickenMale")
             {
@@ -37,4 +39,8 @@ public class ChickenGirl : Animal
         }
     }
 
+    public bool HasBoyFriend()
+    {
+        return boyfriend != null;
+    }
 }
