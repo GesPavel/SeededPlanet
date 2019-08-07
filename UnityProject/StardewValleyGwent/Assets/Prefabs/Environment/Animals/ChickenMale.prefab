@@ -163,8 +163,8 @@ MonoBehaviour:
   radius: 0.35
   height: 0.01
   repathRate: 0.5
-  canSearch: 0
-  canMove: 0
+  canSearch: 1
+  canMove: 1
   maxSpeed: 1
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:

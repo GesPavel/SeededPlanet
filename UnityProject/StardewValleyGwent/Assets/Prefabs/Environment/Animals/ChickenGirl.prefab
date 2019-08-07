@@ -148,6 +148,7 @@ MonoBehaviour:
   maxSinRange: 4.1887903
   minSinRange: 2.0943952
   egg: {fileID: 8893104194026024712, guid: 6617f5ff26816f642922c59073dfd337, type: 3}
+  boyfriend: {fileID: 0}
 --- !u!114 &9070302407991253119
 MonoBehaviour:
   m_ObjectHideFlags: 0
