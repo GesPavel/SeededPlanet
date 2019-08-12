@@ -3,57 +3,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Merchant : MonoBehaviour, IConverter
+public class Merchant : MonoBehaviour, IInteractable
 {
     PriceList priceList;
     MoneyController playersMoney;
-    HandController handController;
+    public GameObject itemToSell;
     [SerializeField] private float margin = 1.2f;
-
-    #region Singleton
-    public static Merchant instance;
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-    }
-    #endregion
     private void Start()
     {
         playersMoney = FindObjectOfType<MoneyController>();
         priceList = GetComponent<PriceList>();
-        handController = FindObjectOfType<HandController>();
     }
 
-    public GameObject Convert(GameObject item)
+    public GameObject Trade(GameObject item)
     {
-        if (item != null)
+            if (item != null)
+            {
+                return TryToBuy(item);
+            }
+            else
+            {
+                return TryToSell(item);
+            }
+    }
+    private GameObject TryToBuy(GameObject item)
+    {
+        int buyingPrice = DeterminePrice(item);
+        if (buyingPrice >= 0)
         {
-            int buyingPrice = DeterminePrice(item.GetComponent<IItem>().ObjectsName);
             playersMoney.AddMoney(buyingPrice);
-            Destroy(item);          
+            Destroy(item);
+            return null;
         }
-        return null;
+        else
+        {
+            return item;
+        }
     }
-    public int DeterminePrice(string itemsName)
+    private GameObject TryToSell(GameObject item)
     {
-        return priceList.GetPriceOf(itemsName);
+        int sellingPrice = (int)(DeterminePrice(itemToSell) * margin);
+        if (playersMoney.IsAbleToPay(sellingPrice))
+        {
+            playersMoney.Subtract(sellingPrice);
+            return Instantiate(itemToSell);
+        }
+        else
+        {
+            return null;
+        }
     }
 
-    //public void TrySellItemToPlayer(string itemsName)
-    //{
-    //    if (handController.Item != null)
-    //    {
-    //        return;
-    //    }
-    //    int sellingPrice = (int)(DeterminePrice(itemsName) * margin);
-    //    if (playersMoney.IsAbleToPay(sellingPrice))
-    //    {
-    //        playersMoney.Subtract(sellingPrice);
-    //        var itemToSell = itemsHolder.CreateItemByName(itemsName);
-    //        handController.PickUpItem(Instantiate(itemToSell));
-    //    }
-    //}
+
+
+    private int DeterminePrice(GameObject item)
+    {
+        return priceList.GetPriceOf(item);
+    }
 }

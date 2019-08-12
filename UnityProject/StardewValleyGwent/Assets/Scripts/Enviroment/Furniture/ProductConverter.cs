@@ -14,9 +14,12 @@ public class ProductConverter : MonoBehaviour, IConverter
     public List<InitialAndFinalProducts> initialAndFinalProducts;
 
     private Dictionary<string, GameObject> productPairs;
-
+    Vector2 placeOnTheLeft; 
+    Vector2 placeOnTheRight; 
     private void Start()
     {
+        placeOnTheLeft = new Vector2(transform.position.x - 1, transform.position.y);
+        placeOnTheRight = new Vector2(transform.position.x + 1, transform.position.y);
         productPairs = new Dictionary<string, GameObject>();
         foreach (InitialAndFinalProducts pair in initialAndFinalProducts)
         {
@@ -52,6 +55,8 @@ public class ProductConverter : MonoBehaviour, IConverter
         }
         var finalProduct = Instantiate(productPairs[name]);
         Destroy(objectToConvert.gameObject);
+        Instantiate(finalProduct, placeOnTheLeft, Quaternion.identity);
+        Instantiate(finalProduct, placeOnTheRight, Quaternion.identity);
         return finalProduct;
     }
 }
