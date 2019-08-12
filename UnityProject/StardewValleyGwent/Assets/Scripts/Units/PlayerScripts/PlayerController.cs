@@ -47,8 +47,13 @@ public class PlayerController : MonoBehaviour
 
     private void MoveControll()
     {
-        lookDirection = GetLookDirection();
-        if (transform.up != lookDirection && lookDirection!=Vector3.zero)
+
+#if UNITY_STANDALONE
+        lookDirection = GetLookDirection;
+#elif UNITY_ANDROID
+        lookDirection = GetLookDirectionMobile();
+#endif
+        if (transform.up != lookDirection && lookDirection != Vector3.zero)
         {
             transform.up = lookDirection;
             isplayerTurned = true;
@@ -74,7 +79,7 @@ public class PlayerController : MonoBehaviour
         else if (moving)
         {
             float remainingDistance = (transform.position - destinationPoint).magnitude;
-            if (remainingDistance < speed*Time.fixedDeltaTime)
+            if (remainingDistance < speed * Time.fixedDeltaTime)
             {
                 AttemtContinueMovement();
             }
@@ -88,7 +93,11 @@ public class PlayerController : MonoBehaviour
     }
     private void AttemtContinueMovement()
     {
-        Vector3 lookDirection = GetLookDirection();
+#if UNITY_STANDALONE
+        lookDirection = GetLookDirection;
+#elif UNITY_ANDROID
+        lookDirection = GetLookDirectionMobile();
+#endif
         if (transform.up == lookDirection)
         {
             if (CanMove(lookDirection))
@@ -123,6 +132,14 @@ public class PlayerController : MonoBehaviour
             lookDir = Vector3.down;
         }
         return lookDir;
+    }
+    private Vector3 GetLookDirectionMobile()
+    {
+        Vector3 lookDirecttion = Vector3.zero;
+        lookDirection.x = Input.GetAxis("Horizontal");
+        lookDirection.y = Input.GetAxis("Vertical");
+        Debug.Log(lookDirection);
+        return lookDirection;
     }
     private bool CanMove(Vector3 direction)
     {

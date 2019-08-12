@@ -21,6 +21,10 @@ public class HandController : MonoBehaviour
     private float timeDelayBeforTakeItem = 0.5f;
     private float TakePutButtonHoldedTime = 0;
     private bool IsTakePutButtonHolded = false;
+
+    public string actionjoystic = "Fire 1";
+    public string pickUpjoystic = "Fire 2";
+    public string inventoryJoystic = "Fire 3";
     private void Start()
     {
         stamina = FindObjectOfType<StaminaDirector>();
