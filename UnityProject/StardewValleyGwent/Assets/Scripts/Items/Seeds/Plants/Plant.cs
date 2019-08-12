@@ -61,6 +61,10 @@ public class Plant : MonoBehaviour
         {
             newVegetable.AddComponent<HarvestTask>();
         }
+        else if (newVegetable.GetComponent<RobotChargeStation>() != null)
+        {
+            Destroy(ground.gameObject); 
+        }
     }
 
     public void SetBaseGround(Ground ground)
@@ -95,13 +99,10 @@ public class Plant : MonoBehaviour
     private float DetermineGroundDependentCoefficent()
     {
         const float WATER_BUFF = 1.8f;
-        const float FERTILIZER_BUFF = 1.5f;
-        float waterCoefficient = 1;
+        const float DEFAULT_SPEED_COEFFICIENT = 1.0f;
         if (ground.IsWatered)
-            waterCoefficient = WATER_BUFF;
-        float fertilizerCoefficent = 1;
-        if (ground.IsFertilized)
-            fertilizerCoefficent = FERTILIZER_BUFF;
-        return waterCoefficient * fertilizerCoefficent;
+            return WATER_BUFF;
+        else
+            return DEFAULT_SPEED_COEFFICIENT;
     }
 }
