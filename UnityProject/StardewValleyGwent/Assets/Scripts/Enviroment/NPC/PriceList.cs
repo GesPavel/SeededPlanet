@@ -16,10 +16,11 @@ public class PriceList : MonoBehaviour
 
     Dictionary<string, int> priceList;
 
+    const int ITEM_NOT_FOUND_ERROR = -1;
     private void Start()
     {
         priceList = new Dictionary<string, int>();
-        foreach(PairProductAndPrice pair in pairs)
+        foreach (PairProductAndPrice pair in pairs)
         {
             IItem item = pair.product.GetComponent<IItem>();
             if (item == null) continue;
@@ -28,13 +29,13 @@ public class PriceList : MonoBehaviour
         }
     }
 
-    public int GetPriceOf(string itemsName)
+    public int GetPriceOf(GameObject item)
     {
-        if(!priceList.ContainsKey(itemsName))
+        IItem itemToTrade = item.GetComponent<IItem>();
+        if (!priceList.ContainsKey(itemToTrade.ObjectsName))
         {
-            throw new Exception("Not Founded");
+            return ITEM_NOT_FOUND_ERROR;
         }
-        return priceList[itemsName];
+        return priceList[itemToTrade.ObjectsName];
     }
-
 }

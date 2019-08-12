@@ -229,6 +229,21 @@ public class HandController : MonoBehaviour
             furniture.Interact();
             return true;
         }
+        Merchant merchant = environment.GetComponent<Merchant>();
+        if (merchant != null)
+        {
+            GameObject ItemFromMerchant = merchant.Trade(ItemInHand);
+            if (ItemFromMerchant != null)
+            {
+                TakeItem(ItemFromMerchant);
+            }
+            else
+            {
+                Destroy(ItemFromMerchant);
+                ItemInHand = null;
+            }
+            return true;
+        }
         return false;
     }
 
