@@ -63,4 +63,8 @@ public class StaminaDirector : MonoBehaviour
     {
         NearestCalmingAnimalsCount[animal] -=1;
     }
+    public bool WantToSleep()
+    {
+        return CurrentStamina < 50;
+    }
 }
