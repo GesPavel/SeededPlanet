@@ -39473,7 +39473,7 @@ MonoBehaviour:
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.7764706, b: 0.9348962, a: 1}
   m_Intensity: 1
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 000000001dbb3dbf715c7d8d95d2cd2fdfe377dc83fe737b09bc84bbfb7fd3b11bb15699af48bc6d0b07d2d7d3ae659d
@@ -48575,7 +48575,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300004, guid: 8d2c64be8281ba844a6d5ebca74c7499, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e288edf1ca7a812428d37af3925bc46e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -50572,6 +50572,28 @@ PrefabInstance:
       propertyPath: ButtonName
       value: Action
       objectReference: {fileID: 0}
+    - target: {fileID: 224123140906295306, guid: 87c5da4558e7812488c11c96ea1b3d6a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -212
+      objectReference: {fileID: 0}
+    - target: {fileID: 224185853029679776, guid: 87c5da4558e7812488c11c96ea1b3d6a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 158
+      objectReference: {fileID: 0}
+    - target: {fileID: 114692997217043702, guid: 87c5da4558e7812488c11c96ea1b3d6a,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9f1e9aa39f0e13944a6fa6a5390ebdf0,
+        type: 3}
+    - target: {fileID: 114553350309413076, guid: 87c5da4558e7812488c11c96ea1b3d6a,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9e9b9f3daf30cea4eb2f809505005756,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87c5da4558e7812488c11c96ea1b3d6a, type: 3}
 --- !u!224 &1791267001 stripped

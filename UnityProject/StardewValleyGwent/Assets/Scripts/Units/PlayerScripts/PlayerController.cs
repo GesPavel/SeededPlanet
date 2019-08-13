@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 destinationPoint;
     private bool moving;
     private bool isplayerTurned = false;
+
+    private const float DELAY_BEFORE_PLAYER_CAN_MOVE=0.15f;
+    private float delayBeforeMove = 0;
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -48,20 +51,22 @@ public class PlayerController : MonoBehaviour
     private void MoveControll()
     {
         lookDirection = GetLookDirectionMobile();
-        if (transform.up != lookDirection && lookDirection != Vector3.zero)
+        if (transform.up != lookDirection && lookDirection!=Vector3.zero &&!moving)
         {
             transform.up = lookDirection;
-            isplayerTurned = true;
+            delayBeforeMove = DELAY_BEFORE_PLAYER_CAN_MOVE;
             return;
         }
-        if (lookDirection == Vector3.zero)
+        if (delayBeforeMove > 0)
         {
-            isplayerTurned = false;
+            delayBeforeMove -= Time.fixedDeltaTime;
+            return;
         }
-        if (!moving && !isplayerTurned)
+        if (!moving && lookDirection!=Vector3.zero)
         {
-            if (lookDirection == Vector3.zero)
+            if (transform.up != lookDirection)
             {
+                transform.up = lookDirection;
                 return;
             }
             transform.up = lookDirection;
@@ -81,11 +86,6 @@ public class PlayerController : MonoBehaviour
             MakeStepToDestination(destinationPoint);
         }
     }
-    private void MakeStepToDestination(Vector3 destinationPoint)
-    {
-        Vector3 newPos = Vector3.MoveTowards(transform.position, destinationPoint, speed * Time.fixedDeltaTime);
-        rb2d.MovePosition(newPos);
-    }
     private void AttemtContinueMovement()
     {
         lookDirection = GetLookDirectionMobile();
@@ -103,6 +103,12 @@ public class PlayerController : MonoBehaviour
             return;
         }
     }
+    private void MakeStepToDestination(Vector3 destinationPoint)
+    {
+        Vector3 newPos = Vector3.MoveTowards(transform.position, destinationPoint, speed * Time.fixedDeltaTime);
+        rb2d.MovePosition(newPos);
+    }
+   
     private Vector3 GetLookDirectionMobile()
     {
         Vector3 lookDirecttion = Vector3.zero;

@@ -427,7 +427,7 @@ MonoBehaviour:
   right: 100
   up: 119
   down: 115
-  speed: 7
+  speed: 5
   moveDelay: 0
   leftHand: {fileID: 1017005567085935254}
   rightHand: {fileID: 3342890049334773046}
