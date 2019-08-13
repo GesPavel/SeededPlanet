@@ -5,27 +5,34 @@ using UnityEngine;
 public class Plant : MonoBehaviour
 {
 
-    [SerializeField] private float growthTime = 5;
+    [SerializeField] private float growthTime;
     public GameObject[] vegetable;
     public Ground ground;
     private PlantStates currentState;
     private Dictionary<PlantStates, Sprite> SpriteMap;
-    private float timer;
     private int stateNumber;
 
+    float timerUntilNewPhase;
+    float timerUntilReady;
+    float growthTimePerPhase;
+    TimeManager gameTime;
     enum PlantStates
     {
         Sprout,
         Sapling,
         BiggerSapling,
-        GrownPlant,
-        Vegetable
+        GrownPlant
     }
     void Start()
     {
         FillSpriteMap();
         EnterState(PlantStates.Sprout);
         stateNumber = Enum.GetValues(typeof(PlantStates)).Length;
+        gameTime = FindObjectOfType<TimeManager>();
+        
+        timerUntilReady = gameTime.SecondsSinceGameStart + DetermineGrowthTime() * stateNumber;
+        Debug.Log(gameTime.SecondsSinceGameStart);
+        Debug.Log(timerUntilReady);
     }
 
     private void FillSpriteMap()
@@ -36,11 +43,10 @@ public class Plant : MonoBehaviour
         SpriteMap.Add(PlantStates.Sapling, vault.saplingStateSprite);
         SpriteMap.Add(PlantStates.BiggerSapling, vault.biggerSaplingStateSprite);
         SpriteMap.Add(PlantStates.GrownPlant, vault.grownStateSplrite);
-        SpriteMap.Add(PlantStates.Vegetable, null);
-
     }
     private void EnterState(PlantStates state)
     {
+        growthTimePerPhase = DetermineGrowthTime();
         currentState = state;
         GetComponent<SpriteRenderer>().sprite = SpriteMap[state];
     }
@@ -61,6 +67,10 @@ public class Plant : MonoBehaviour
         {
             newVegetable.AddComponent<HarvestTask>();
         }
+        else if (newVegetable.GetComponent<RobotChargeStation>() != null)
+        {
+            Destroy(ground.gameObject); 
+        }
     }
 
     public void SetBaseGround(Ground ground)
@@ -69,20 +79,16 @@ public class Plant : MonoBehaviour
     }
     public virtual void Update()
     {
-        timer += Time.deltaTime;
-        float growthTimePerPhase = DetermineGrowthTime();
-
-        if (timer > growthTimePerPhase)
+        if (gameTime.SecondsSinceGameStart >= timerUntilReady) {
+            InstantiateVegetable();
+            Destroy(this.gameObject);
+        }
+        timerUntilNewPhase += Time.deltaTime;
+        if (timerUntilNewPhase > growthTimePerPhase)
         {
             EnterNextState();
-            if (currentState == PlantStates.Vegetable)
-            {
-                InstantiateVegetable();
-                Destroy(this.gameObject);
-            }
-            timer = 0.0f;
+            timerUntilNewPhase = 0.0f;
         }
-
     }
 
     private float DetermineGrowthTime()
@@ -94,14 +100,11 @@ public class Plant : MonoBehaviour
 
     private float DetermineGroundDependentCoefficent()
     {
-        const float WATER_BUFF = 1.8f;
-        const float FERTILIZER_BUFF = 1.5f;
-        float waterCoefficient = 1;
+        const float WATER_BUFF = 1.3f;
+        const float DEFAULT_SPEED_COEFFICIENT = 1.0f;
         if (ground.IsWatered)
-            waterCoefficient = WATER_BUFF;
-        float fertilizerCoefficent = 1;
-        if (ground.IsFertilized)
-            fertilizerCoefficent = FERTILIZER_BUFF;
-        return waterCoefficient * fertilizerCoefficent;
+            return WATER_BUFF;
+        else
+            return DEFAULT_SPEED_COEFFICIENT;
     }
 }

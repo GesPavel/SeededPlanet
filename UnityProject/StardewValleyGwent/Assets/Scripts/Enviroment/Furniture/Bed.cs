@@ -18,14 +18,28 @@ public class Bed : MonoBehaviour,IFurniture
         return wakeUpPoint;
     }
     public void Interact() {
+        if (time.HoursSinceMidnight >= time.eveningHour)
+        {
+            SleepInHours(24 - time.HoursSinceMidnight + time.morningHour);
+        }
+        else if (time.HoursSinceMidnight < time.morningHour)
+        {
+            SleepInHours(time.morningHour - time.HoursSinceMidnight);
+        }
+        else
+        {
+            SleepInHours(time.eveningHour - time.HoursSinceMidnight);
+        }
         
-        SleepInHours(hoursForHealthySleep);
     }
 
     public void SleepInHours(int hours)
     {
-        time.SkipHours(hours);
         var player = FindObjectOfType<StaminaDirector>();
-        player.RestoreStamina();
+        if (player.WantToSleep())
+        {
+            time.SkipHours(hours);
+            player.RestoreStamina();
+        }
     }
 }

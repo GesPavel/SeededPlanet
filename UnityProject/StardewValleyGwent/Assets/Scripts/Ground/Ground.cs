@@ -14,9 +14,6 @@ public class Ground : MonoBehaviour
     public bool IsWatered { get; private set; } = false;
     private float CurrentWaterCount { get => currentWaterCount; set => currentWaterCount = value; }
 
-    private float fertilization;
-    public bool IsFertilized { get; private set; }
-
     public bool IsPlowed { get; private set; }
     public bool isOccupiedByPlant { get; set; }
     GameObject sapling;
@@ -41,29 +38,7 @@ public class Ground : MonoBehaviour
     private void Update()
     {
         Dry();
-        if (isOccupiedByPlant)
-            TransferFertilizerToPlant();
     }
-
-    private void TransferFertilizerToPlant()
-    {
-        if (fertilization <= 0)
-        {
-            fertilization = 0;
-            IsFertilized = false;
-        }
-        else
-            fertilization--;
-
-    }
-
-    public void AddFertilizer(float fertilizerAmount)
-    {
-        fertilization += fertilizerAmount;
-
-    }
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<PlayerController>() != null)

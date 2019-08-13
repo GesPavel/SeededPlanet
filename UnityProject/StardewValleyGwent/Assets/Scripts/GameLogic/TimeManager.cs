@@ -6,14 +6,16 @@ public class TimeManager : MonoBehaviour
 {
     public static event EventManager.TimeEvent OnBeginMorning;
     public static event EventManager.TimeEvent OnBeginEvening;
-    public int Minutes { get { return ((int)Seconds % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE;} }
-    public int Hours { get {return ((int)Seconds / SECONDS_IN_HOUR);} }
+    public int MinutesSinceNewHour { get { return ((int)SecondsSinceMidnight % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE;} }
+    public int HoursSinceMidnight { get {return ((int)SecondsSinceMidnight / SECONDS_IN_HOUR);} }
     public int CurrentDay { get; private set; } = 1;
-    public float Seconds { get; private set; } = SECONDS_IN_DAY / 2;
+    public float SecondsSinceMidnight { get; private set; } = SECONDS_IN_DAY / 2;
 
-    public float timeSpeed = 1f;
-    public float morningHour = 8f;
-    public float eveningHour = 20f;
+    public float SecondsSinceGameStart { get; private set; } = 0;
+
+    public float timeSpeed;
+    public int morningHour = 8;
+    public int eveningHour = 18;
 
     
 
@@ -21,16 +23,17 @@ public class TimeManager : MonoBehaviour
     private const int SECONDS_IN_DAY=86400;
     private const int SECONDS_IN_HOUR = 3600;
     private const int SECONDS_IN_MINUTE = 60;
-    private void FixedUpdate()
+    private void Update()
     {
-        Seconds += Time.fixedDeltaTime*timeSpeed;
-        if (Seconds >= SECONDS_IN_DAY)
+        SecondsSinceMidnight += Time.deltaTime*timeSpeed;
+        SecondsSinceGameStart += Time.deltaTime;
+        if (SecondsSinceMidnight >= SECONDS_IN_DAY)
         {
             CurrentDay++;
-            Seconds %= SECONDS_IN_DAY;
+            SecondsSinceMidnight %= SECONDS_IN_DAY;
         }
         
-        if(Seconds>morningHour*SECONDS_IN_HOUR && Seconds < eveningHour * SECONDS_IN_HOUR)
+        if(SecondsSinceMidnight>morningHour*SECONDS_IN_HOUR && SecondsSinceMidnight < eveningHour * SECONDS_IN_HOUR)
         {
             OnBeginMorning();
         }
@@ -41,6 +44,7 @@ public class TimeManager : MonoBehaviour
     }
     public void SkipHours(int hours)
     {
-        Seconds += hours * SECONDS_IN_HOUR;
+        SecondsSinceMidnight += hours * SECONDS_IN_HOUR;
+        SecondsSinceGameStart += hours * SECONDS_IN_HOUR;
     }
 }
