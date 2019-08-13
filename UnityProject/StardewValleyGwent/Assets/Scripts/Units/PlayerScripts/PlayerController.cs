@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 destinationPoint;
     private bool moving;
     private bool isplayerTurned = false;
+
+    private const float DELAY_BEFORE_PLAYER_CAN_MOVE=0.15f;
+    private float delayBeforeMove = 0;
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -47,21 +50,23 @@ public class PlayerController : MonoBehaviour
 
     private void MoveControll()
     {
-        lookDirection = GetLookDirection();
-        if (transform.up != lookDirection && lookDirection!=Vector3.zero)
+        lookDirection = GetLookDirectionMobile();
+        if (transform.up != lookDirection && lookDirection!=Vector3.zero &&!moving)
         {
             transform.up = lookDirection;
-            isplayerTurned = true;
+            delayBeforeMove = DELAY_BEFORE_PLAYER_CAN_MOVE;
             return;
         }
-        if (lookDirection == Vector3.zero)
+        if (delayBeforeMove > 0)
         {
-            isplayerTurned = false;
+            delayBeforeMove -= Time.fixedDeltaTime;
+            return;
         }
-        if (!moving && !isplayerTurned)
+        if (!moving && lookDirection!=Vector3.zero)
         {
-            if (lookDirection == Vector3.zero)
+            if (transform.up != lookDirection)
             {
+                transform.up = lookDirection;
                 return;
             }
             transform.up = lookDirection;
@@ -74,21 +79,16 @@ public class PlayerController : MonoBehaviour
         else if (moving)
         {
             float remainingDistance = (transform.position - destinationPoint).magnitude;
-            if (remainingDistance < speed*Time.fixedDeltaTime)
+            if (remainingDistance < speed * Time.fixedDeltaTime)
             {
                 AttemtContinueMovement();
             }
             MakeStepToDestination(destinationPoint);
         }
     }
-    private void MakeStepToDestination(Vector3 destinationPoint)
-    {
-        Vector3 newPos = Vector3.MoveTowards(transform.position, destinationPoint, speed * Time.fixedDeltaTime);
-        rb2d.MovePosition(newPos);
-    }
     private void AttemtContinueMovement()
     {
-        Vector3 lookDirection = GetLookDirection();
+        lookDirection = GetLookDirectionMobile();
         if (transform.up == lookDirection)
         {
             if (CanMove(lookDirection))
@@ -103,26 +103,18 @@ public class PlayerController : MonoBehaviour
             return;
         }
     }
-    private Vector3 GetLookDirection()
+    private void MakeStepToDestination(Vector3 destinationPoint)
     {
-        Vector3 lookDir = Vector3.zero;
-        if (Input.GetKey(left))
-        {
-            lookDir = Vector3.left;
-        }
-        else if (Input.GetKey(right))
-        {
-            lookDir = Vector3.right;
-        }
-        else if (Input.GetKey(up))
-        {
-            lookDir = Vector3.up;
-        }
-        else if (Input.GetKey(down))
-        {
-            lookDir = Vector3.down;
-        }
-        return lookDir;
+        Vector3 newPos = Vector3.MoveTowards(transform.position, destinationPoint, speed * Time.fixedDeltaTime);
+        rb2d.MovePosition(newPos);
+    }
+   
+    private Vector3 GetLookDirectionMobile()
+    {
+        Vector3 lookDirecttion = Vector3.zero;
+        lookDirection.x = Input.GetAxis("Horizontal");
+        lookDirection.y = Input.GetAxis("Vertical");
+        return lookDirection;
     }
     private bool CanMove(Vector3 direction)
     {

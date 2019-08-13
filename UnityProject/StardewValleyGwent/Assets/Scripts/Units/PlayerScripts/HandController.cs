@@ -18,9 +18,13 @@ public class HandController : MonoBehaviour
     private StaminaDirector stamina;
     private PlayerController playerController;
     private float playersHandLength = 0.5f;
-    private float timeDelayBeforTakeItem = 0.5f;
+    private float timeDelayBeforTakeItem = 1f;
     private float TakePutButtonHoldedTime = 0;
     private bool IsTakePutButtonHolded = false;
+
+    public string actionJoystic;
+    public string pickUpJoystic;
+    public string inventoryJoystic;
     private void Start()
     {
         stamina = FindObjectOfType<StaminaDirector>();
@@ -29,28 +33,30 @@ public class HandController : MonoBehaviour
     }
     private void Update()
     {
-        if (EventSystem.current.IsPointerOverGameObject())
-        {
-            return;
-        }
-        if (Input.GetKeyDown(InventoryButton))
+
+        if (Input.GetButtonDown(inventoryJoystic))
         {
             OpenCloseInventory();
+            Debug.Log("Inventory");
         }
-        PickUpAndDropLogic();
-        if (Input.GetKeyDown(actionButton) && InteractWithTheEnvironment()) { }
-        else if (Input.GetKeyDown(actionButton) && IsHasItemInHand() && UseItem()) { }
+        PickUpAndDropLogicMobile();
+        if (Input.GetButtonDown(actionJoystic) && InteractWithTheEnvironment()) {
+            Debug.Log("Action");
+        }
+        else if (Input.GetButtonDown(actionJoystic) && IsHasItemInHand() && UseItem()) {
+            Debug.Log("Action");
+        }
     }
 
-    private void PickUpAndDropLogic()
+    private void PickUpAndDropLogicMobile()
     {
-        if (Input.GetKeyDown(TakePutButton))
+        if (Input.GetButtonDown(pickUpJoystic))
         {
             RaycastHit2D raycastHit2 = FindNearestItemsHit();
             nearestItem = ExtractItemObjectFromHit2D(raycastHit2);
             IsTakePutButtonHolded = true;
         }
-        if (IsTakePutButtonHolded && Input.GetKey(TakePutButton) && (nearestItem!=null || IsHasItemInHand()))
+        if (IsTakePutButtonHolded && Input.GetButton(pickUpJoystic) && (nearestItem!=null || IsHasItemInHand()))
         {
             TakePutButtonHoldedTime += Time.deltaTime;
             takingIndickator.fillAmount += (1 / timeDelayBeforTakeItem) * Time.deltaTime;
@@ -67,7 +73,7 @@ public class HandController : MonoBehaviour
                 ResetHolding();
             }
         }
-        if (Input.GetKeyUp(TakePutButton) && IsTakePutButtonHolded)
+        if (Input.GetButtonUp(pickUpJoystic) && IsTakePutButtonHolded)
         {
             if (nearestItem)
             {
