@@ -43,12 +43,12 @@ public class TimeDisplay : MonoBehaviour
 
     private string HourToDisplay()
     {
-        int hourCount = timeManager.Hours;
+        int hourCount = timeManager.HoursSinceMidnight;
         return " " + hourCount + ":";
     }
     private string MinuteToDisplay()
     {
-        int minuteCount = timeManager.Minutes;
+        int minuteCount = timeManager.MinutesSinceNewHour;
         if (minuteCount < 10)
         {
             return "0" + minuteCount;

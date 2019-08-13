@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4df3b820c1505534da4b95aace32c766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growthTime: 5
+  growthTime: 480
   vegetable:
   - {fileID: 5048444771007154742, guid: 39643099ee7be1a4abe9135c041dbcca, type: 3}
   ground: {fileID: 0}
