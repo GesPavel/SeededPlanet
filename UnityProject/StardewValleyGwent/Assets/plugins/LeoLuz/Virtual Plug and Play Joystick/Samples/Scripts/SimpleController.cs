@@ -8,8 +8,8 @@ namespace LeoLuz.PlugAndPlayJoystick
     public class SimpleController : MonoBehaviour
     {
         public string HorizontalAxis = "Horizontal";
-        public string JumpAxis = "Jump";
-        public string FireAxis = "Fire 1";
+        public string JumpAxis;
+        public string FireAxis;
         public GameObject Projectile;
         Rigidbody2D rb;
         public float velocity = 5f;

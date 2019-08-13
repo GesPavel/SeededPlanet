@@ -47,12 +47,7 @@ public class PlayerController : MonoBehaviour
 
     private void MoveControll()
     {
-
-#if UNITY_STANDALONE
-        lookDirection = GetLookDirection;
-#elif UNITY_ANDROID
         lookDirection = GetLookDirectionMobile();
-#endif
         if (transform.up != lookDirection && lookDirection != Vector3.zero)
         {
             transform.up = lookDirection;
@@ -93,11 +88,7 @@ public class PlayerController : MonoBehaviour
     }
     private void AttemtContinueMovement()
     {
-#if UNITY_STANDALONE
-        lookDirection = GetLookDirection;
-#elif UNITY_ANDROID
         lookDirection = GetLookDirectionMobile();
-#endif
         if (transform.up == lookDirection)
         {
             if (CanMove(lookDirection))
@@ -112,33 +103,11 @@ public class PlayerController : MonoBehaviour
             return;
         }
     }
-    private Vector3 GetLookDirection()
-    {
-        Vector3 lookDir = Vector3.zero;
-        if (Input.GetKey(left))
-        {
-            lookDir = Vector3.left;
-        }
-        else if (Input.GetKey(right))
-        {
-            lookDir = Vector3.right;
-        }
-        else if (Input.GetKey(up))
-        {
-            lookDir = Vector3.up;
-        }
-        else if (Input.GetKey(down))
-        {
-            lookDir = Vector3.down;
-        }
-        return lookDir;
-    }
     private Vector3 GetLookDirectionMobile()
     {
         Vector3 lookDirecttion = Vector3.zero;
         lookDirection.x = Input.GetAxis("Horizontal");
         lookDirection.y = Input.GetAxis("Vertical");
-        Debug.Log(lookDirection);
         return lookDirection;
     }
     private bool CanMove(Vector3 direction)
