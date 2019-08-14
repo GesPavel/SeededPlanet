@@ -35,7 +35,7 @@ public class StaminaDirector : MonoBehaviour
     internal void Faint()
     {
         player.MoveToBed();
-        FindObjectOfType<Bed>().SleepInHours(Bed.hoursForFaint);
+        FindObjectOfType<Bed>().Interact();
     }
 
     public void DecreaseStamina(float staminaLost)
