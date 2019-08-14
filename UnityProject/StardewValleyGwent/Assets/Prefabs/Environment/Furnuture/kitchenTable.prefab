@@ -155,6 +155,7 @@ MonoBehaviour:
   minBrightness: 0.15
   maxBrightness: 1
   timer: 2
+  newTimer: 2
 --- !u!1 &8092965781082765283
 GameObject:
   m_ObjectHideFlags: 0
