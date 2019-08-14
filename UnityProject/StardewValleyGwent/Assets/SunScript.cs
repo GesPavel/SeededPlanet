@@ -34,7 +34,7 @@ public class SunScript : MonoBehaviour
 
     private void AddIntencityOfLight()
     {
-        if (light2D.intensity > 0)
+        if (light2D.intensity > 0.0f)
         {
             float additive = (timeManager.timeSpeed * Time.fixedDeltaTime) / (SECONDS_IN_HOUR * changeOfIntensityTime);
             light2D.intensity += additive;
@@ -44,7 +44,7 @@ public class SunScript : MonoBehaviour
 
     private void ReduceIntencityOfLight()
     {
-        if (light2D.intensity > 0)
+        if (light2D.intensity > 0.0f)
         {
             float reduction = (timeManager.timeSpeed * Time.fixedDeltaTime) / (SECONDS_IN_HOUR * changeOfIntensityTime);
             light2D.intensity -= reduction;
@@ -53,11 +53,11 @@ public class SunScript : MonoBehaviour
     }
     public void ZeroLight()
     {
-        light2D.intensity = 0;
+        light2D.intensity = 0.0f;
     }
     public void Update()
     {
-        if (light2D.intensity <= 0)
+        if (light2D.intensity <= 0.0f)
         {
             timer -= Time.deltaTime;
             if (timer<=0)

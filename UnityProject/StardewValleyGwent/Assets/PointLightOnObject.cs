@@ -12,6 +12,7 @@ public class PointLightOnObject : MonoBehaviour
     private TimeManager timeManager;
     private const int SECONDS_IN_HOUR = 3600;
     public float timer;
+    public float newTimer;
 
     void Awake()
     {
@@ -33,7 +34,7 @@ public class PointLightOnObject : MonoBehaviour
 
     private void AddIntencityOfLight()
     {
-        if (light2D.intensity > 0)
+        if (light2D.intensity > 0.0f)
         {
 
             float additive = (timeManager.timeSpeed * Time.fixedDeltaTime) / (SECONDS_IN_HOUR * changeOfIntensityTime);
@@ -44,7 +45,7 @@ public class PointLightOnObject : MonoBehaviour
 
     private void ReduceIntencityOfLight()
     {
-        if (light2D.intensity > 0)
+        if (light2D.intensity > 0.0f)
         {
 
             float reduction = (timeManager.timeSpeed * Time.fixedDeltaTime) / (SECONDS_IN_HOUR * changeOfIntensityTime);
@@ -55,17 +56,17 @@ public class PointLightOnObject : MonoBehaviour
 
     public void ZeroLight()
     {
-        light2D.intensity = 0;
+        light2D.intensity = 0.0f;
     }
     public void Update()
     {
-        if (light2D.intensity <= 0)
+        if (light2D.intensity <= 0.0f)
         {
             timer -= Time.deltaTime;
-            if (timer <= 0)
+            if (timer <= 0.0f)
             {
                 light2D.intensity = Bed.isMorningLight ? minBrightness : maxBrightness;
-                timer = 2.0f;
+                timer = newTimer;
             }
         }
     }

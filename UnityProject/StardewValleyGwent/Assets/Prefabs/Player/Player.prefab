@@ -45,6 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeOfIntensityTime: 0.5
+  minBrightness: 0.15
+  maxBrightness: 1
+  timer: 1
+  newTimer: 1
 --- !u!1 &1801916358
 GameObject:
   m_ObjectHideFlags: 0

@@ -44525,6 +44525,7 @@ MonoBehaviour:
   minBrightness: 0.15
   maxBrightness: 1
   timer: 2
+  newTimer: 2
 --- !u!4 &1029876433
 Transform:
   m_ObjectHideFlags: 0
