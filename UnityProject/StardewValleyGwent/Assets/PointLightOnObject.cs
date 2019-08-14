@@ -6,12 +6,12 @@ using UnityEngine.Experimental.Rendering.LWRP;
 public class PointLightOnObject : MonoBehaviour
 {
     public float changeOfIntensityTime = 0.5f;
-    private float minBrightness = 0.15f;
-    private float maxBrightness = 1;
+    public float minBrightness;
+    public float maxBrightness;
     private Light2D light2D;
     private TimeManager timeManager;
     private const int SECONDS_IN_HOUR = 3600;
-    float timer = 2.0f;
+    public float timer;
 
     void Awake()
     {
@@ -64,7 +64,7 @@ public class PointLightOnObject : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
-                light2D.intensity = Bed.isMorningLight ? maxBrightness : minBrightness;
+                light2D.intensity = Bed.isMorningLight ? minBrightness : maxBrightness;
                 timer = 2.0f;
             }
         }

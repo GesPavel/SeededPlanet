@@ -6,14 +6,15 @@ using UnityEngine.Experimental.Rendering.LWRP;
 public class SunScript : MonoBehaviour
 {
     public float changeOfIntensityTime = 0.5f;
-    public float minBrightness = 0.15f;
-    public float maxBrightness = 1;
+    public float minBrightness;
+    public float maxBrightness;
     private Light2D light2D;
     private TimeManager timeManager;
     private const int SECONDS_IN_HOUR = 3600;
     public float timer;
+    PointLightOnObject[] pointLights;
 
-
+    
     private void OnEnable()
     {
         TimeManager.OnBeginMorning += AddIntencityOfLight;
@@ -26,6 +27,7 @@ public class SunScript : MonoBehaviour
     }
     private void Awake()
     {
+        pointLights = FindObjectsOfType<PointLightOnObject>();
         light2D = GetComponent<Light2D>();
         timeManager = FindObjectOfType<TimeManager>();
     }
@@ -65,6 +67,18 @@ public class SunScript : MonoBehaviour
             }
         }
     }
+    public void StartBlackOut()
+    {
+        ZeroLight();
+        foreach (PointLightOnObject light in pointLights)
+        {
+            light.ZeroLight();
+        }
 
+    }
+    
 
 }
+
+
+

@@ -5,8 +5,8 @@ using UnityEngine;
 public class Bed : MonoBehaviour,IFurniture
 {
     public GameObject wakeUpPoint;
-    SunScript dream;
-    PointLightOnObject[] pointLights;
+    SunScript sun;
+    
     TimeManager time;
     StaminaDirector player;
     public static int hoursForHealthySleep = 8;
@@ -17,8 +17,7 @@ public class Bed : MonoBehaviour,IFurniture
     {
         player = FindObjectOfType<StaminaDirector>();
         time = FindObjectOfType<TimeManager>();
-        dream = FindObjectOfType<SunScript>();
-        pointLights = FindObjectsOfType<PointLightOnObject>();
+        sun = FindObjectOfType<SunScript>();
     }
 
     public GameObject GetWakeUpPoint()
@@ -48,16 +47,16 @@ public class Bed : MonoBehaviour,IFurniture
     {
         if (player.WantToSleep())
         {
-            dream.ZeroLight();
-            foreach (PointLightOnObject light in pointLights)
-            {
-                light.ZeroLight();
-            }
+            sun.StartBlackOut();
             time.SkipHours(hours);
             player.RestoreStamina();
-            player.gameObject.SetActive(false);
-            Invoke("WakeUpPlayer", 2.0f);    
+            FallAsleep();
         }
+    }
+    void FallAsleep()
+    {
+        player.gameObject.SetActive(false);
+        Invoke("WakeUpPlayer", 2.0f);
     }
     void WakeUpPlayer()
     {
