@@ -37,14 +37,14 @@ public class HandController : MonoBehaviour
         if (Input.GetButtonDown(inventoryJoystic))
         {
             OpenCloseInventory();
-            Debug.Log("Inventory");
+            
         }
         PickUpAndDropLogicMobile();
-        if (Input.GetButtonDown(actionJoystic) && InteractWithTheEnvironment()) {
-            Debug.Log("Action");
+        if (Input.GetButtonDown(actionJoystic) && !stamina.IsWornOut() && InteractWithTheEnvironment()) {
+            
         }
-        else if (Input.GetButtonDown(actionJoystic) && IsHasItemInHand() && UseItem()) {
-            Debug.Log("Action");
+        else if (Input.GetButtonDown(actionJoystic) && !stamina.IsWornOut() && IsHasItemInHand() && UseItem()) {
+           
         }
     }
 

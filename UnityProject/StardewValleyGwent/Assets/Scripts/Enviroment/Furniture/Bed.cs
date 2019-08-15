@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bed : MonoBehaviour,IFurniture
+public class Bed : MonoBehaviour
 {
     public GameObject wakeUpPoint;
     SunScript sun;
@@ -24,7 +24,7 @@ public class Bed : MonoBehaviour,IFurniture
     {
         return wakeUpPoint;
     }
-    public void Interact() {
+    public void OnTriggerEnter2D() {
         if (time.HoursSinceMidnight >= time.eveningHour)
         {
             isMorningLight = true;
