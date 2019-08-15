@@ -20,7 +20,7 @@ public class StaminaDirector : MonoBehaviour
     private void Awake()
     {
         player = GetComponent<PlayerController>();
-        CurrentStamina = maxStamina;
+        RestoreStamina();
         NearestCalmingAnimalsCount = new Dictionary<CalmingAnimals, int>();
         NearestCalmingAnimalsCount.Add(CalmingAnimals.Cat, 0);
     }
@@ -36,12 +36,15 @@ public class StaminaDirector : MonoBehaviour
         {
             CurrentStamina = maxStamina;
         }
-        else if (CurrentStamina <= 0)
+        if (CurrentStamina <= 0)
         {
             CurrentStamina = 0;
             SlowDownPlayer();
         }
-       
+       else
+        {
+            player.ResetSpeed();
+        }
     }
 
     private void SlowDownPlayer()
@@ -64,7 +67,6 @@ public class StaminaDirector : MonoBehaviour
     public void RestoreStamina()
     {
         CurrentStamina = maxStamina;
-        player.ResetSpeed();
     }
 
     public void SetNearestCalmingAnimal(CalmingAnimals animal)

@@ -503,10 +503,10 @@ MonoBehaviour:
     price: 100
   - product: {fileID: 823153379482086979, guid: ba5defbb870aecc4499c10a4e6f58286,
       type: 3}
-    price: 100
+    price: 200
   - product: {fileID: 4408586319642436539, guid: d4b8674ef8ef8cb44ab0c468b6ee14e5,
       type: 3}
-    price: 100
+    price: 10
   - product: {fileID: 9163784511831468548, guid: f4fb92682ca9e544c9949a8f5b3864f3,
       type: 3}
     price: 100

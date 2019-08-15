@@ -43,7 +43,7 @@ public class HandController : MonoBehaviour
         if (Input.GetButtonDown(actionJoystic) && !stamina.IsWornOut() && InteractWithTheEnvironment()) {
             
         }
-        else if (Input.GetButtonDown(actionJoystic) && !stamina.IsWornOut() && IsHasItemInHand() && UseItem()) {
+        else if (Input.GetButtonDown(actionJoystic) && (!stamina.IsWornOut() || ItemInHand.GetComponent<IEdibleItem>() != null) && IsHasItemInHand() && UseItem()) {
            
         }
     }

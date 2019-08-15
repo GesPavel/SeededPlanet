@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask lakeLayer;
     private Vector3 lookDirection;
     private Vector3 destinationPoint;
-    private bool moving;
+    public bool moving;
     private bool isplayerTurned = false;
 
     private const float DELAY_BEFORE_PLAYER_CAN_MOVE=0.15f;

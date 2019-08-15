@@ -55,12 +55,12 @@ public class Bed : MonoBehaviour
     }
     void FallAsleep()
     {
-        player.gameObject.SetActive(false);
+        player.GetComponent<PlayerController>().enabled = false;
         Invoke("WakeUpPlayer", 2.0f);
     }
     void WakeUpPlayer()
     {
-        player.gameObject.SetActive(true);
+        player.GetComponent<PlayerController>().enabled = true;
     }
     
     
