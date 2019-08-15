@@ -5,19 +5,17 @@ using UnityEngine;
 public class BuffController : MonoBehaviour
 {
     public float timeToBuffSpeed;
-    float startSpeed;
     float startSpeedBuffTime;
     PlayerController player;
     
     void Start()
     {
         player = FindObjectOfType<PlayerController>();
-        startSpeed = player.speed;
         startSpeedBuffTime = timeToBuffSpeed;
     }
     void CheckSpeedBuff()
     {
-        if (player.speed != startSpeed)
+        if (player.speed > player.startSpeed)
         {
             if (timeToBuffSpeed > 0.0f)
             {
@@ -25,7 +23,7 @@ public class BuffController : MonoBehaviour
             }
             if (timeToBuffSpeed <= 0.0f)
             {
-                player.speed = startSpeed;
+                player.ResetSpeed();
                 timeToBuffSpeed = startSpeedBuffTime;
             }
         }

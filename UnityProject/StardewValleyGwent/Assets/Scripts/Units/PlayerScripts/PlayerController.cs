@@ -5,14 +5,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public KeyCode left, right, up, down;
-    public float speed;
+    public float speed = 5;
+    public float startSpeed;
     public float moveDelay;
     public GameObject leftHand, rightHand;
     private Ground currentGroundPosition;
     private Rigidbody2D rb2d;
-    private StaminaDirector stamina;
-    private HandController handController;
-    HandController hand;
     Bed bed;
     [SerializeField] private LayerMask blockingLayer;
     [SerializeField] private LayerMask lakeLayer;
@@ -26,22 +24,11 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        stamina = GetComponent<StaminaDirector>();
         moving = false;
         DontDestroyOnLoad(this.gameObject);
-        hand = GetComponentInChildren<HandController>();
         bed = FindObjectOfType<Bed>();
         destinationPoint = transform.position;
-        handController = GetComponentInChildren<HandController>();
-
-    }
-    void Update()
-    {
-        if (stamina.CurrentStamina <= 0)
-        {
-            moving = false;
-            stamina.Faint();
-        }
+        startSpeed = speed;
     }
     private void FixedUpdate()
     {
@@ -134,8 +121,8 @@ public class PlayerController : MonoBehaviour
 
         currentGroundPosition = ground;
     }
-    public void MoveToBed()
+    public void ResetSpeed()
     {
-        transform.position = bed.GetWakeUpPoint().transform.position;
+        speed = startSpeed;
     }
 }
