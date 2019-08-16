@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -42274,6 +42274,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 841462669}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: sellingItem
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: purchasedItem
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306950905998245317, guid: 3f6bbed041eeb36489a7f9d5e41394be,
+        type: 3}
+      propertyPath: m_Name
+      value: RobotMerchant
+      objectReference: {fileID: 0}
     - target: {fileID: 2514763807873333625, guid: 3f6bbed041eeb36489a7f9d5e41394be,
         type: 3}
       propertyPath: minBrightness
@@ -42298,19 +42311,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: sellingItem
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: purchasedItem
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8306950905998245317, guid: 3f6bbed041eeb36489a7f9d5e41394be,
-        type: 3}
-      propertyPath: m_Name
-      value: RobotMerchant
       objectReference: {fileID: 0}
     - target: {fileID: 8306950905998245313, guid: 3f6bbed041eeb36489a7f9d5e41394be,
         type: 3}
@@ -42718,6 +42718,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 841462669}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: sellingItem
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: purchasedItem
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306950905998245317, guid: 3f6bbed041eeb36489a7f9d5e41394be,
+        type: 3}
+      propertyPath: m_Name
+      value: ToolMerchant
+      objectReference: {fileID: 0}
     - target: {fileID: 2514763807873333625, guid: 3f6bbed041eeb36489a7f9d5e41394be,
         type: 3}
       propertyPath: minBrightness
@@ -42742,23 +42759,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: sellingItem
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: purchasedItem
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8306950905998245317, guid: 3f6bbed041eeb36489a7f9d5e41394be,
-        type: 3}
-      propertyPath: m_Name
-      value: ToolMerchant
       objectReference: {fileID: 0}
     - target: {fileID: 8306950905998245313, guid: 3f6bbed041eeb36489a7f9d5e41394be,
         type: 3}
@@ -47900,10 +47900,10 @@ Transform:
   m_LocalPosition: {x: 13.677996, y: -5.8934736, z: 8.378918}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 185292580}
   - {fileID: 1416823820}
-  - {fileID: 1913862299}
   - {fileID: 153479017}
+  - {fileID: 185292580}
+  - {fileID: 1913862299}
   m_Father: {fileID: 620231694}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48273,6 +48273,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615906496749393939, guid: 14c8b8e2ba6f7ed428f4ebb901cab171,
+        type: 3}
+      propertyPath: itemsCounter
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14c8b8e2ba6f7ed428f4ebb901cab171, type: 3}
@@ -52726,6 +52731,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4615906496749393939, guid: 14c8b8e2ba6f7ed428f4ebb901cab171,
+        type: 3}
+      propertyPath: itemsCounter
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14c8b8e2ba6f7ed428f4ebb901cab171, type: 3}
 --- !u!1001 &1292913382
@@ -55066,6 +55076,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4615906496749393939, guid: 14c8b8e2ba6f7ed428f4ebb901cab171,
+        type: 3}
+      propertyPath: itemsCounter
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14c8b8e2ba6f7ed428f4ebb901cab171, type: 3}
 --- !u!1001 &1530528960
@@ -55900,6 +55915,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 841462669}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: sellingItem
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: purchasedItem
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306950905998245317, guid: 3f6bbed041eeb36489a7f9d5e41394be,
+        type: 3}
+      propertyPath: m_Name
+      value: VegetableMerchant
+      objectReference: {fileID: 0}
     - target: {fileID: 2514763807873333625, guid: 3f6bbed041eeb36489a7f9d5e41394be,
         type: 3}
       propertyPath: minBrightness
@@ -55924,23 +55956,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: sellingItem
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: purchasedItem
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8306950905998245317, guid: 3f6bbed041eeb36489a7f9d5e41394be,
-        type: 3}
-      propertyPath: m_Name
-      value: VegetableMerchant
       objectReference: {fileID: 0}
     - target: {fileID: 8306950905998245313, guid: 3f6bbed041eeb36489a7f9d5e41394be,
         type: 3}
@@ -56361,6 +56376,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615906496749393939, guid: 14c8b8e2ba6f7ed428f4ebb901cab171,
+        type: 3}
+      propertyPath: itemsCounter
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14c8b8e2ba6f7ed428f4ebb901cab171, type: 3}
@@ -58605,6 +58625,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 841462669}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: sellingItem
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: purchasedItem
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306950905998245317, guid: 3f6bbed041eeb36489a7f9d5e41394be,
+        type: 3}
+      propertyPath: m_Name
+      value: AnimalMerchant
+      objectReference: {fileID: 0}
     - target: {fileID: 2514763807873333625, guid: 3f6bbed041eeb36489a7f9d5e41394be,
         type: 3}
       propertyPath: minBrightness
@@ -58629,23 +58666,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: sellingItem
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: purchasedItem
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8306950905998245317, guid: 3f6bbed041eeb36489a7f9d5e41394be,
-        type: 3}
-      propertyPath: m_Name
-      value: AnimalMerchant
       objectReference: {fileID: 0}
     - target: {fileID: 8306950905998245313, guid: 3f6bbed041eeb36489a7f9d5e41394be,
         type: 3}
@@ -58880,6 +58900,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615906496749393939, guid: 14c8b8e2ba6f7ed428f4ebb901cab171,
+        type: 3}
+      propertyPath: itemsCounter
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14c8b8e2ba6f7ed428f4ebb901cab171, type: 3}
