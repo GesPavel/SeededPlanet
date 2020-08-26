@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2890242387420612309}
   - component: {fileID: 2890242387420612298}
   - component: {fileID: 7691349921410153131}
+  - component: {fileID: 2044092960902041541}
   m_Layer: 0
   m_Name: GameCamera
   m_TagString: Untagged
@@ -146,3 +147,17 @@ MonoBehaviour:
   Dampening: 10
   Inertia: 0.05
   remainingDelta: {x: 0, y: 0, z: 0}
+--- !u!114 &2044092960902041541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2890242387420612299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2518cdbf6a9e9a4da29d28447c04b7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sizes: 050000000a0000000f000000
+  _zoomSpeed: 5
