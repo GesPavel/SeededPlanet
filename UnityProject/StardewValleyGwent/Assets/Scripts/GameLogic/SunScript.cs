@@ -8,7 +8,7 @@ public class SunScript : MonoBehaviour
     public float changeOfIntensityTime = 0.5f;
     public float minBrightness;
     public float maxBrightness;
-    private Light2D light2D;
+    private UnityEngine.Experimental.Rendering.Universal.Light2D light2D;
     private TimeManager timeManager;
     private const int SECONDS_IN_HOUR = 3600;
     public float timer;
@@ -28,7 +28,7 @@ public class SunScript : MonoBehaviour
     private void Awake()
     {
         pointLights = FindObjectsOfType<PointLightOnObject>();
-        light2D = GetComponent<Light2D>();
+        light2D = GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>();
         timeManager = FindObjectOfType<TimeManager>();
     }
 

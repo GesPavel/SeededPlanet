@@ -8,7 +8,7 @@ public class PointLightOnObject : MonoBehaviour
     public float changeOfIntensityTime = 0.5f;
     public float minBrightness;
     public float maxBrightness;
-    private Light2D light2D;
+    private UnityEngine.Experimental.Rendering.Universal.Light2D light2D;
     private TimeManager timeManager;
     private const int SECONDS_IN_HOUR = 3600;
     public float timer;
@@ -16,7 +16,7 @@ public class PointLightOnObject : MonoBehaviour
 
     void Awake()
     {
-        light2D = GetComponentInChildren<Light2D>();
+        light2D = GetComponentInChildren<UnityEngine.Experimental.Rendering.Universal.Light2D>();
         timeManager = FindObjectOfType<TimeManager>();
     }
 
