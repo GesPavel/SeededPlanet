@@ -16,7 +16,7 @@ public class TimeManager : MonoBehaviour
     public float timeSpeed;
     public int morningHour = 8;
     public int eveningHour = 18;
-
+    public bool timeWasSkipped = false;
     
 
 
@@ -25,8 +25,8 @@ public class TimeManager : MonoBehaviour
     private const int SECONDS_IN_MINUTE = 60;
     private void Update()
     {
-        SecondsSinceMidnight += Time.deltaTime*timeSpeed;
-        SecondsSinceGameStart += Time.deltaTime;
+        SecondsSinceMidnight += Time.deltaTime*timeSpeed * Time.timeScale;
+        SecondsSinceGameStart += Time.deltaTime * Time.timeScale;
         if (SecondsSinceMidnight >= SECONDS_IN_DAY)
         {
             CurrentDay++;
@@ -46,5 +46,6 @@ public class TimeManager : MonoBehaviour
     {
         SecondsSinceMidnight += hours * SECONDS_IN_HOUR;
         SecondsSinceGameStart += hours * SECONDS_IN_HOUR;
+        timeWasSkipped = true;
     }
 }

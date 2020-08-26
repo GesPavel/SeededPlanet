@@ -19,7 +19,7 @@ public class BuffController : MonoBehaviour
         {
             if (timeToBuffSpeed > 0.0f)
             {
-                timeToBuffSpeed -= Time.deltaTime;
+                timeToBuffSpeed -= Time.deltaTime * Time.timeScale;
             }
             if (timeToBuffSpeed <= 0.0f)
             {

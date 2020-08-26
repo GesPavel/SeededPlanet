@@ -79,16 +79,18 @@ public class Plant : MonoBehaviour
     }
     public virtual void Update()
     {
-        if (gameTime.SecondsSinceGameStart >= timerUntilReady) {
-            InstantiateVegetable();
-            Destroy(this.gameObject);
+        if (gameTime.SecondsSinceGameStart >= timerUntilReady)
+        {
+                InstantiateVegetable();
+                Destroy(this.gameObject);
         }
-        timerUntilNewPhase += Time.deltaTime;
+        timerUntilNewPhase += Time.deltaTime*Time.timeScale;
         if (timerUntilNewPhase > growthTimePerPhase)
         {
-            EnterNextState();
-            timerUntilNewPhase = 0.0f;
+                EnterNextState();
+                timerUntilNewPhase = 0.0f;
         }
+        
     }
 
     private float DetermineGrowthTime()
@@ -100,7 +102,7 @@ public class Plant : MonoBehaviour
 
     private float DetermineGroundDependentCoefficent()
     {
-        const float WATER_BUFF = 1.3f;
+        const float WATER_BUFF = 2f;
         const float DEFAULT_SPEED_COEFFICIENT = 1.0f;
         if (ground.IsWatered)
             return WATER_BUFF;
