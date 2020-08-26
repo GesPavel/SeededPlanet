@@ -30,7 +30,7 @@ public class ChickenGirl : Animal
         base.Update();
         if (outOfEggs)
         {
-            timeToSex += Time.deltaTime;
+            timeToSex += Time.deltaTime * Time.timeScale;
             if (timeToSex > 0)
             {
                 outOfEggs = false;

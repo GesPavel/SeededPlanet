@@ -31,7 +31,7 @@ public class StaminaDirector : MonoBehaviour
         {
             staminaLossReduceСoefficient += typeOfAnimalNearCount;
         }
-        CurrentStamina -= Time.deltaTime * (StaminaLoss - staminaLossReduceСoefficient);
+        //CurrentStamina -= Time.deltaTime * (StaminaLoss - staminaLossReduceСoefficient);
         if (CurrentStamina > maxStamina)
         {
             CurrentStamina = maxStamina;
@@ -80,6 +80,10 @@ public class StaminaDirector : MonoBehaviour
     public bool WantToSleep()
     {
         return CurrentStamina < TIREDNESS_LIMIT;
+    }
+    public bool Restored()
+    {
+        return CurrentStamina == maxStamina;
     }
     public bool IsWornOut()
     {

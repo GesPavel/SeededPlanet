@@ -8,7 +8,7 @@ public class SunScript : MonoBehaviour
     public float changeOfIntensityTime = 0.5f;
     public float minBrightness;
     public float maxBrightness;
-    private Light2D light2D;
+    private UnityEngine.Experimental.Rendering.Universal.Light2D light2D;
     private TimeManager timeManager;
     private const int SECONDS_IN_HOUR = 3600;
     public float timer;
@@ -28,7 +28,7 @@ public class SunScript : MonoBehaviour
     private void Awake()
     {
         pointLights = FindObjectsOfType<PointLightOnObject>();
-        light2D = GetComponent<Light2D>();
+        light2D = GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>();
         timeManager = FindObjectOfType<TimeManager>();
     }
 
@@ -55,18 +55,7 @@ public class SunScript : MonoBehaviour
     {
         light2D.intensity = 0.0f;
     }
-    public void Update()
-    {
-        if (light2D.intensity <= 0.0f)
-        {
-            timer -= Time.deltaTime;
-            if (timer<=0)
-            {
-                light2D.intensity = Bed.isMorningLight ? maxBrightness : minBrightness;
-                timer = 2.0f;
-            }
-        }
-    }
+
     public void StartBlackOut()
     {
         ZeroLight();
@@ -76,7 +65,13 @@ public class SunScript : MonoBehaviour
         }
 
     }
-    
+    public void StartNewDawn()
+    {
+        if (light2D.intensity <= 0.0f)
+        {
+            light2D.intensity = Bed.isMorningLight ? maxBrightness : minBrightness;
+        }
+    }
 
 }
 
