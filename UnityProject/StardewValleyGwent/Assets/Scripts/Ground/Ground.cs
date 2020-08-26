@@ -55,7 +55,7 @@ public class Ground : MonoBehaviour
     }
     public void AddWater(float water)
     {
-        waterDryPerSecond = Time.deltaTime;
+        waterDryPerSecond = Time.deltaTime * Time.timeScale;
         if (currentState == GroundStates.DryPlowed)
             EnterState(GroundStates.WetPlowed);
         else if (currentState == GroundStates.DryRaw)
@@ -76,10 +76,6 @@ public class Ground : MonoBehaviour
                 EnterState(GroundStates.DryPlowed);
             else if (currentState == GroundStates.WetRaw)
                 EnterState(GroundStates.DryRaw);
-        }
-        if (gameTime.timeWasSkipped)
-        {
-            CurrentWaterCount -= maxWaterValue;
         }
     }
     public void Plow()
