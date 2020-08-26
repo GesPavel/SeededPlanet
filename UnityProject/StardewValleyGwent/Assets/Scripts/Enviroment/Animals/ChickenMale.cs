@@ -45,7 +45,7 @@ public class ChickenMale : Animal
             {
                 aiPath.canMove = false;
                 aiPath.canSearch = false;
-                timeToSex += Time.deltaTime;
+                timeToSex += Time.deltaTime * Time.timeScale;
             }
         }
         else

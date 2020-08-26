@@ -76,8 +76,8 @@ public abstract class Animal : MonoBehaviour
         {
             Vector3 pos = rb.position;
             direction.Normalize();
-            timeForWalking -= Time.deltaTime;
-            rb.MovePosition((Vector2)rb.transform.position + direction * speed * Time.deltaTime);
+            timeForWalking -= Time.deltaTime*Time.timeScale;
+            rb.MovePosition((Vector2)rb.transform.position + direction * speed * Time.deltaTime * Time.timeScale);
 
 
         }
@@ -85,7 +85,7 @@ public abstract class Animal : MonoBehaviour
         {
             if (timeForStop <= 0)
             {
-                timeForStop += Time.deltaTime;
+                timeForStop += Time.deltaTime * Time.timeScale;
             }
             if (timeForStop > 0)
             {

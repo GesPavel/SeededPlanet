@@ -18,50 +18,47 @@ public class Bed : MonoBehaviour
         player = FindObjectOfType<StaminaDirector>();
         time = FindObjectOfType<TimeManager>();
         sun = FindObjectOfType<SunScript>();
+        Time.timeScale = 1;
+        Debug.Log(Time.deltaTime * Time.timeScale);
     }
 
     public GameObject GetWakeUpPoint()
     {
         return wakeUpPoint;
     }
-    public void OnTriggerEnter2D() {
-        if (time.HoursSinceMidnight >= time.eveningHour)
+    public void OnTriggerStay2D()
+    {
+        if (!player.Restored())
         {
-            isMorningLight = true;
-            SleepInHours(24 - time.HoursSinceMidnight + time.morningHour);
-        }
-        else if (time.HoursSinceMidnight < time.morningHour)
-        {
-            isMorningLight = true;
-            SleepInHours(time.morningHour - time.HoursSinceMidnight);
+            SleepInHours();
         }
         else
         {
-            isMorningLight = false;
-            SleepInHours(time.eveningHour - time.HoursSinceMidnight);
+            WakeUpPlayer();
         }
-        
     }
 
-    public void SleepInHours(int hours)
+    public void OnTriggerEnter2D()
     {
-        if (player.WantToSleep())
+        if (!player.Restored())
         {
             sun.StartBlackOut();
-            time.SkipHours(hours);
-            player.RestoreStamina();
-            FallAsleep();
         }
     }
-    void FallAsleep()
+
+    public void SleepInHours()
     {
+        player.IncreaseStamina(0.1f);
         player.GetComponent<PlayerController>().enabled = false;
-        Invoke("WakeUpPlayer", 2.0f);
+        Time.timeScale = 20;
     }
+
     void WakeUpPlayer()
     {
         player.GetComponent<PlayerController>().enabled = true;
+        Time.timeScale = 1;
+        sun.StartNewDawn();
     }
-    
-    
+
+
 }

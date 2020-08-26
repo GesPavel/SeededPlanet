@@ -17,7 +17,7 @@ public class Ground : MonoBehaviour
     public bool IsPlowed { get; private set; }
     public bool isOccupiedByPlant { get; set; }
     GameObject sapling;
-
+    TimeManager gameTime;
 
     public enum GroundStates
     {
@@ -33,7 +33,7 @@ public class Ground : MonoBehaviour
         EnterState(GroundStates.DryRaw);
         IsPlowed = false;
         isOccupiedByPlant = false;
-
+        gameTime = FindObjectOfType<TimeManager>();
     }
     private void Update()
     {
@@ -76,6 +76,10 @@ public class Ground : MonoBehaviour
                 EnterState(GroundStates.DryPlowed);
             else if (currentState == GroundStates.WetRaw)
                 EnterState(GroundStates.DryRaw);
+        }
+        if (gameTime.timeWasSkipped)
+        {
+            CurrentWaterCount -= maxWaterValue;
         }
     }
     public void Plow()

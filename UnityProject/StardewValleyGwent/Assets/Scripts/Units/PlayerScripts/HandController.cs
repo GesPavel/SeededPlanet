@@ -58,8 +58,8 @@ public class HandController : MonoBehaviour
         }
         if (IsTakePutButtonHolded && Input.GetButton(pickUpJoystic) && (nearestItem!=null || IsHasItemInHand()))
         {
-            TakePutButtonHoldedTime += Time.deltaTime;
-            takingIndickator.fillAmount += (1 / timeDelayBeforTakeItem) * Time.deltaTime;
+            TakePutButtonHoldedTime += Time.deltaTime * Time.timeScale;
+            takingIndickator.fillAmount += (1 / timeDelayBeforTakeItem) * Time.deltaTime * Time.timeScale;
             if (TakePutButtonHoldedTime >= timeDelayBeforTakeItem)
             {
                 if (IsHasItemInHand())

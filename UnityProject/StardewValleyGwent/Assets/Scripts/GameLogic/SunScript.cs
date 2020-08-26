@@ -55,18 +55,7 @@ public class SunScript : MonoBehaviour
     {
         light2D.intensity = 0.0f;
     }
-    public void Update()
-    {
-        if (light2D.intensity <= 0.0f)
-        {
-            timer -= Time.deltaTime;
-            if (timer<=0)
-            {
-                light2D.intensity = Bed.isMorningLight ? maxBrightness : minBrightness;
-                timer = 2.0f;
-            }
-        }
-    }
+
     public void StartBlackOut()
     {
         ZeroLight();
@@ -76,7 +65,13 @@ public class SunScript : MonoBehaviour
         }
 
     }
-    
+    public void StartNewDawn()
+    {
+        if (light2D.intensity <= 0.0f)
+        {
+            light2D.intensity = Bed.isMorningLight ? maxBrightness : minBrightness;
+        }
+    }
 
 }
 

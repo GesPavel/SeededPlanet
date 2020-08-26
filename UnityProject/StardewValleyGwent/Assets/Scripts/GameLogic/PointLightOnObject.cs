@@ -62,7 +62,7 @@ public class PointLightOnObject : MonoBehaviour
     {
         if (light2D.intensity <= 0.0f)
         {
-            timer -= Time.deltaTime;
+            timer -= Time.deltaTime * Time.timeScale;
             if (timer <= 0.0f)
             {
                 light2D.intensity = Bed.isMorningLight ? minBrightness : maxBrightness;

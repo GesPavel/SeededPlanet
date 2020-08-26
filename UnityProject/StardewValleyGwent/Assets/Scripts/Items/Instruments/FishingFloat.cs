@@ -28,7 +28,7 @@ public class FishingFloat : MonoBehaviour
         if (timeUnderTheWater >= 0)
         {
             GetComponent<SpriteRenderer>().enabled = false;
-            timeUnderTheWater -= Time.deltaTime;
+            timeUnderTheWater -= Time.deltaTime * Time.timeScale;
             youCanGetFish = true;
         }
         if (timeUnderTheWater < 0)
@@ -49,7 +49,7 @@ public class FishingFloat : MonoBehaviour
         if (timeAboveTheWater >= 0)
         {
             GetComponent<SpriteRenderer>().enabled = true;
-            timeAboveTheWater -= Time.deltaTime;
+            timeAboveTheWater -= Time.deltaTime * Time.timeScale;
             youCanGetFish = false;
         }
         if (timeAboveTheWater < 0)
